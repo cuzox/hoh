@@ -2,8 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var mongojs = require('mongojs');
-var credentials = require('../lookHere.credentials');
-var db = mongojs(credentials.connectionString, ['tasks']);
+var db = mongojs("mongodb://localhost:27017/hoh", ['tasks']);
 
 // Get All Tasks
 router.get('/tasks', function(req, res, next){

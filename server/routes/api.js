@@ -4,7 +4,6 @@ var router = express.Router();
 var mongojs = require('mongojs');
 var credentials = require('../lookHere.credentials');
 var db = mongojs(credentials.connectionString, ['tasks']);
-var test = null;
 
 // Get All Tasks
 router.get('/tasks', function(req, res, next){

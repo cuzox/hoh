@@ -7,6 +7,8 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 
+import { AlertModule } from 'ngx-bootstrap';
+
 import { customHttpProvider } from './_helpers/custom-http';
 import { AlertComponent } from './_directives/alert.component';
 import { AuthGuard } from './_guards/auth.guards';
@@ -27,7 +29,8 @@ import { RegisterComponent } from './register/register.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    AlertModule.forRoot()
   ],
   providers: [
     customHttpProvider,

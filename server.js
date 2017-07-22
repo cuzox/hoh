@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 var config = require('./server/config.json');
 
 const app = express();
+var router = express.Router()
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -17,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // use JWT auth to secure the api, the token can be passed in the authorization header or querystring
-app.use(expressJwt({
+app.use('/api', expressJwt({
   secret: config.secret,
   getToken: function (req) {
       if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
@@ -27,16 +28,17 @@ app.use(expressJwt({
       }
       return null;
   }
-}).unless({ path: ['/users/authenticate', '/users/register'] }));
+}).unless({ path: ['/api/users/authenticate', '/api/users/register'] }));
 
 
 // Set our api routes
-app.use('/users', require('./server/controllers/users.controller'));
-app.use('/children', require('./server/controllers/children.controller'));
-// Catch all other routes and return the index file
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'dist/index.html'));
-// });
+app.use('/api/users', require('./server/controllers/users.controller'));
+app.use('/api/children', require('./server/controllers/children.controller'));
+// app.use('/api', router);
+//Catch all other routes and return the index file
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
 
 /**
  * Get port from environment and store in Express.

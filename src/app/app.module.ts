@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 
 import { AlertModule } from 'ngx-bootstrap';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { customHttpProvider } from './_helpers/custom-http';
 import { AlertComponent } from './_directives/alert.component';
@@ -30,7 +31,8 @@ import { RegisterComponent } from './register/register.component';
     FormsModule,
     HttpModule,
     routing,
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [
     customHttpProvider,

@@ -30,6 +30,7 @@ function authenticate(email, password) {
                 email: user.email,
                 firstName: user.firstName,
                 lastName: user.lastName,
+                role: user.role,
                 token: jwt.sign({ sub: user._id }, config.secret)
             });
         } else {

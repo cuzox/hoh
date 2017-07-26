@@ -25,6 +25,7 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
+    "angular2-image-upload": "^0.6.6",
     "bcryptjs": "^2.4.3",
     "body": "^5.1.0",
     "bootstrap": "^3.3.7",

@@ -5,7 +5,9 @@ const path = require('path');
 const http = require('http');
 var cors = require('cors');
 const bodyParser = require('body-parser');
-var config = require('./server/config.json');
+var config = require('./server/config');
+var passport = require('passport')
+var hookJWTStrategy = require('./server/services/passport-jwt.service');
 
 const app = express();
 var router = express.Router()
@@ -17,41 +19,25 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Point static path to dist
 app.use(express.static(path.join(__dirname, 'dist')));
 
-// use JWT auth to secure the api, the token can be passed in the authorization header or querystring
-app.use('/api', expressJwt({
-  secret: config.secret,
-  getToken: function (req) {
-      if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-          return req.headers.authorization.split(' ')[1];
-      } else if (req.query && req.query.token) {
-          return req.query.token;
-      }
-      return null;
-  }
-}).unless({ path: ['/api/users/authenticate', '/api/users/register'] }));
+// Hook up passport
+app.use(passport.initialize());
+hookJWTStrategy(passport);
 
+// Set API routes
+app.use('/api', require('./server/routes/api')(passport));
 
-// Set our api routes
-app.use('/api/users', require('./server/controllers/users.controller'));
-app.use('/api/children', require('./server/controllers/children.controller'));
-// app.use('/api', router);
 //Catch all other routes and return the index file
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
-/**
- * Get port from environment and store in Express.
- */
+// Get port from environment and store in Express
 const port = process.env.NODE_ENV === 'production' ? 80 : 3000;
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
+
+// Create HTTP server
 const server = http.createServer(app);
 
-/**
- * Listen on provided port, on all network interfaces.
- */
+// Listen on provided port, on all network interfaces
 server.listen(port, () => console.log(`API running on localhost:${port}`));

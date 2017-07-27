@@ -29,7 +29,9 @@ function getAll() {
 function getById(_id) {
     var deferred = Q.defer();
  
-    db.users.findById(_id, function (err, children) {
+    db.users.finOne(
+        { _id: mongojs.ObjectID(_id)}, 
+        function (err, children) {
         if (err) deferred.reject(err.name + ': ' + err.message);
  
         if (user) {
@@ -76,7 +78,9 @@ function update(_id, childParams) {
     var deferred = Q.defer();
  
     // validation
-    db.children.findById(_id, function (err, child) {
+    db.children.findById(
+        { _id: mongojs.ObjectId(childParams._id) }, 
+        function (err, child) {
         if (err) deferred.reject(err.name + ': ' + err.message);
  
         if (!child) {
@@ -94,7 +98,8 @@ function update(_id, childParams) {
                 if (err) deferred.reject(err.name + ': ' + err.message);
  
                 deferred.resolve();
-            });
+            }
+        );
     }
  
     return deferred.promise;

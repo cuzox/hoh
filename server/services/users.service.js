@@ -3,7 +3,7 @@ var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 var Q = require('q');
 var mongojs = require('mongojs');
-var config = require('../config.json');
+var config = require('../config');
 var db = mongojs(config.connectionString, ['users']);
  
 var service = {};
@@ -31,7 +31,7 @@ function authenticate(email, password) {
                 firstName: user.firstName,
                 lastName: user.lastName,
                 role: user.role,
-                token: jwt.sign({ sub: user._id }, config.secret)
+                token: 'Bearer ' + jwt.sign({ _id: user._id }, config.secret)
             });
         } else {
             // authentication failed
@@ -62,7 +62,7 @@ function getAll() {
 function getById(_id) {
     var deferred = Q.defer();
  
-    db.users.findById(_id, function (err, user) {
+    db.users.findOne({ _id: mongojs.ObjectID(_id) }, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
  
         if (user) {
@@ -81,22 +81,21 @@ function create(userParam) {
     var deferred = Q.defer();
  
     // validation
-    db.users.findOne(
-        { email: userParam.email },
-        function (err, user) {
-            if (err) deferred.reject(err.name + ': ' + err.message);
- 
-            if (user) {
-                // email already exists
-                deferred.reject('email "' + userParam.email + '" is already taken');
-            } else {
-                createUser();
-            }
-        });
+    db.users.findOne({ email: userParam.email }, function (err, user) {
+        if (err) deferred.reject(err.name + ': ' + err.message);
+
+        if (user) {
+            // email already exists
+            deferred.reject('email "' + userParam.email + '" is already taken');
+        } else {
+            createUser();
+        }
+    });
  
     function createUser() {
         // set user object to userParam without the cleartext password
         var user = _.omit(userParam, 'password');
+        if (!user.role) user.role = '001';
  
         // add hashed password to user object
         user.hash = bcrypt.hashSync(userParam.password, 10);
@@ -117,49 +116,43 @@ function update(_id, userParam) {
     var deferred = Q.defer();
  
     // validation
-    db.users.findById(_id, function (err, user) {
+    db.users.findOne({_id: mongojs.ObjectID(_id)}, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
  
         if (user.email !== userParam.email) {
             // email has changed so check if the new email is already taken
-            db.users.findOne(
-                { email: userParam.email },
-                function (err, user) {
-                    if (err) deferred.reject(err.name + ': ' + err.message);
- 
-                    if (user) {
-                        // email already exists
-                        deferred.reject('email "' + req.body.email + '" is already taken')
-                    } else {
-                        updateUser();
-                    }
-                });
+            db.users.findOne( { email: userParam.email }, function (err, conflictUser) {
+                if (err) deferred.reject(err.name + ': ' + err.message);
+
+                if (conflictUser) {
+                    // email already exists
+                    deferred.reject('email "' + conflictUser.email + '" is already taken')
+                } else {
+                    updateUser();
+                }
+            });
         } else {
             updateUser();
         }
     });
  
     function updateUser() {
-        // fields to update
-        var set = {
-            firstName: userParam.firstName,
-            lastName: userParam.lastName,
-            email: userParam.email,
-        };
  
         // update password if it was entered
         if (userParam.password) {
-            set.hash = bcrypt.hashSync(userParam.password, 10);
+            userParam.hash = bcrypt.hashSync(set.password, 10);
+            delete userParam.password;
         }
  
         db.users.update(
             { _id: mongojs.ObjectID(_id) },
-            { $set: set },
+            { $set: userParam },
             function (err, doc) {
                 if (err) deferred.reject(err.name + ': ' + err.message);
  
                 deferred.resolve();
-            });
+            }
+        );
     }
  
     return deferred.promise;

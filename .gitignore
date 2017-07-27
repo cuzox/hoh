@@ -44,3 +44,6 @@ Thumbs.db
 # Generated files
 src/app/**/*.js
 src/app/**/*.js.map
+
+# Config
+server/config.js

@@ -4,14 +4,15 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './_guards/auth.guards';
+import { appConfig } from './app.config';
 
 const appRoutes: Routes = [
     { 
-       path: '', 
-       component: HomeComponent, 
-       canActivate: [AuthGuard],
-       data: { 
-            role: 'admin' 
+        path: '', 
+        component: HomeComponent, 
+        canActivate: [AuthGuard],
+        data: { 
+            role: appConfig.accessLevels.admin
         }
     },
     { 

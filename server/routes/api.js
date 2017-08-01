@@ -3,7 +3,7 @@ var router = express.Router();
 
 var config = require('./../config.js');
 var usersController = require('../controllers/users.controller');
-var childrenController = require('../controllers/users.controller');
+var childrenController = require('../controllers/children.controller');
 var allowOnly = require('../services/routes-helper.service').allowOnly;
 
 

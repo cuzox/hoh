@@ -1,6 +1,6 @@
 var Q = require('q');
 var mongojs = require('mongojs');
-var config = require('../config.json');
+var config = require('../config');
 var db = mongojs(config.connectionString, ['children']);
 
 var service = {};

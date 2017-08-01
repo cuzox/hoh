@@ -4,12 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
+import { FlexLayoutModule } from "@angular/flex-layout";
 import { AppComponent } from './app.component';
-import { routing } from './app.routing';
-
-// import { AlertModule } from 'ngx-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MaterialModule } from '@angular/material';
+// import { AlertModule } from 'ngx-bootstrap';
 
+import { routing } from './app.routing';
 import { customHttpProvider } from './_helpers/custom-http';
 import { AlertComponent } from './_directives/alert.component';
 import { AuthGuard } from './_guards/auth.guards';
@@ -17,6 +18,8 @@ import { AlertService, AuthenticationService, UserService } from './_services/in
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ChildrenComponent } from './children/children.component';
+import { ChildComponent } from './child/child.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { RegisterComponent } from './register/register.component';
     AlertComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ChildrenComponent,
+    ChildComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +37,10 @@ import { RegisterComponent } from './register/register.component';
     HttpModule,
     routing,
     // AlertModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FlexLayoutModule,
+    MaterialModule
+    
   ],
   providers: [
     customHttpProvider,

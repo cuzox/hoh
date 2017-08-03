@@ -1,23 +1,33 @@
 <md-toolbar color="primary">
     
-    <button md-button routerLink="/">
-        <md-icon>home</md-icon> 
-        {{title}}
+    <button id="logo" md-button routerLink="/">
+        <img class="png-icon" src="/assets/images/hoh.png" style="width: 40px; height: 40px;">
+        <span id="logo-text">Hands Of Hope</span>
     </button>
-        
     <!-- This fills the remaining space of the current row -->
     <span class="fill-remaining-space"></span>
     <div fxLayout="row" fxShow="false" fxShow.gt-sm>
-        <button md-button routerLink="/products">Products</button>
-        <button md-button routerLink="/dashboard">Dashboard</button>
+        <button md-button routerLink="/sponsorship">CHILD SPONSORSHIP</button>
+        <button md-button routerLink="/projets">PROJECTS</button>
+        <button md-button routerLink="/about">ABOUT US</button>
+        <button md-button routerLink="/contact">CONTACT</button>
+        
+        <button md-icon-button [routerLink]="loggedIn ? ['/'] : ['/login']">
+            <md-icon>account_circle</md-icon>
+        </button>
+        <button *ngIf="loggedIn" md-icon-button [routerLink]="['/login']">
+                <md-icon>exit_to_app</md-icon>
+        </button>
     </div>
-    <button md-button [md-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
+    <button md-icon-button [md-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
         <md-icon>menu</md-icon>
     </button>
 </md-toolbar>
 <md-menu x-position="before" #menu="mdMenu">
-    <button md-menu-item routerLink="/products">Products</button>
-    <button md-menu-item routerLink="/dashboard">Dashboard</button>
+    <button md-menu-item routerLink="/sponsorship">CHILD SPONSORSHIP</button>
+    <button md-menu-item routerLink="/projets">PROJECTS</button>
+    <button md-menu-item routerLink="/about">ABOUT US</button>
+    <button md-menu-item routerLink="/contact">CONTACT</button>
 </md-menu>
 <alert></alert>
 <router-outlet></router-outlet>

@@ -1,18 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormControl, Validators } from '@angular/forms';
  
 import { AlertService, AuthenticationService } from '../_services/index';
- 
+
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
 @Component({
     moduleId: module.id,
-    templateUrl: 'login.component.html'
+    templateUrl: 'login.component.html',
+    styleUrls: ['./login.component.scss']
 })
  
 export class LoginComponent implements OnInit {
     model: any = {};
     loading = false;
     returnUrl: string;
- 
+    
+    emailFormControl = new FormControl('', [
+        Validators.required,
+        Validators.pattern(EMAIL_REGEX)
+    ]);
+    
     constructor(
         private route: ActivatedRoute,
         private router: Router,
@@ -28,6 +37,7 @@ export class LoginComponent implements OnInit {
     }
  
     login() {
+        // if(this.emailFormControl.hasError) return;
         this.loading = true;
         this.authenticationService.login(this.model.email, this.model.password)
             .subscribe(

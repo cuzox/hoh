@@ -9,11 +9,11 @@ import { appConfig } from './app.config';
 const appRoutes: Routes = [
     { 
         path: '', 
-        component: HomeComponent, 
-        canActivate: [AuthGuard],
-        data: { 
-            role: appConfig.accessLevels.admin
-        }
+        component: HomeComponent 
+        // canActivate: [AuthGuard],
+        // data: { 
+        //     role: appConfig.accessLevels.admin
+        // }
     },
     { 
         path: 'login', 

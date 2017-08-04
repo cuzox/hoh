@@ -18,10 +18,10 @@ import { AlertService, AuthenticationService, UserService } from './_services/in
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { ChildrenComponent } from './children/children.component';
+import { AdminComponent } from './admin/admin.component';
+import { ChildListComponent } from './child/child-list.component';
 import { ChildComponent } from './child/child.component';
 import { ChildDetailComponent } from './child/child-detail.component';
-import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,7 @@ import { AdminComponent } from './admin/admin.component';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    ChildrenComponent,
+    ChildListComponent,
     ChildComponent,
     ChildDetailComponent,
     AdminComponent

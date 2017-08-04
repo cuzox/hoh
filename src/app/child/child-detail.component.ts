@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-child-detail',
+  selector: 'child-detail',
   templateUrl: './child-detail.component.html',
   styleUrls: ['./child-detail.component.scss']
 })

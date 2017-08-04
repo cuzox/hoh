@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Child } from '../_models/child';
+import { ChildService } from '../_services/index'
 
 @Component({
   selector: 'child-list',
@@ -6,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./child-list.component.scss']
 })
 export class ChildListComponent implements OnInit {
+  @Input() child: Child;
 
-  constructor() { }
+  constructor(private cs: ChildService) { }
 
   ngOnInit() {
   }

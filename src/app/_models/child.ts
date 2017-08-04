@@ -35,6 +35,5 @@ export class Child {
         has: boolean,
         user_id: string,
         months: number,
-    }
-    pictureName: string
+    };
 }

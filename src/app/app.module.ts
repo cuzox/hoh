@@ -20,6 +20,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ChildrenComponent } from './children/children.component';
 import { ChildComponent } from './child/child.component';
+import { ChildDetailComponent } from './child/child-detail.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { ChildComponent } from './child/child.component';
     LoginComponent,
     RegisterComponent,
     ChildrenComponent,
-    ChildComponent
+    ChildComponent,
+    ChildDetailComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

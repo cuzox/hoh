@@ -5,10 +5,10 @@
  }
 
  .mat-toolbar.mat-primary {
-  background: white;
+  background-color: rgba(255,255,255,0.8);
   color: black;
-  border-bottom-style: solid;
-  border-color: black;
+  // border-bottom-style: solid;
+  // border-color: black;
  }
 
  .png-icon{
@@ -22,5 +22,20 @@
   #logo-text{
     font-size: 2rem;
     margin-left: 5px;
+  }
+}
+
+.mat-toolbar{
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  z-index: 10;
+  -moz-transition: all 0.8s;
+  -webkit-transition: all 0.8s;
+  -o-transition: all 0.8s;
+  transition: all 0.8s;
+  
+  &.fixed {
+    position: fixed;
   }
 }

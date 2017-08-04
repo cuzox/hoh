@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
- 
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormControl, Validators } from '@angular/forms';
 import { AlertService, UserService } from '../_services/index';
+
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
  
 @Component({
     moduleId: module.id,
@@ -11,11 +13,17 @@ import { AlertService, UserService } from '../_services/index';
 export class RegisterComponent {
     model: any = {};
     loading = false;
+
+    emailFormControl = new FormControl('', [
+        Validators.required,
+        Validators.pattern(EMAIL_REGEX)
+    ]);
  
     constructor(
         private router: Router,
         private userService: UserService,
-        private alertService: AlertService) { }
+        private alertService: AlertService
+    ) { }
  
     register() {
         this.loading = true;

@@ -15,6 +15,24 @@ export class AuthenticationService {
     isLoggedIn(): Observable<boolean> {
         return this.logger.asObservable();
     }
+
+    isCurrentUser(){
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser) {
+            return true;
+        }
+        return false;
+    }
+
+    idAdmin(){
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser) {
+            if (currentUser.role == '010'){
+                return true;
+            }
+        }
+        return false;
+    }
  
     login(email: string, password: string) {
         return this.http.post('/api/users/authenticate', { email: email, password: password })

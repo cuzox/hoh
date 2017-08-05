@@ -2,10 +2,6 @@
 @import '~https://fonts.googleapis.com/icon?family=Material+Icons';
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
-body {
-    background-color: rgb(39,40,34);
-}
-
 ::-webkit-scrollbar {
     display: none;
 }
@@ -45,9 +41,12 @@ body {
     max-width: 1333px; 
     height: 550px;
     margin: 0 auto;
-    background-color: white;
 }
 
 .center-block {
     float: none;
+}
+
+.hoh-green{
+    background: rgb(136, 178, 53) !important;
 }

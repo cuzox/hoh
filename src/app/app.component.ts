@@ -15,13 +15,14 @@ export class AppComponent {
   fixedNav: boolean = false;
 
   constructor (
-    private AS: AuthenticationService, 
+    private as: AuthenticationService, 
     private cdr: ChangeDetectorRef, 
     @Inject(DOCUMENT) private document: any
   ){}
 
   ngOnInit() {
-    this.AS.isLoggedIn().subscribe(loggedIn => {
+    this.loggedIn = this.as.isCurrentUser();
+    this.as.isLoggedIn().subscribe(loggedIn => {
       this.loggedIn = loggedIn;
       this.cdr.detectChanges();
     });

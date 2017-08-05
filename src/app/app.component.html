@@ -6,15 +6,15 @@
     <!-- This fills the remaining space of the current row -->
     <span class="fill-remaining-space"></span>
     <div fxLayout="row" fxShow="false" fxShow.gt-sm>
-        <button md-button routerLink="/sponsorship">CHILD SPONSORSHIP</button>
+        <button class="hoh-green" md-button routerLink="/sponsorship">CHILD SPONSORSHIP</button>
         <button md-button routerLink="/projets">PROJECTS</button>
         <button md-button routerLink="/about">ABOUT US</button>
         <button md-button routerLink="/contact">CONTACT</button>
         
-        <button md-icon-button [routerLink]="loggedIn ? ['/'] : ['/login']">
+        <button md-icon-button [routerLink]="loggedIn ? [''] : ['login']">
             <md-icon>account_circle</md-icon>
         </button>
-        <button *ngIf="loggedIn" md-icon-button [routerLink]="['/login']">
+        <button *ngIf="loggedIn" md-icon-button [routerLink]="['login']">
                 <md-icon>exit_to_app</md-icon>
         </button>
     </div>

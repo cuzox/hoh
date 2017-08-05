@@ -12,6 +12,7 @@ export class ChildDetailComponent implements OnInit {
   constructor(private cs: ChildService) { }
 
   ngOnInit() {
+    
   }
 
 }

@@ -1,8 +1,18 @@
 <div class="main-container">
-    <ul>
-        <li *ngFor="let user of users">
-            {{user.email}} ({{user.firstName}} {{user.lastName}})
-            - <a (click)="deleteUser(user._id)">Delete</a>
-        </li>
-    </ul>
+    <div class="container" id="user-list">
+        <div class="row" *ngFor="let user of users">
+            <span id="user-list-title" class="col-xs-6 col-sm-8">{{user.email}} ({{user.firstName}} {{user.lastName}})</span>
+            <span class="col-xs-6 col-sm-4">
+                <button *ngIf="checkUser(user).isSA" class="pull-right" md-icon-button (click)="deleteUser(user)" style="color: red;">
+                    <md-icon>remove_circle</md-icon>
+                </button>
+                <button *ngIf="checkUser(user).isSA" [ngClass]="{'hoh-green-font': checkUser(user).isSA }" class="pull-right" md-icon-button>
+                    <md-icon>vpn_key</md-icon>
+                </button>
+                <button [ngClass]="{'hoh-green-font': checkUser(user).isA }" class="pull-right" md-icon-button>
+                    <md-icon>child_care</md-icon>
+                </button>
+            </span>
+        </div>
+    </div>
 </div>

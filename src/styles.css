@@ -2,8 +2,16 @@
 @import '~https://fonts.googleapis.com/icon?family=Material+Icons';
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
+body {
+    min-width: 320px;
+}
+
 ::-webkit-scrollbar {
     display: none;
+}
+
+.md-icon-button{
+    cursor: pointer;
 }
 
 .full-width{
@@ -39,7 +47,7 @@
 
 .main-container{
     max-width: 1333px; 
-    height: 550px;
+    min-height: 550px;
     margin: 0 auto;
 }
 
@@ -49,4 +57,8 @@
 
 .hoh-green{
     background: rgb(136, 178, 53) !important;
+}
+
+.hoh-green-font{
+    color: rgb(136, 178, 53) !important;
 }

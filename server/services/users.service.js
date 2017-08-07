@@ -95,7 +95,7 @@ function create(userParam) {
     function createUser() {
         // set user object to userParam without the cleartext password
         var user = _.omit(userParam, 'password');
-        if (!user.role) user.role = '001';
+        user.role = 1;
  
         // add hashed password to user object
         user.hash = bcrypt.hashSync(userParam.password, 10);
@@ -112,27 +112,36 @@ function create(userParam) {
     return deferred.promise;
 }
  
-function update(_id, userParam) {
+function update(_id, req) {
     var deferred = Q.defer();
+    var userParam = req.body;
+    var currentRole = req.user.role;
  
     // validation
     db.users.findOne({_id: mongojs.ObjectID(_id)}, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
- 
-        if (user.email !== userParam.email) {
-            // email has changed so check if the new email is already taken
-            db.users.findOne( { email: userParam.email }, function (err, conflictUser) {
-                if (err) deferred.reject(err.name + ': ' + err.message);
 
-                if (conflictUser) {
-                    // email already exists
-                    deferred.reject('email "' + conflictUser.email + '" is already taken')
-                } else {
-                    updateUser();
-                }
-            });
-        } else {
-            updateUser();
+        if (user.role != userParam.role){
+            if(currentRole == config.userRoles.admin && userParam.role == config.userRoles.super_admin){
+                req.forbidden = true;
+            }
+        }
+        if (req.forbidden == null){
+            if (user.email !== userParam.email) {
+                // email has changed so check if the new email is already taken
+                db.users.findOne( { email: userParam.email }, function (err, conflictUser) {
+                    if (err) deferred.reject(err.name + ': ' + err.message);
+    
+                    if (conflictUser) {
+                        // email already exists
+                        deferred.reject('Email "' + conflictUser.email + '" is already taken')
+                    } else {
+                        updateUser();
+                    }
+                });
+            } else {
+                updateUser();
+            }
         }
     });
  

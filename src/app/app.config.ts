@@ -1,10 +1,17 @@
+let accessTypes = {
+    user: 1,
+    admin: 2,
+    super_admin: 4
+}
+
 export const appConfig = {
     apiUrl: 'http://localhost:3000',
     
-    // USER = 1
-    // ADMIN = 2
+    accessTypes: accessTypes,
+
     accessLevels: {
-        user: 1 | 2,                       // ...011
-        admin: 2                           // ...010
+        user: accessTypes.user | accessTypes.admin | accessTypes.super_admin,     // ...111
+        admin: accessTypes.admin | accessTypes.super_admin,                       // ...110
+        super_admin: accessTypes.super_admin                                      // ...100
     }    
 };

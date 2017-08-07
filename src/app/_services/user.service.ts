@@ -23,7 +23,7 @@ export class UserService {
         return this.http.put('/api/users/' + user._id, user);
     }
  
-    delete(_id: string) {
-        return this.http.delete('/api/users/' + _id);
+    delete(user: User) {
+        return this.http.delete('/api/users/' + user._id);
     }
 }

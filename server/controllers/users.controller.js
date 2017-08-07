@@ -61,7 +61,8 @@ function getCurrent(req, res) {
 }
 
 function update(req, res) {
-    userService.update(req.params._id, req.body).then( () => {
+    userService.update(req.params._id, req).then( () => {
+        if(req.forbidden) res.sendStatus(403);
         res.sendStatus(200);
     }).catch( (err) => {
         res.status(400).send(err);

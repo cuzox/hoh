@@ -1,12 +1,12 @@
 <div class="main-container">
   <nav md-tab-nav-bar>
-      <a md-tab-link
+      <span md-tab-link
           *ngFor="let link of tabs"
           [routerLink]="link.route"
           routerLinkActive #rla="routerLinkActive"
           [active]="rla.isActive">
           {{link.label}}
-      </a>
+      </span>
     </nav>
     <router-outlet></router-outlet>
   </div>

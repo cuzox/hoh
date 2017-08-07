@@ -15,7 +15,7 @@ var APIRoutes = (passport) => {
     router.get('/users', auth(config.accessLevels.admin, usersController.getAll));
     router.get('/users/current', auth(config.accessLevels.user, usersController.getCurrent));
     router.put('/users/:_id', auth(config.accessLevels.admin, usersController.update));
-    router.delete('/users/:_id', auth(config.accessLevels.admin, usersController._delete));
+    router.delete('/users/:_id', auth(config.accessLevels.super_admin, usersController.delete));
     
     // CHILDREN
     router.get('/children', auth(config.accessLevels.user, childrenController.getAll));

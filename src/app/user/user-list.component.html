@@ -3,13 +3,13 @@
         <div class="row" *ngFor="let user of users">
             <span id="user-list-title" class="col-xs-6 col-sm-8">{{user.email}} ({{user.firstName}} {{user.lastName}})</span>
             <span class="col-xs-6 col-sm-4">
-                <button *ngIf="checkUser(user).isSA" class="pull-right" md-icon-button (click)="deleteUser(user)" style="color: red;">
+                <button *ngIf="currentUser.role == appConfig.accessTypes.super_admin" class="pull-right" md-icon-button (click)="deleteUser(user)" style="color: red;">
                     <md-icon>remove_circle</md-icon>
                 </button>
-                <button *ngIf="checkUser(user).isSA" [ngClass]="{'hoh-green-font': checkUser(user).isSA }" class="pull-right" md-icon-button>
+                <button *ngIf="currentUser.role == appConfig.accessTypes.super_admin" [ngClass]="{'hoh-green-font': checkUser(user).isSA }" class="pull-right" md-icon-button>
                     <md-icon>vpn_key</md-icon>
                 </button>
-                <button [ngClass]="{'hoh-green-font': checkUser(user).isA }" class="pull-right" md-icon-button>
+                <button (click)="openDialog()" [ngClass]="{'hoh-green-font': checkUser(user).isA }" class="pull-right" md-icon-button>
                     <md-icon>child_care</md-icon>
                 </button>
             </span>

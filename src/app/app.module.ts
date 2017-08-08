@@ -17,7 +17,7 @@ import { routing } from './app.routing';
 import { customHttpProvider } from './_helpers/custom-http';
 import { AlertComponent } from './_directives/alert.component';
 import { AuthGuard } from './_guards/auth.guards';
-import { AlertService, AuthenticationService, UserService, ChildService} from './_services/index';
+import { AlertService, AuthenticationService, UserService, ChildService, DialogService} from './_services/index';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -26,6 +26,7 @@ import { ChildListComponent } from './child/child-list.component';
 import { ChildComponent } from './child/child.component';
 import { ChildDetailComponent } from './child/child-detail.component';
 import { UserListComponent } from './user/user-list.component';
+import { ConfirmDialogComponent } from './dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { UserListComponent } from './user/user-list.component';
     ChildComponent,
     ChildDetailComponent,
     AdminComponent,
-    UserListComponent
+    UserListComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,11 @@ import { UserListComponent } from './user/user-list.component';
     AlertService,
     AuthenticationService,
     UserService,
-    ChildService
+    ChildService,
+    DialogService
+  ],
+  entryComponents: [
+    ConfirmDialogComponent,
   ],
   bootstrap: [AppComponent]
 })

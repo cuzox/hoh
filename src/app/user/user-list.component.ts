@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../_services/index'
+import { UserService, DialogService } from '../_services/index'
 import { User } from '../_models/user';
 import { appConfig } from '../app.config';
 
@@ -12,8 +12,9 @@ export class UserListComponent implements OnInit {
   currentUser: User;
   users: User[] = [];
   appConfig: any;
+  result: any;
 
-  constructor(private us: UserService) {}
+  constructor(private us: UserService, private ds: DialogService) {}
   
   ngOnInit() {
       this.appConfig = appConfig;
@@ -32,6 +33,12 @@ export class UserListComponent implements OnInit {
 
   private updateUserRole(user: User) {
     this.us.update(user).subscribe(()=> { this. loadAllUsers() });
+  }
+
+  openDialog() {
+    this.ds
+      .confirm('Confirm Dialog', 'Are you sure you want to do this?')
+      .subscribe(res => this.result = res);
   }
 
   checkUser(user: User){

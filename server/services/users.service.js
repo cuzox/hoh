@@ -146,7 +146,9 @@ function update(_id, req) {
     });
  
     function updateUser() {
- 
+        
+        delete userParam._id;
+
         // update password if it was entered
         if (userParam.password) {
             userParam.hash = bcrypt.hashSync(set.password, 10);

@@ -1,10 +1,16 @@
-<p>{{ title }}</p>
+<h2 md-dialog-title> {{title}}</h2>
+<ul *ngIf="data">
+    <li *ngFor="let line of data">
+        {{line}}
+    </li>
+</ul>
 <p>{{ message }}</p>
-<button type="button" md-raised-button 
-    (click)="dialogRef.close(true)">
-    OK
-</button>
-<button type="button" md-button 
-    (click)="dialogRef.close()">
-    Cancel
-</button>
+
+<div id="dialog-buttons">
+    <button type="button" class="green" (click)="dialogRef.close(true)" md-icon-button>
+        <md-icon>check_circle</md-icon>
+    </button>
+    <button type="button" class="red" (click)="dialogRef.close()" md-icon-button>
+        <md-icon>cancel</md-icon>
+    </button>
+</div>

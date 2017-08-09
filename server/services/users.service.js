@@ -122,7 +122,7 @@ function update(_id, req) {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
         if (user.role != userParam.role){
-            if(currentRole == config.userRoles.admin && userParam.role == config.userRoles.super_admin){
+            if(currentRole === config.userRoles.admin && userParam.role === config.userRoles.super_admin){
                 req.forbidden = true;
             }
         }

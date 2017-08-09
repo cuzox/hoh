@@ -38,7 +38,7 @@ export class AppComponent {
       this.fixedNav = true;
       this.document.getElementById('swanky-nav').style.top = '0px';
       this.document.body.style.paddingTop =  '67px';
-    } else if (this.fixedNav && number == 0) {
+    } else if (this.fixedNav && number === 0) {
       this.document.body.style.paddingTop = '0px';
       this.fixedNav = false;
     }

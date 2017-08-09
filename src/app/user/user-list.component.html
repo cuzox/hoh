@@ -3,12 +3,12 @@
         <div class="row" *ngFor="let user of users">
             <span id="user-list-title" class="col-xs-6 col-sm-8">{{user.email}} ({{user.firstName}} {{user.lastName}})</span>
             <span class="col-xs-6 col-sm-4">
-                <button *ngIf="currentUser.role == appConfig.accessTypes.super_admin"
+                <button *ngIf="currentUser.role === appConfig.accessTypes.super_admin"
                         (click)="deleteUser(user, 'Delete ' + user.firstName + ' ' + user.lastName)"  
                         class="pull-right" md-icon-button style="color: red;">
                     <md-icon>remove_circle</md-icon>
                 </button>
-                <button *ngIf="currentUser.role == appConfig.accessTypes.super_admin"
+                <button *ngIf="currentUser.role === appConfig.accessTypes.super_admin"
                         (click)="manageSuperAdmin(user)"
                         [ngClass]="{'hoh-green-font': checkUser(user).isSA }" 
                         class="pull-right" md-icon-button>

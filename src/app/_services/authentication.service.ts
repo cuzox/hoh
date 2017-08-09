@@ -27,7 +27,7 @@ export class AuthenticationService {
     idAdmin(){
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser) {
-            if (currentUser.role == '010'){
+            if (currentUser.role === '010'){
                 return true;
             }
         }

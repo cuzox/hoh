@@ -62,8 +62,8 @@ export class UserListComponent implements OnInit {
   checkUser(user: User){
     let isA = false;
     let isSA = false;
-    if (user.role == this.appConfig.accessTypes.admin) isA = true;
-    else if (user.role == this.appConfig.accessTypes.super_admin) isSA = true;
+    if (user.role === this.appConfig.accessTypes.admin) isA = true;
+    else if (user.role === this.appConfig.accessTypes.super_admin) isSA = true;
 
     return {
       isA: isA,
@@ -74,11 +74,11 @@ export class UserListComponent implements OnInit {
   manageAdmin(user: User){
     let title: string;
     if(this.currentUser._id != user._id){
-      title = user.role == this.appConfig.accessTypes.admin ? "Remove Admin" : "Make Admin";
+      title = user.role === this.appConfig.accessTypes.admin ? "Remove Admin" : "Make Admin";
       this.openDialog(title, permissions.admin).subscribe(result => {
         if(result) {
-          if (user.role == this.appConfig.accessTypes.admin) user.role = this.appConfig.accessTypes.user;
-          else if (user.role == this.appConfig.accessTypes.user || user.role == this.appConfig.accessTypes.super_admin) user.role = this.appConfig.accessTypes.admin;
+          if (user.role === this.appConfig.accessTypes.admin) user.role = this.appConfig.accessTypes.user;
+          else if (user.role === this.appConfig.accessTypes.user || user.role === this.appConfig.accessTypes.super_admin) user.role = this.appConfig.accessTypes.admin;
           this.us.update(user).subscribe((res) => { 
             if (res) {
               this.loadAllUsers(); 
@@ -92,11 +92,11 @@ export class UserListComponent implements OnInit {
   manageSuperAdmin(user: User){
     let title: string;
     if(this.currentUser._id != user._id){
-      title = user.role == this.appConfig.accessTypes.super_admin ? "Remove Super Admin" : "Make Super Admin";
+      title = user.role === this.appConfig.accessTypes.super_admin ? "Remove Super Admin" : "Make Super Admin";
       this.openDialog(title, permissions.super_admin).subscribe(result => {
         if(result) {
-          if (user.role == this.appConfig.accessTypes.super_admin) user.role = this.appConfig.accessTypes.user;
-          else if (user.role == this.appConfig.accessTypes.user || user.role == this.appConfig.accessTypes.admin) user.role = this.appConfig.accessTypes.super_admin;
+          if (user.role === this.appConfig.accessTypes.super_admin) user.role = this.appConfig.accessTypes.user;
+          else if (user.role === this.appConfig.accessTypes.user || user.role === this.appConfig.accessTypes.admin) user.role = this.appConfig.accessTypes.super_admin;
           this.us.update(user).subscribe((res) => { 
             if(res) {
               this.loadAllUsers();

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ChildService } from '../_services/index';
-import { User, Child } from '../_models/index';
+import { Component, OnInit } from '@angular/core'
+import { ChildService } from '../_services/index'
+import { User, Child } from '../_models/index'
 
 @Component({
   selector: 'admin-panel',
@@ -8,9 +8,9 @@ import { User, Child } from '../_models/index';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-  users: User[];
-  children: Child[];
-  tabs: any;
+  users: User[]
+  children: Child[]
+  tabs: any
 
   constructor(private cs: ChildService) {
     this.tabs = [
@@ -22,7 +22,7 @@ export class AdminComponent implements OnInit {
         route: 'users',
         label: 'Users'
       }
-    ];
+    ]
   }
 
   ngOnInit() {

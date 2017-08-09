@@ -1,121 +1,121 @@
-var Q = require('q');
-var mongojs = require('mongojs');
-var config = require('../config');
-var db = mongojs(config.connectionString, ['zones']);
+var Q = require('q')
+var mongojs = require('mongojs')
+var config = require('../config')
+var db = mongojs(config.connectionString, ['zones'])
 
-var service = {};
+var service = {}
 
-service.getAll = getAll;
-service.getById = getById;
-service.create = create;
-service.update = update;
-service.delete = _delete;
+service.getAll = getAll
+service.getById = getById
+service.create = create
+service.update = update
+service.delete = _delete
 
-module.exports = service;
+module.exports = service
 
 
 function getAll() {
-    var deferred = Q.defer();
+    var deferred = Q.defer()
  
     db.zones.find().toArray(function (err, zones) {
-        if (err) deferred.reject(err.name + ': ' + err.message);
+        if (err) deferred.reject(err.name + ': ' + err.message)
 
-        deferred.resolve(zones);
-    });
+        deferred.resolve(zones)
+    })
  
-    return deferred.promise;
+    return deferred.promise
 }
 
 function getById(_id) {
-    var deferred = Q.defer();
+    var deferred = Q.defer()
  
     db.zones.finOne(
         { _id: mongojs.ObjectID(_id)}, 
         function (err, zone) {
-        if (err) deferred.reject(err.name + ': ' + err.message);
+        if (err) deferred.reject(err.name + ': ' + err.message)
  
         if (zone) {
-            deferred.resolve(zone);
+            deferred.resolve(zone)
         } else {
-            deferred.resolve();
+            deferred.resolve()
         }
-    });
+    })
  
-    return deferred.promise;
+    return deferred.promise
 }
 
 function create(zoneParams) {
-    var deferred = Q.defer();
+    var deferred = Q.defer()
  
     // validation
     db.zones.findOne(
         { _id: mongojs.ObjectId(zoneParams._id) },
         function (err, zone) {
-            if (err) deferred.reject(err.name + ': ' + err.message);
+            if (err) deferred.reject(err.name + ': ' + err.message)
  
             if (zone) {
-                deferred.reject('zone already in database');
+                deferred.reject('zone already in database')
             } else {
-                createzone();
+                createzone()
             }
-        });
+        })
  
     function createzone() {  
         db.zones.insert(
             zoneParams,
             function (err, doc) {
-                if (err) deferred.reject(err.name + ': ' + err.message);
+                if (err) deferred.reject(err.name + ': ' + err.message)
  
-                deferred.resolve();
+                deferred.resolve()
             }
-        );
+        )
     }
  
-    return deferred.promise;
+    return deferred.promise
 }
 
 function update(_id, zoneParams) {
-    var deferred = Q.defer();
+    var deferred = Q.defer()
  
     // validation
     db.zones.findById(
         { _id: mongojs.ObjectId(zoneParams._id) }, 
         function (err, zone) {
-        if (err) deferred.reject(err.name + ': ' + err.message);
+        if (err) deferred.reject(err.name + ': ' + err.message)
  
         if (!zone) {
-            deferred.reject('zone no longer in database');
+            deferred.reject('zone no longer in database')
         } else {
-            updatezone();
+            updatezone()
         }
-    });
+    })
  
     function updatezone() {
-        delete zoneParams._id;
+        delete zoneParams._id
         db.zones.update(
             { _id: mongojs.ObjectId(_id) },
             { $set: zoneParams },
             function (err, doc) {
-                if (err) deferred.reject(err.name + ': ' + err.message);
+                if (err) deferred.reject(err.name + ': ' + err.message)
  
-                deferred.resolve();
+                deferred.resolve()
             }
-        );
+        )
     }
  
-    return deferred.promise;
+    return deferred.promise
 }
 
 function _delete(_id) {
-    var deferred = Q.defer();
+    var deferred = Q.defer()
  
     db.zones.remove(
         { _id: mongojs.ObjectId(_id) },
         function (err) {
-            if (err) deferred.reject(err.name + ': ' + err.message);
+            if (err) deferred.reject(err.name + ': ' + err.message)
  
-            deferred.resolve();
-        });
+            deferred.resolve()
+        })
  
-    return deferred.promise;
+    return deferred.promise
 }

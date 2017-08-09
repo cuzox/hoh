@@ -1,7 +1,7 @@
-import { Observable } from 'rxjs/Rx';
-import { ConfirmDialogComponent } from '../dialog/confirm-dialog.component';
-import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
-import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Rx'
+import { ConfirmDialogComponent } from '../dialog/confirm-dialog.component'
+import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material'
+import { Injectable } from '@angular/core'
 
 @Injectable()
 export class DialogService {
@@ -10,15 +10,15 @@ export class DialogService {
 
     public confirm(title: string, message: string, data: string[] = []): Observable<boolean> {
 
-        let dialogRef: MdDialogRef<ConfirmDialogComponent>;
-        const config = new MdDialogConfig();
+        let dialogRef: MdDialogRef<ConfirmDialogComponent>
+        const config = new MdDialogConfig()
 
-        config.data = data;
+        config.data = data
 
-        dialogRef = this.dialog.open(ConfirmDialogComponent, config);
-        dialogRef.componentInstance.title = title;
-        dialogRef.componentInstance.message = message;
+        dialogRef = this.dialog.open(ConfirmDialogComponent, config)
+        dialogRef.componentInstance.title = title
+        dialogRef.componentInstance.message = message
 
-        return dialogRef.afterClosed();
+        return dialogRef.afterClosed()
     }
 }

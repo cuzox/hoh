@@ -1,13 +1,13 @@
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router'
 
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { AdminComponent } from './admin/admin.component';
-import { ChildListComponent } from './child/child-list.component';
-import { UserListComponent } from './user/user-list.component';
-import { AuthGuard } from './_guards/auth.guards';
-import { appConfig } from './app.config';
+import { HomeComponent } from './home/home.component'
+import { LoginComponent } from './login/login.component'
+import { RegisterComponent } from './register/register.component'
+import { AdminComponent } from './admin/admin.component'
+import { ChildListComponent } from './child/child-list.component'
+import { UserListComponent } from './user/user-list.component'
+import { AuthGuard } from './_guards/auth.guards'
+import { appConfig } from './app.config'
 
 const appRoutes: Routes = [
     {
@@ -55,6 +55,6 @@ const appRoutes: Routes = [
         path: '**',
         redirectTo: ''
     }
-];
+]
 
-export const routing = RouterModule.forRoot(appRoutes);
+export const routing = RouterModule.forRoot(appRoutes)

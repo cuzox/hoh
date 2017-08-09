@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Child } from '../_models/child';
-import { ChildService } from '../_services/index';
+import { Component, OnInit, Input } from '@angular/core'
+import { Child } from '../_models/child'
+import { ChildService } from '../_services/index'
 
 @Component({
   selector: 'child',
@@ -8,7 +8,7 @@ import { ChildService } from '../_services/index';
   styleUrls: ['./child.component.scss']
 })
 export class ChildComponent implements OnInit {
-  @Input() child: Child;
+  @Input() child: Child
 
   constructor(
     private cs: ChildService

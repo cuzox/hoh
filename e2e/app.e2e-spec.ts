@@ -1,14 +1,14 @@
-import { Test2Page } from './app.po';
+import { Test2Page } from './app.po'
 
 describe('test2 App', () => {
-  let page: Test2Page;
+  let page: Test2Page
 
   beforeEach(() => {
-    page = new Test2Page();
-  });
+    page = new Test2Page()
+  })
 
   it('should display message saying app works', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
-  });
-});
+    page.navigateTo()
+    expect(page.getParagraphText()).toEqual('app works!')
+  })
+})

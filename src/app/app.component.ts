@@ -1,7 +1,7 @@
-import {Inject, Component, HostListener, ChangeDetectorRef} from '@angular/core';
-import { User } from './_models/user';
-import { AuthenticationService } from './_services/index';
-import { DOCUMENT } from '@angular/common';
+import {Inject, Component, HostListener, ChangeDetectorRef} from '@angular/core'
+import { User } from './_models/user'
+import { AuthenticationService } from './_services/index'
+import { DOCUMENT } from '@angular/common'
 
 @Component({
   selector: 'app-root',
@@ -10,9 +10,9 @@ import { DOCUMENT } from '@angular/common';
 })
 
 export class AppComponent {
-  loggedIn: Boolean = false;
-  currentUser: User;
-  fixedNav = false;
+  loggedIn: Boolean = false
+  currentUser: User
+  fixedNav = false
 
   constructor (
     private as: AuthenticationService,
@@ -21,26 +21,26 @@ export class AppComponent {
   ){}
 
   ngOnInit() {
-    this.loggedIn = this.as.isCurrentUser();
+    this.loggedIn = this.as.isCurrentUser()
     this.as.isLoggedIn().subscribe(loggedIn => {
-      this.loggedIn = loggedIn;
-      this.cdr.detectChanges();
-    });
+      this.loggedIn = loggedIn
+      this.cdr.detectChanges()
+    })
   }
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    const number = this.document.body.scrollTop;
+    const number = this.document.body.scrollTop
     if ( !this.fixedNav && number > 67  ){
-      this.document.getElementById('swanky-nav').style.top = '-200px';
+      this.document.getElementById('swanky-nav').style.top = '-200px'
     }
     if (number > 200) {
-      this.fixedNav = true;
-      this.document.getElementById('swanky-nav').style.top = '0px';
-      this.document.body.style.paddingTop =  '67px';
+      this.fixedNav = true
+      this.document.getElementById('swanky-nav').style.top = '0px'
+      this.document.body.style.paddingTop =  '67px'
     } else if (this.fixedNav && number === 0) {
-      this.document.body.style.paddingTop = '0px';
-      this.fixedNav = false;
+      this.document.body.style.paddingTop = '0px'
+      this.fixedNav = false
     }
   }
 }

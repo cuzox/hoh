@@ -15,12 +15,12 @@ export class ChildService {
         return this.http.get('/api/children/' + _id).map((response: Response) => response.json());
     }
  
-    create(user: Child) {
-        return this.http.post('/api/children', user);
+    create(child: Child) {
+        return this.http.post('/api/children', child);
     }
  
-    update(user: Child) {
-        return this.http.put('/api/children/' + user._id, user);
+    update(child: Child) {
+        return this.http.put('/api/children/' + child._id, child);
     }
  
     delete(_id: string) {

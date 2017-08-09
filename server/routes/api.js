@@ -4,6 +4,8 @@ var router = express.Router();
 var config = require('./../config.js');
 var usersController = require('../controllers/users.controller');
 var childrenController = require('../controllers/children.controller');
+var zonesController = require('../controllers/zones.controller');
+
 var allowOnly = require('../services/routes-helper.service').allowOnly;
 
 
@@ -24,6 +26,13 @@ var APIRoutes = (passport) => {
     router.put('/children/:_id', auth(config.accessLevels.admin, childrenController.update));
     router.delete('/children/:_id', auth(config.accessLevels.admin, childrenController.delete));
     
+    // ZONES
+    router.get('/zones', auth(config.accessLevels.user, zonesController.getAll));
+    router.get('/zones/:_id', auth(config.accessLevels.user, zonesController.getById));
+    router.post('/zones', auth(config.accessLevels.admin, zonesController.create));
+    router.put('/zones/:_id', auth(config.accessLevels.admin, zonesController.update));
+    router.delete('/zones/:_id', auth(config.accessLevels.admin, zonesController.delete));
+
     // AUTH HELPER FUNCTION
     function auth( accessLevel, controller_function ){
         return [passport.authenticate('jwt', { session: false }), allowOnly(accessLevel, controller_function)];

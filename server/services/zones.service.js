@@ -1,7 +1,7 @@
 var Q = require('q');
 var mongojs = require('mongojs');
 var config = require('../config');
-var db = mongojs(config.connectionString, ['children']);
+var db = mongojs(config.connectionString, ['zones']);
 
 var service = {};
 
@@ -17,10 +17,10 @@ module.exports = service;
 function getAll() {
     var deferred = Q.defer();
  
-    db.children.find().toArray(function (err, children) {
+    db.zones.find().toArray(function (err, zones) {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
-        deferred.resolve(children);
+        deferred.resolve(zones);
     });
  
     return deferred.promise;
@@ -29,13 +29,13 @@ function getAll() {
 function getById(_id) {
     var deferred = Q.defer();
  
-    db.children.finOne(
+    db.zones.finOne(
         { _id: mongojs.ObjectID(_id)}, 
-        function (err, child) {
+        function (err, zone) {
         if (err) deferred.reject(err.name + ': ' + err.message);
  
-        if (child) {
-            deferred.resolve(child);
+        if (zone) {
+            deferred.resolve(zone);
         } else {
             deferred.resolve();
         }
@@ -44,27 +44,25 @@ function getById(_id) {
     return deferred.promise;
 }
 
-function create(childParams) {
+function create(zoneParams) {
     var deferred = Q.defer();
  
     // validation
-    db.children.findOne(
-        { _id: mongojs.ObjectId(childParams._id) },
-        function (err, child) {
+    db.zones.findOne(
+        { _id: mongojs.ObjectId(zoneParams._id) },
+        function (err, zone) {
             if (err) deferred.reject(err.name + ': ' + err.message);
  
-            if (child) {
-                deferred.reject('Child already in database');
+            if (zone) {
+                deferred.reject('zone already in database');
             } else {
-                createChild();
+                createzone();
             }
         });
  
-    function createChild() {  
-        delete childParams._id;
-        
-        db.children.insert(
-            childParams,
+    function createzone() {  
+        db.zones.insert(
+            zoneParams,
             function (err, doc) {
                 if (err) deferred.reject(err.name + ': ' + err.message);
  
@@ -76,28 +74,27 @@ function create(childParams) {
     return deferred.promise;
 }
 
-function update(_id, childParams) {
+function update(_id, zoneParams) {
     var deferred = Q.defer();
  
     // validation
-    db.children.findById(
-        { _id: mongojs.ObjectId(childParams._id) }, 
-        function (err, child) {
+    db.zones.findById(
+        { _id: mongojs.ObjectId(zoneParams._id) }, 
+        function (err, zone) {
         if (err) deferred.reject(err.name + ': ' + err.message);
  
-        if (!child) {
-            deferred.reject('Child no longer in database');
+        if (!zone) {
+            deferred.reject('zone no longer in database');
         } else {
-            updateChild();
+            updatezone();
         }
     });
  
-    function updateChild() {
-        delete childParams._id;
-        
-        db.children.update(
+    function updatezone() {
+        delete zoneParams._id;
+        db.zones.update(
             { _id: mongojs.ObjectId(_id) },
-            { $set: childParams },
+            { $set: zoneParams },
             function (err, doc) {
                 if (err) deferred.reject(err.name + ': ' + err.message);
  
@@ -112,7 +109,7 @@ function update(_id, childParams) {
 function _delete(_id) {
     var deferred = Q.defer();
  
-    db.children.remove(
+    db.zones.remove(
         { _id: mongojs.ObjectId(_id) },
         function (err) {
             if (err) deferred.reject(err.name + ': ' + err.message);

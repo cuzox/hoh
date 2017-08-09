@@ -92,7 +92,7 @@ export class UserListComponent implements OnInit {
   manageSuperAdmin(user: User){
     let title: string;
     if(this.currentUser._id != user._id){
-      title = user.role == this.appConfig.accessTypes.admin ? "Remove Super Admin" : "Remove Super Admin";
+      title = user.role == this.appConfig.accessTypes.super_admin ? "Remove Super Admin" : "Make Super Admin";
       this.openDialog(title, permissions.super_admin).subscribe(result => {
         if(result) {
           if (user.role == this.appConfig.accessTypes.super_admin) user.role = this.appConfig.accessTypes.user;

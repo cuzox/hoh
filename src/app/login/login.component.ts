@@ -10,31 +10,31 @@ const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"
     templateUrl: 'login.component.html',
     styleUrls: ['./login.component.scss']
 })
- 
+
 export class LoginComponent implements OnInit {
     model: any = {};
     loading = false;
     returnUrl: string;
-    
+
     emailFormControl = new FormControl('', [
         Validators.required,
         Validators.pattern(EMAIL_REGEX)
     ]);
-    
+
     constructor(
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
         private alertService: AlertService) { }
- 
+
     ngOnInit() {
         // reset login status
         this.authenticationService.logout();
- 
+
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
- 
+
     login() {
         // if(this.emailFormControl.hasError) return;
         this.loading = true;

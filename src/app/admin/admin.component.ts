@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ChildService } from '../_services/index'
+import { ChildService } from '../_services/index';
 import { User, Child } from '../_models/index';
 
 @Component({
@@ -12,19 +12,19 @@ export class AdminComponent implements OnInit {
   children: Child[];
   tabs: any;
 
-  constructor(private cs: ChildService) { 
+  constructor(private cs: ChildService) {
     this.tabs = [
       {
-        route: "children",
-        label: "Children"
+        route: 'children',
+        label: 'Children'
       },
       {
-        route: "users",
-        label: "Users"
+        route: 'users',
+        label: 'Users'
       }
     ];
   }
-    
+
   ngOnInit() {
 
   }

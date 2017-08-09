@@ -121,7 +121,7 @@ function update(_id, req) {
     db.users.findOne({_id: mongojs.ObjectID(_id)}, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
-        if (user.role != userParam.role){
+        if (user.role !== userParam.role){
             if(currentRole === config.userRoles.admin && userParam.role === config.userRoles.super_admin){
                 req.forbidden = true;
             }

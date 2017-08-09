@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Child } from '../_models/child';
-import { ChildService } from '../_services/index'
+import { ChildService } from '../_services/index';
 
 @Component({
   selector: 'child',
@@ -15,7 +15,7 @@ export class ChildComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    
+
   }
 
 }

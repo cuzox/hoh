@@ -9,14 +9,14 @@ import { DOCUMENT } from '@angular/common';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent { 
+export class AppComponent {
   loggedIn: Boolean = false;
   currentUser: User;
-  fixedNav: boolean = false;
+  fixedNav = false;
 
   constructor (
-    private as: AuthenticationService, 
-    private cdr: ChangeDetectorRef, 
+    private as: AuthenticationService,
+    private cdr: ChangeDetectorRef,
     @Inject(DOCUMENT) private document: any
   ){}
 
@@ -28,9 +28,9 @@ export class AppComponent {
     });
   }
 
-  @HostListener("window:scroll", [])
+  @HostListener('window:scroll', [])
   onWindowScroll() {
-    let number = this.document.body.scrollTop;
+    const number = this.document.body.scrollTop;
     if ( !this.fixedNav && number > 67  ){
       this.document.getElementById('swanky-nav').style.top = '-200px';
     }

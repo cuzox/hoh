@@ -5,12 +5,12 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 
-//Third party
-import { FlexLayoutModule } from "@angular/flex-layout";
+// Third party
+import { FlexLayoutModule } from '@angular/flex-layout';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MaterialModule } from '@angular/material';
 // import { AlertModule } from 'ngx-bootstrap';
-import { ImageUploadModule } from "angular2-image-upload";
+import { ImageUploadModule } from 'angular2-image-upload';
 
 // Custom
 import { routing } from './app.routing';
@@ -53,7 +53,7 @@ import { ConfirmDialogComponent } from './dialog/confirm-dialog.component';
     MaterialModule,
     ReactiveFormsModule,
     ImageUploadModule.forRoot()
-    
+
   ],
   providers: [
     customHttpProvider,

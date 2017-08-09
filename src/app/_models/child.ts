@@ -6,7 +6,7 @@ export class Child {
     community: string;
     gender: string;
     dob: string;
-    age: number; 
+    age: number;
     school: {
         grade: number,
         favSubject: string
@@ -16,9 +16,9 @@ export class Child {
         chores: string
     };
     household: {
-        livesWith: string, 
+        livesWith: string,
         father: {
-            name: string, 
+            name: string,
             occupation: string
         },
         mother: {

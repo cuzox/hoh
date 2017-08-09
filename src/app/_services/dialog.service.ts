@@ -11,7 +11,7 @@ export class DialogService {
     public confirm(title: string, message: string, data: string[] = []): Observable<boolean> {
 
         let dialogRef: MdDialogRef<ConfirmDialogComponent>;
-        let config = new MdDialogConfig();
+        const config = new MdDialogConfig();
 
         config.data = data;
 

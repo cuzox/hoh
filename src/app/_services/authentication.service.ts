@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import 'rxjs/add/operator/map'
- 
+import 'rxjs/add/operator/map';
+
 @Injectable()
 export class AuthenticationService {
 
@@ -17,7 +17,7 @@ export class AuthenticationService {
     }
 
     isCurrentUser(){
-        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser) {
             return true;
         }
@@ -25,7 +25,7 @@ export class AuthenticationService {
     }
 
     idAdmin(){
-        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser) {
             if (currentUser.role === '010'){
                 return true;
@@ -33,23 +33,23 @@ export class AuthenticationService {
         }
         return false;
     }
- 
+
     login(email: string, password: string) {
         return this.http.post('/api/users/authenticate', { email: email, password: password })
             .map((response: Response) => {
                 // login successful if there's a jwt token in the response
-                let user = response.json();
+                const user = response.json();
                 if (user && user.token) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     this.loggedIn = true;
                     this.logger.next(this.loggedIn);
                 }
- 
+
                 return user;
             });
     }
- 
+
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');

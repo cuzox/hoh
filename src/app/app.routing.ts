@@ -10,9 +10,9 @@ import { AuthGuard } from './_guards/auth.guards';
 import { appConfig } from './app.config';
 
 const appRoutes: Routes = [
-    { 
-        path: '', 
-        component: HomeComponent 
+    {
+        path: '',
+        component: HomeComponent
     },
     {
         path: 'admin',
@@ -35,25 +35,25 @@ const appRoutes: Routes = [
                 path: 'children',
                 component: ChildListComponent
             }
-        ]        
+        ]
     },
     {
         path: 'children',
         component: ChildListComponent
     },
-    { 
-        path: 'login', 
-        component: LoginComponent 
+    {
+        path: 'login',
+        component: LoginComponent
     },
-    { 
-        path: 'register', 
-        component: RegisterComponent 
+    {
+        path: 'register',
+        component: RegisterComponent
     },
 
     // otherwise redirect to home
-    { 
-        path: '**', 
-        redirectTo: '' 
+    {
+        path: '**',
+        redirectTo: ''
     }
 ];
 

@@ -6,10 +6,12 @@ import { appConfig } from '../app.config'
 const permissions = {
   admin: [
     'Add, edit, and remove Children',
+    'Add, edit, and remove Zones',
     'Make someone else Admin'
   ],
   super_admin: [
     'Add, edit, and remove Children',
+    'Add, edit, and remove Zones',
     'Remove Users',
     'Make someone else Admin',
     'Make someone else Super Admin'

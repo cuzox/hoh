@@ -20,15 +20,15 @@ var APIRoutes = (passport) => {
     router.delete('/users/:_id', auth(config.accessLevels.super_admin, usersController.delete))
     
     // CHILDREN
-    router.get('/children', auth(config.accessLevels.user, childrenController.getAll))
-    router.get('/children/:_id', auth(config.accessLevels.user, childrenController.getById))
+    router.get('/children', childrenController.getAll)
+    router.get('/children/:_id', childrenController.getById)
     router.post('/children', auth(config.accessLevels.admin, childrenController.create))
     router.put('/children/:_id', auth(config.accessLevels.admin, childrenController.update))
     router.delete('/children/:_id', auth(config.accessLevels.admin, childrenController.delete))
     
     // ZONES
-    router.get('/zones', auth(config.accessLevels.user, zonesController.getAll))
-    router.get('/zones/:_id', auth(config.accessLevels.user, zonesController.getById))
+    router.get('/zones', zonesController.getAll)
+    router.get('/zones/:_id', zonesController.getById)
     router.post('/zones', auth(config.accessLevels.admin, zonesController.create))
     router.put('/zones/:_id', auth(config.accessLevels.admin, zonesController.update))
     router.delete('/zones/:_id', auth(config.accessLevels.admin, zonesController.delete))

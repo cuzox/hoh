@@ -23,8 +23,7 @@ import { LoginComponent } from './login/login.component'
 import { RegisterComponent } from './register/register.component'
 import { AdminComponent } from './admin/admin.component'
 import { ChildListComponent } from './child/child-list.component'
-import { ChildComponent } from './child/child.component'
-import { ChildDetailComponent } from './child/child-detail.component'
+import { ChildCrudComponent } from './child/child-crud.component'
 import { UserListComponent } from './user/user-list.component'
 import { ConfirmDialogComponent } from './dialog/confirm-dialog.component'
 
@@ -36,8 +35,7 @@ import { ConfirmDialogComponent } from './dialog/confirm-dialog.component'
     LoginComponent,
     RegisterComponent,
     ChildListComponent,
-    ChildComponent,
-    ChildDetailComponent,
+    ChildCrudComponent,
     AdminComponent,
     UserListComponent,
     ConfirmDialogComponent

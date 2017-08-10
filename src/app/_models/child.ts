@@ -2,8 +2,6 @@ export class Child {
     _id: string
     firstName: string
     lastName: string
-    country: string
-    community: string
     gender: string
     dob: string
     age: number
@@ -31,6 +29,7 @@ export class Child {
         bathrooms: number,
         monthlyIncome: number
     }
+    zone: string
     sponsor: {
         has: boolean,
         user_id: string,

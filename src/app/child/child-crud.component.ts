@@ -3,11 +3,12 @@ import { Child } from '../_models/child'
 import { ChildService } from '../_services/index'
 
 @Component({
-  selector: 'child-detail',
-  templateUrl: './child-detail.component.html',
-  styleUrls: ['./child-detail.component.scss']
+  selector: 'child-crud',
+  templateUrl: './child-crud.component.html',
+  styleUrls: ['./child-crud.component.scss']
 })
-export class ChildDetailComponent implements OnInit {
+export class ChildCrudComponent implements OnInit {
+  @Input() child: Child;
 
   constructor(private cs: ChildService) { }
 

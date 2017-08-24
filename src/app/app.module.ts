@@ -17,7 +17,7 @@ import { routing } from './app.routing'
 import { customHttpProvider } from './_helpers/custom-http'
 import { AlertComponent } from './_directives/alert.component'
 import { AuthGuard } from './_guards/auth.guards'
-import { AlertService, AuthenticationService, UserService, ChildService, DialogService} from './_services/index'
+import { AlertService, AuthenticationService, UserService, ChildService, DialogService, ZoneService } from './_services/index'
 import { HomeComponent } from './home/home.component'
 import { LoginComponent } from './login/login.component'
 import { RegisterComponent } from './register/register.component'
@@ -60,7 +60,8 @@ import { ConfirmDialogComponent } from './dialog/confirm-dialog.component'
     AuthenticationService,
     UserService,
     ChildService,
-    DialogService
+    DialogService,
+    ZoneService
   ],
   entryComponents: [
     ConfirmDialogComponent,

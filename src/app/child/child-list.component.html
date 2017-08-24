@@ -1,2 +1,14 @@
+<div class="main-container">
+    <md-select placeholder="Communities">
+            <input 
+            ng-model="search"
+            type="search"
+            placeholder="Search..."
+            aria-label>
+        <md-option *ngFor="let zone of zones" [value]="zone.name">
+            {{ zone.name }}
+        </md-option>
+    </md-select>
+</div>
 
 <child-crud></child-crud>

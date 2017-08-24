@@ -1,6 +1,8 @@
 import { Component, OnInit, Input} from '@angular/core'
+import { Router, ActivatedRoute } from '@angular/router'
+import { FormControl } from '@angular/forms'
+import { AlertService, ChildService } from '../_services/index'
 import { Child } from '../_models/child'
-import { ChildService } from '../_services/index'
 
 @Component({
   selector: 'child-crud',
@@ -8,9 +10,30 @@ import { ChildService } from '../_services/index'
   styleUrls: ['./child-crud.component.scss']
 })
 export class ChildCrudComponent implements OnInit {
-  @Input() child: Child;
+  model: Child
+  loading = false
 
-  constructor(private cs: ChildService) { }
+  @Input() child: Child
+
+  constructor(
+    private cs: ChildService,
+    private router: Router,
+    private alertService: AlertService
+  ) { }
+
+  create() {
+      this.loading = true
+      this.cs.create(this.model).subscribe(
+        data => {
+            this.alertService.success('Child creation successful', true)
+            this.router.navigate(['/login'])
+        },
+        error => {
+            this.alertService.error(error)
+            this.loading = false
+        }
+      )
+  }
 
   ngOnInit() {
 

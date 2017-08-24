@@ -1,0 +1,26 @@
+#zone-list{
+    list-style: none;
+
+    width: 300px;
+    padding-left: 0px;
+    > li {
+        cursor: pointer;
+        padding: 10px;
+        border-style: solid;
+        border-bottom-style: none;
+        border-color: dodgerblue;
+        &:last-child{
+            border-bottom-style: solid;
+        }
+    }
+}
+
+.main-container{
+    margin-left: 40px;
+    margin-top: 20px;
+
+    .mat-select-panel {
+        margin-top: 45px;
+    }
+}
+

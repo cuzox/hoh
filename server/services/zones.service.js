@@ -60,7 +60,8 @@ function create(zoneParams) {
             }
         })
  
-    function createzone() {  
+    function createzone() {
+        delete zoneParams._id
         db.zones.insert(
             zoneParams,
             function (err, doc) {

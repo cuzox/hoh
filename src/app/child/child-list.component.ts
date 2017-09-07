@@ -1,22 +1,25 @@
-import { Component, OnInit, Input } from '@angular/core'
-import { Child } from '../_models/child'
+import { Component, OnInit, Input, ViewChild } from '@angular/core'
+import { Child, Zone } from '../_models/index'
 import { ChildService, ZoneService} from '../_services/index'
-import {MdSelectModule} from '@angular/material';
+import { SelectItem } from 'primeng/primeng'
+import { Dropdown } from 'primeng/components/dropdown/dropdown'
 
 @Component({
   selector: 'child-list',
   templateUrl: './child-list.component.html',
   styleUrls: ['./child-list.component.scss']
 })
-export class ChildListComponent implements OnInit {
-  zones: string[] = [];
 
-  @Input() child: Child
+export class ChildListComponent implements OnInit {
+  zones: SelectItem[] = [];
+  currentZone: any;
+
+  @ViewChild('dropdown') dropdown: Dropdown
 
   constructor(private cs: ChildService, private zs: ZoneService) { }
 
   ngOnInit() {
-    this.loadZones();
+    this.loadZones()
   }
 
   loadZones(){
@@ -28,6 +31,14 @@ export class ChildListComponent implements OnInit {
         // Handle
       }
     )
+  }
+
+  createZone(){
+
+  }
+
+  resetFilter(){
+    this.dropdown.resetFilter()
   }
 
 }

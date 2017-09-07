@@ -7,10 +7,10 @@ import { AppComponent } from './app.component'
 
 // Third party
 import { FlexLayoutModule } from '@angular/flex-layout'
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MaterialModule } from '@angular/material'
-// import { AlertModule } from 'ngx-bootstrap'
 import { ImageUploadModule } from 'angular2-image-upload'
+import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 
 // Custom
 import { routing } from './app.routing'
@@ -45,12 +45,12 @@ import { ConfirmDialogComponent } from './dialog/confirm-dialog.component'
     FormsModule,
     HttpModule,
     routing,
-    // AlertModule.forRoot(),
     BrowserAnimationsModule,
     FlexLayoutModule,
     MaterialModule,
     ReactiveFormsModule,
-    ImageUploadModule.forRoot()
+    ImageUploadModule.forRoot(),
+    DropdownModule
 
   ],
   providers: [

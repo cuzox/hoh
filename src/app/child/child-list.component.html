@@ -1,14 +1,16 @@
-<div class="main-container">
-    <md-select placeholder="Communities">
-            <input 
-            ng-model="search"
-            type="search"
-            placeholder="Search..."
-            aria-label>
-        <md-option *ngFor="let zone of zones" [value]="zone.name">
-            {{ zone.name }}
-        </md-option>
-    </md-select>
+<div class="main-container container">
+    <div class="row">
+        <h3> Community </h3>
+        <p-dropdown #dropdown id="zoneList" [options]="zones" [(ngModel)]="currentZone" [filter]="true" [style]="{'width': '200px'}" (onChange)='resetFilter()'></p-dropdown>
+        <button 
+            (click)="createZone()" 
+            class="hoh-green-font" 
+            md-icon-button
+        >
+            <md-icon>add_circle_outline</md-icon>
+        </button>
+    </div>
+
 </div>
 
 <child-crud></child-crud>

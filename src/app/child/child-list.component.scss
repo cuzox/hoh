@@ -1,26 +1,15 @@
-#zone-list{
-    list-style: none;
+.main-container{
+    margin-top: 10px;
+    margin-left: 20px;
 
-    width: 300px;
-    padding-left: 0px;
-    > li {
-        cursor: pointer;
-        padding: 10px;
-        border-style: solid;
-        border-bottom-style: none;
-        border-color: dodgerblue;
-        &:last-child{
-            border-bottom-style: solid;
+    #zoneList {
+        width: 200px;
+        .ui-dropdown-label.ui-inputtex{
+
+            padding: 10px;
         }
     }
-}
-
-.main-container{
-    margin-left: 40px;
-    margin-top: 20px;
-
-    .mat-select-panel {
-        margin-top: 45px;
+    p-dropdown{
+        width: 100px;
     }
 }
-

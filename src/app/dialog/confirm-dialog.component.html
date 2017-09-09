@@ -1,13 +1,22 @@
 <h2 md-dialog-title> {{title}}</h2>
-<ul *ngIf="data">
-    <li *ngFor="let line of data">
-        {{line}}
-    </li>
-</ul>
-<p>{{ message }}</p>
+
+<span *ngIf="reference.admin">
+    <ul *ngIf="data">
+        <li *ngFor="let line of data">
+            {{line}}
+        </li>
+    </ul>
+    <p>{{ message }}</p>
+</span>
+
+<span *ngIf="reference.zone">
+    <md-input-container class="full-width form-group">
+        <input mdInput type="text" name="zoneName" placeholder="Zone Name" [(ngModel)]="newZoneName">
+    </md-input-container>
+</span>
 
 <div id="dialog-buttons">
-    <button type="button" class="green" (click)="dialogRef.close(true)" md-icon-button>
+    <button type="button" class="green" (click)="confirmed()" md-icon-button>
         <md-icon>check_circle</md-icon>
     </button>
     <button type="button" class="red" (click)="dialogRef.close()" md-icon-button>

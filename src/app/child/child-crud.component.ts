@@ -12,21 +12,26 @@ import { Child } from '../_models/child'
 export class ChildCrudComponent implements OnInit {
   model: Child
   loading = false
+  title: string
 
   @Input() child: Child
 
   constructor(
+    private alertService: AlertService,
     private cs: ChildService,
-    private router: Router,
-    private alertService: AlertService
+    private router: Router
   ) { }
 
+  
+  ngOnInit() {
+    
+  }
+  
   create() {
       this.loading = true
       this.cs.create(this.model).subscribe(
         data => {
             this.alertService.success('Child creation successful', true)
-            this.router.navigate(['/login'])
         },
         error => {
             this.alertService.error(error)
@@ -34,9 +39,4 @@ export class ChildCrudComponent implements OnInit {
         }
       )
   }
-
-  ngOnInit() {
-
-  }
-
 }

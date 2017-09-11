@@ -22,10 +22,11 @@ import { HomeComponent } from './home/home.component'
 import { LoginComponent } from './login/login.component'
 import { RegisterComponent } from './register/register.component'
 import { AdminComponent } from './admin/admin.component'
-import { ChildListComponent } from './child/child-list.component'
-import { ChildCrudComponent } from './child/child-crud.component'
+import { ChildListComponent } from './child/child-list/child-list.component'
+import { ChildCrudComponent } from './child/child-crud/child-crud.component'
+import { ChildCardComponent } from './child/child-card/child-card.component'
 import { UserListComponent } from './user/user-list.component'
-import { ConfirmDialogComponent } from './dialog/confirm-dialog.component'
+import { ConfirmDialogComponent } from './dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ConfirmDialogComponent } from './dialog/confirm-dialog.component'
     RegisterComponent,
     ChildListComponent,
     ChildCrudComponent,
+    ChildCardComponent,
     AdminComponent,
     UserListComponent,
     ConfirmDialogComponent

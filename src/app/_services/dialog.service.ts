@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core'
 import { ConfirmDialogComponent } from '../dialog/confirm-dialog.component'
 
 // For child-crud
-import { ChildCrudComponent } from '../child/child-crud.component'
+import { ChildCrudComponent } from '../child/child-crud/child-crud.component'
 import { Router, ActivatedRoute } from '@angular/router'
 import { AlertService, ChildService } from '../_services/index'
 

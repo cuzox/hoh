@@ -1,13 +1,29 @@
 <div class="main-container container">
-    <div class="row">
-        <h3> Community </h3>
-        <p-dropdown #dropdown id="zoneList" [options]="zones" [(ngModel)]="currentZone" [filter]="true" [style]="{'width': '200px'}" (onChange)='resetFilter()'></p-dropdown>
-        <button 
-            (click)="createZone()" 
-            class="hoh-green-font" 
-            md-icon-button
-        >
-            <md-icon>add_circle_outline</md-icon>
-        </button>
+    <div class="ui-g ui-fluid">
+        <span id="children-inputs" class="ui-xs-4">
+            <h4> Community </h4>
+            <p-dropdown #dropdown id="zoneList" [options]="zones" [(ngModel)]="currentZone" [filter]="true" [style]="{'width': '200px'}" (onChange)='resetFilter()'></p-dropdown>
+            <button 
+                *ngIf="showDelete" (click)="deleteZone()"
+                class="remove-zone red"
+                md-icon-button
+                id="zone-icons">
+                <md-icon pTooltip="Delete Community" tooltopposition="top" showDelay="600">remove_circle_outline</md-icon>
+            </button>
+            <button  
+                (click)="createZone()" 
+                class="hoh-green-font" 
+                md-icon-button 
+                id="zone-icons">
+                <md-icon pTooltip="Create Community" tooltipPosition="top" showDelay="600">add_circle_outline</md-icon>
+            </button>
+        </span>
+        <span id="child-search" class="ui-xs-4">
+            <h4> Child Search </h4>
+            <div id="title" class="ui-inputgroup">
+                <input pInputText type="text" placeholder="Search Children...">   
+                <button pButton type="button" icon="fa-search" class="ui-button-secondary"></button>      
+            </div>
+        </span>
     </div>
 </div>

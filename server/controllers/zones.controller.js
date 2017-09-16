@@ -50,7 +50,7 @@ function update(req, res) {
 }
  
 function _delete(req, res) {
-    zonesService._delete(req.params._id).then( () => {
+    zonesService.delete(req.params._id).then( () => {
         res.sendStatus(200)
     }).catch(function (err) {
         res.status(400).send(err)

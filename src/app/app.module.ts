@@ -11,6 +11,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MaterialModule } from '@angular/material'
 import { ImageUploadModule } from 'angular2-image-upload'
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
+import { TooltipModule } from 'primeng/components/tooltip/tooltip';
+import { InputTextModule } from 'primeng/components/inputtext/inputtext';
+import { ButtonModule } from 'primeng/components/button/button';
 
 // Custom
 import { routing } from './app.routing'
@@ -44,16 +47,18 @@ import { ConfirmDialogComponent } from './dialog/confirm-dialog.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpModule,
     routing,
-    BrowserAnimationsModule,
     FlexLayoutModule,
     MaterialModule,
     ReactiveFormsModule,
     ImageUploadModule.forRoot(),
-    DropdownModule
-
+    DropdownModule,
+    TooltipModule,
+    InputTextModule,
+    ButtonModule
   ],
   providers: [
     customHttpProvider,

@@ -1,5 +1,5 @@
 export class Zone {
-    _id: string
+    _id?: string
     label: string
     value: string
 }

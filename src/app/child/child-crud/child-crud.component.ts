@@ -1,8 +1,8 @@
 import { Component, OnInit, Input} from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
 import { FormControl } from '@angular/forms'
-import { AlertService, ChildService } from '../_services/index'
-import { Child } from '../_models/child'
+import { AlertService, ChildService } from '../../_services/index'
+import { Child } from '../../_models/child'
 
 @Component({
   selector: 'child-crud',

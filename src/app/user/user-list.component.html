@@ -6,18 +6,18 @@
                 <button *ngIf="currentUser.role === appConfig.accessTypes.super_admin"
                         (click)="deleteUser(user, 'Delete ' + user.firstName + ' ' + user.lastName)"  
                         class="pull-right" md-icon-button style="color: red;">
-                    <md-icon>remove_circle</md-icon>
+                    <md-icon pTooltip="Remove User" tooltipPosition="top" showDelay="600">remove_circle</md-icon>
                 </button>
                 <button *ngIf="currentUser.role === appConfig.accessTypes.super_admin"
                         (click)="manageSuperAdmin(user)"
                         [ngClass]="{'hoh-green-font': checkUser(user).isSA }" 
                         class="pull-right" md-icon-button>
-                    <md-icon>vpn_key</md-icon>
+                    <md-icon pTooltip="Make Super Admin" tooltipPosition="top" showDelay="600">vpn_key</md-icon>
                 </button>
                 <button (click)="manageAdmin(user)" 
                         [ngClass]="{'hoh-green-font': checkUser(user).isA }" 
                         class="pull-right" md-icon-button>
-                    <md-icon>child_care</md-icon>
+                    <md-icon pTooltip="Make Admin" tooltipPosition="top" showDelay="600">child_care</md-icon>
                 </button>
             </span>
         </div>

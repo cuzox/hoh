@@ -1,13 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Child } from '../../_models'
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
-  selector: 'app-child-card',
+  selector: 'child-card',
   templateUrl: './child-card.component.html',
   styleUrls: ['./child-card.component.scss']
 })
 export class ChildCardComponent implements OnInit {
 
-  constructor() { }
+  @Input() child: Child
+
+  constructor(
+  ) { }
 
   ngOnInit() {
   }

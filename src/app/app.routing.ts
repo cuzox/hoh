@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component'
 import { RegisterComponent } from './register/register.component'
 import { AdminComponent } from './admin/admin.component'
 import { ChildListComponent } from './child/child-list/child-list.component'
+import { ChildCrudComponent } from './child/child-crud/child-crud.component'
 import { UserListComponent } from './user/user-list.component'
 import { AuthGuard } from './_guards/auth.guards'
 import { appConfig } from './app.config'
@@ -40,6 +41,15 @@ const appRoutes: Routes = [
     {
         path: 'children',
         component: ChildListComponent
+    },
+    {
+        path: 'test',
+        component: ChildCrudComponent
+    },
+    {
+        path: 'children/:id',
+        component: ChildCrudComponent
+
     },
     {
         path: 'login',

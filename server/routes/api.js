@@ -5,6 +5,7 @@ var config = require('./../config.js')
 var usersController = require('../controllers/users.controller')
 var childrenController = require('../controllers/children.controller')
 var zonesController = require('../controllers/zones.controller')
+var imagesController = require('../controllers/images.controller')
 
 var allowOnly = require('../services/routes-helper.service').allowOnly
 
@@ -18,13 +19,15 @@ var APIRoutes = (passport) => {
     router.get('/users/current', auth(config.accessLevels.user, usersController.getCurrent))
     router.put('/users/:_id', auth(config.accessLevels.admin, usersController.update))
     router.delete('/users/:_id', auth(config.accessLevels.super_admin, usersController.delete))
+    // END USERS
     
     // CHILDREN
     router.get('/children', childrenController.getAll)
     router.get('/children/:_id', childrenController.getById)
     router.post('/children', auth(config.accessLevels.admin, childrenController.create))
     router.put('/children/:_id', auth(config.accessLevels.admin, childrenController.update))
-    router.delete('/children/:_id', auth(config.accessLevels.admin, childrenController.delete))
+    router.delete('/children/:_id', auth(config.accessLevels.super_admin, childrenController.delete))
+    // END CHILDREN
     
     // ZONES
     router.get('/zones', zonesController.getAll)
@@ -32,6 +35,13 @@ var APIRoutes = (passport) => {
     router.post('/zones', auth(config.accessLevels.admin, zonesController.create))
     router.put('/zones/:_id', auth(config.accessLevels.admin, zonesController.update))
     router.delete('/zones/:_id', auth(config.accessLevels.admin, zonesController.delete))
+    // END ZONES
+
+    // IMAGES
+    router.post('/images', auth(config.accessLevels.admin, imagesController.create))
+    router.get('/images/:id', imagesController.getById)
+    router.delete('/images/:id', auth(config.accessLevels.super_admin, imagesController.delete))
+    // END IMAGES
 
     // AUTH HELPER FUNCTION
     function auth( accessLevel, controller_function ){

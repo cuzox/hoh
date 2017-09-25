@@ -4,6 +4,7 @@ import { ChildService, ZoneService, DialogService} from '../../_services/index'
 import { SelectItem } from 'primeng/primeng'
 import { Dropdown } from 'primeng/components/dropdown/dropdown'
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'child-list',
@@ -15,19 +16,27 @@ export class ChildListComponent implements OnInit {
   zones: Zone[]
   currentZone: any
   allZone: any = {}
-  showDelete: boolean = false;
+  showDelete: boolean = false
+  children: Child[]
 
   @ViewChild('dropdown') dropdown: Dropdown
 
   constructor(
     private zs: ZoneService, 
-    private ds: DialogService
+    private ds: DialogService,
+    private cs: ChildService,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.allZone.label = "All"
     this.allZone.value = "all"
     this.loadZones().subscribe()
+    this.loadChildren()
+  }
+
+  goToChild(id: number) {
+    this.router.navigate(['/child-crud', id]);
   }
 
   loadZones(){
@@ -37,6 +46,14 @@ export class ChildListComponent implements OnInit {
       this.zones.unshift(this.allZone)
       // Set current zone to All
       this.currentZone = this.zones[0].value
+    }, err => {
+      this.zones.unshift(this.allZone)
+    })
+  }
+
+  loadChildren(){
+    return this.cs.getAll().subscribe(result =>{
+      this.children = result
     })
   }
 

@@ -14,44 +14,40 @@ controller.delete = _delete
 module.exports = controller
 
 function getAll(req, res) {
-    childService.getAll().then( (children) => {
+    childService.getAll().then( children => {
         res.send(children)
-    }).catch( (err) => {
+    }).catch( err => {
         res.status(400).send(err)
     })
 }
  
 function getById(req, res) {
-    childService.getById(req.params._id).then( (child) => {
-        if (child) {
-            res.send(child)
-        } else {
-            res.sendStatus(404)
-        }
+    childService.getById(req.params._id).then( child => {
+        res.send(child)
     }).catch( (err) => {
         res.status(400).send(err)
     })
 }
 
 function create(req, res) {
-    childService.create(req.body).then( () => {
-        res.sendStatus(200)
+    childService.create(req.body).then( child => {
+        res.send(child)
     }).catch( (err) => {
         res.status(400).send(err)
     })
 }
  
 function update(req, res) {
-    childService.update(req.params._id, req.body).then( () => {
-        res.sendStatus(200)
+    childService.update(req.params._id, req.body).then( msg => {
+        res.send(msg)
     }).catch( (err) => {
         res.status(400).send(err)
     })
 }
  
 function _delete(req, res) {
-    childService._delete(req.params._id).then( () => {
-        res.sendStatus(200)
+    childService._delete(req.params._id).then( msg => {
+        res.send(msg)
     }).catch(function (err) {
         res.status(400).send(err)
     })

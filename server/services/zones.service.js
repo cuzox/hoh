@@ -19,8 +19,7 @@ function getAll() {
  
     db.zones.find().toArray(function (err, zones) {
         if (err) deferred.reject(err.name + ': ' + err.message)
-
-        deferred.resolve(zones)
+        else deferred.resolve(zones)
     })
  
     return deferred.promise
@@ -29,16 +28,10 @@ function getAll() {
 function getById(_id) {
     var deferred = Q.defer()
  
-    db.zones.finOne(
-        { _id: mongojs.ObjectID(_id)}, 
-        function (err, zone) {
+    db.zones.finOne({ _id: _id}, (err, zone) => {
         if (err) deferred.reject(err.name + ': ' + err.message)
- 
-        if (zone) {
-            deferred.resolve(zone)
-        } else {
-            deferred.resolve()
-        }
+        else if (zone) deferred.resolve(zone)
+        else deferred.reject(`Zone of id ${_id} not in database`)
     })
  
     return deferred.promise
@@ -48,29 +41,14 @@ function create(zoneParams) {
     var deferred = Q.defer()
  
     // validation
-    db.zones.findOne(
-        { _id: mongojs.ObjectId(zoneParams._id) },
-        function (err, zone) {
+    db.zones.findOne({ _id: _id }, (err, zone) => {
+        if (err) deferred.reject(err.name + ': ' + err.message)
+        else if (zone) deferred.reject('zone already in database')
+        else db.zones.insert( zoneParams, (err, zone) => {
             if (err) deferred.reject(err.name + ': ' + err.message)
- 
-            if (zone) {
-                deferred.reject('zone already in database')
-            } else {
-                createzone()
-            }
+            else deferred.resolve(zone)
         })
- 
-    function createzone() {
-        delete zoneParams._id
-        db.zones.insert(
-            zoneParams,
-            function (err, doc) {
-                if (err) deferred.reject(err.name + ': ' + err.message)
- 
-                deferred.resolve()
-            }
-        )
-    }
+    })
  
     return deferred.promise
 }
@@ -78,30 +56,18 @@ function create(zoneParams) {
 function update(_id, zoneParams) {
     var deferred = Q.defer()
  
-    // validation
-    db.zones.findById(
-        { _id: mongojs.ObjectId(zoneParams._id) }, 
-        function (err, zone) {
+    db.zones.findById({ _id: _id }, (err, zone) => {
         if (err) deferred.reject(err.name + ': ' + err.message)
- 
-        if (!zone) {
-            deferred.reject('zone no longer in database')
-        } else {
-            updatezone()
-        }
+        else if (zone) updatezone()
+        else deferred.reject('Zone not in database')
     })
  
     function updatezone() {
         delete zoneParams._id
-        db.zones.update(
-            { _id: mongojs.ObjectId(_id) },
-            { $set: zoneParams },
-            function (err, doc) {
-                if (err) deferred.reject(err.name + ': ' + err.message)
- 
-                deferred.resolve()
-            }
-        )
+        db.zones.update({ _id: _id }, { $set: zoneParams }, (err, doc) => {
+            if (err) deferred.reject(err.name + ': ' + err.message)
+            else deferred.resolve('Zone updated successfully')
+        })
     }
  
     return deferred.promise
@@ -110,13 +76,10 @@ function update(_id, zoneParams) {
 function _delete(_id) {
     var deferred = Q.defer()
  
-    db.zones.remove(
-        { _id: mongojs.ObjectId(_id) },
-        function (err) {
-            if (err) deferred.reject(err.name + ': ' + err.message)
- 
-            deferred.resolve()
-        })
+    db.zones.remove({ _id: _id }, err => {
+        if (err) deferred.reject(err.name + ': ' + err.message)
+        else deferred.resolve('Zone deleted successfully')
+    })
  
     return deferred.promise
 }

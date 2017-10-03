@@ -14,45 +14,41 @@ controller.delete = _delete
 module.exports = controller
 
 function getAll(req, res) {
-    zonesService.getAll().then( (zones) => {
+    zonesService.getAll().then( zones => {
         res.send(zones)
-    }).catch( (err) => {
+    }).catch( err => {
         res.status(400).send(err)
     })
 }
  
 function getById(req, res) {
-    zonesService.getById(req.params._id).then( (zone) => {
-        if (zone) {
-            res.send(zone)
-        } else {
-            res.sendStatus(404)
-        }
-    }).catch( (err) => {
+    zonesService.getById(req.params._id).then( zone => {
+        res.send(zone)
+    }).catch( err => {
         res.status(400).send(err)
     })
 }
 
 function create(req, res) {
-    zonesService.create(req.body).then( () => {
-        res.sendStatus(200)
-    }).catch( (err) => {
+    zonesService.create(req.body).then( zone => {
+        res.send(zone)
+    }).catch( err => {
         res.status(400).send(err)
     })
 }
  
 function update(req, res) {
-    zonesService.update(req.params._id, req.body).then( () => {
-        res.sendStatus(200)
-    }).catch( (err) => {
+    zonesService.update(req.params._id, req.body).then( msg => {
+        res.send(msg)
+    }).catch( err => {
         res.status(400).send(err)
     })
 }
  
 function _delete(req, res) {
-    zonesService.delete(req.params._id).then( () => {
-        res.sendStatus(200)
-    }).catch(function (err) {
+    zonesService.delete(req.params._id).then( msg => {
+        res.send(msg)
+    }).catch( err => {
         res.status(400).send(err)
     })
 }

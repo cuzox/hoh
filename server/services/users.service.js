@@ -5,6 +5,7 @@ var Q = require('q')
 var mongojs = require('mongojs')
 var config = require('../config')
 var db = mongojs(config.connectionString, ['users'])
+var shortId = require('shortid')
  
 var service = {}
  
@@ -22,21 +23,17 @@ function authenticate(email, password) {
  
     db.users.findOne({ email: email }, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message)
- 
-        if (user && bcrypt.compareSync(password, user.hash)) {
-            // authentication successful
-            deferred.resolve({
+        else if (user && bcrypt.compareSync(password, user.hash)){
+            let processed = {
                 _id: user._id,
                 email: user.email,
                 firstName: user.firstName,
                 lastName: user.lastName,
                 role: user.role,
                 token: 'Bearer ' + jwt.sign({ _id: user._id }, config.secret)
-            })
-        } else {
-            // authentication failed
-            deferred.resolve()
-        }
+            }
+            deferred.resolve(processed)
+        } else deferred.reject('Incorrect Email or Password')
     })
  
     return deferred.promise
@@ -47,13 +44,15 @@ function getAll() {
  
     db.users.find().toArray(function (err, users) {
         if (err) deferred.reject(err.name + ': ' + err.message)
+        else {
+            // return users (without hashed passwords)
+            users = _.map(users, function (user) {
+                return _.omit(user, 'hash')
+            })
+     
+            deferred.resolve(users)
+        }
  
-        // return users (without hashed passwords)
-        users = _.map(users, function (user) {
-            return _.omit(user, 'hash')
-        })
- 
-        deferred.resolve(users)
     })
  
     return deferred.promise
@@ -64,14 +63,8 @@ function getById(_id) {
  
     db.users.findOne({ _id: mongojs.ObjectID(_id) }, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message)
- 
-        if (user) {
-            // return user (without hashed password)
-            deferred.resolve(_.omit(user, 'hash'))
-        } else {
-            // user not found
-            deferred.resolve()
-        }
+        else if (user) deferred.resolve(_.omit(user, 'hash'))
+        else deferred.reject('User not found')
     })
  
     return deferred.promise
@@ -83,30 +76,20 @@ function create(userParam) {
     // validation
     db.users.findOne({ email: userParam.email }, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message)
-
-        if (user) {
-            // email already exists
-            deferred.reject('email "' + userParam.email + '" is already taken')
-        } else {
-            createUser()
-        }
+        else if (user) deferred.reject('Email "' + userParam.email + '" is already taken')
+        else createUser()
     })
  
     function createUser() {
-        // set user object to userParam without the cleartext password
-        var user = _.omit(userParam, 'password')
+        let user = _.omit(userParam, 'password')
         user.role = 1
- 
-        // add hashed password to user object
         user.hash = bcrypt.hashSync(userParam.password, 10)
+        user._id = shortId.generate()
  
-        db.users.insert(
-            user,
-            function (err, doc) {
-                if (err) deferred.reject(err.name + ': ' + err.message)
- 
-                deferred.resolve()
-            })
+        db.users.insert(user, (err, doc) => {
+            if (err) deferred.reject(err.name + ': ' + err.message)
+            else deferred.resolve()
+        })
     }
  
     return deferred.promise
@@ -118,7 +101,7 @@ function update(_id, req) {
     var currentRole = req.user.role
  
     // validation
-    db.users.findOne({_id: mongojs.ObjectID(_id)}, function (err, user) {
+    db.users.findOne({_id: _id}, (err, user) => {
         if (err) deferred.reject(err.name + ': ' + err.message)
 
         if (user.role !== userParam.role){
@@ -131,39 +114,25 @@ function update(_id, req) {
                 // email has changed so check if the new email is already taken
                 db.users.findOne( { email: userParam.email }, function (err, conflictUser) {
                     if (err) deferred.reject(err.name + ': ' + err.message)
-    
-                    if (conflictUser) {
-                        // email already exists
-                        deferred.reject('Email "' + conflictUser.email + '" is already taken')
-                    } else {
-                        updateUser()
-                    }
+                    else if (conflictUser) deferred.reject('Email "' + conflictUser.email + '" is already taken')
+                    else updateUser()
                 })
-            } else {
-                updateUser()
-            }
+            } else updateUser()
         }
     })
  
     function updateUser() {
-        
         delete userParam._id
 
-        // update password if it was entered
         if (userParam.password) {
             userParam.hash = bcrypt.hashSync(set.password, 10)
             delete userParam.password
         }
  
-        db.users.update(
-            { _id: mongojs.ObjectID(_id) },
-            { $set: userParam },
-            function (err, doc) {
-                if (err) deferred.reject(err.name + ': ' + err.message)
- 
-                deferred.resolve()
-            }
-        )
+        db.users.update({ _id: _id }, { $set: userParam }, (err, doc) => {
+            if (err) deferred.reject(err.name + ': ' + err.message)
+            else deferred.resolve('User updated successfully')
+        })
     }
  
     return deferred.promise
@@ -172,13 +141,10 @@ function update(_id, req) {
 function _delete(_id) {
     var deferred = Q.defer()
  
-    db.users.remove(
-        { _id: mongojs.ObjectID(_id) },
-        function (err) {
-            if (err) deferred.reject(err.name + ': ' + err.message)
- 
-            deferred.resolve()
-        })
+    db.users.remove({ _id: _id }, err => {
+        if (err) deferred.reject(err.name + ': ' + err.message)
+        else deferred.resolve('User deleted successfully')
+    })
  
     return deferred.promise
 }

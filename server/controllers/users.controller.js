@@ -15,14 +15,8 @@ controller.delete = _delete
 module.exports = controller
 
 function authenticate(req, res) {
-    userService.authenticate(req.body.email, req.body.password).then( (user) => {
-        if (user) {
-            // authentication successful
-            res.send(user)
-        } else {
-            // authentication failed
-            res.status(400).send('Incorrect Email or Password')
-        }
+    userService.authenticate(req.body.email, req.body.password).then( user => {
+        res.send(user)
     })
     .catch( (err) => {
         res.status(400).send(err)
@@ -39,7 +33,7 @@ function register(req, res) {
 }
 
 function getAll(req, res) {
-    userService.getAll().then( (users) => {
+    userService.getAll().then( users => {
         res.send(users)
     })
     .catch( (err) => {
@@ -48,12 +42,8 @@ function getAll(req, res) {
 }
 
 function getCurrent(req, res) {
-    userService.getById(req.user._id).then( (user) => {
-        if (user) {
-            res.send(user)
-        } else {
-            res.sendStatus(404)
-        }
+    userService.getById(req.user._id).then( user => {
+        res.send(user)
     })
     .catch( (err) => {
         res.status(400).send(err)
@@ -61,17 +51,17 @@ function getCurrent(req, res) {
 }
 
 function update(req, res) {
-    userService.update(req.params._id, req).then( () => {
+    userService.update(req.params._id, req).then( msg => {
         if(req.forbidden) res.sendStatus(403)
-        res.sendStatus(200)
+        else res.send(msg)
     }).catch( (err) => {
         res.status(400).send(err)
     })
 }
 
 function _delete(req, res) {
-    userService.delete(req.params._id).then( () => {
-        res.sendStatus(200)
+    userService.delete(req.params._id).then( msg => {
+        res.send(msg)
     }).catch( (err) => {
         res.status(400).send(err)
     })

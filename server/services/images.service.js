@@ -1,93 +1,120 @@
 var Q = require('q')
 var mongojs = require('mongojs')
 var config = require('../config')
-var db = mongojs(config.connectionString, ['children'])
-var shortid = require('shortid')
-var multer = require('multer')
+var db = mongojs(config.connectionString, ['images'])
 var fs = require('fs')
-var upload = multer({ dest: config.imageUrl })
-
-shortid.characters(config.shortId);
+var glob = require('glob')
+var shortId = require('shortid')
+shortId.characters(config.shortIdChars)
 
 var service = {}
 
 service.getById = getById
 service.create = create
+service.update = update
 service.delete = _delete
 
 module.exports = service
 
 
 function getById(_id) {
-    var deferred = Q.defer()
+    let deferred = Q.defer()
  
-    db.children.finOne(
-        { _id: _id}, 
-        function (err, child) {
+    db.images.findOne({_id: _id}, (err, image) => {
         if (err) deferred.reject(err.name + ': ' + err.message)
- 
-        if (child) {
-            deferred.resolve(child)
-        } else {
-            deferred.resolve()
-        }
+        else if (image) getImageFile(image)
+        else deferred.reject(`Image with id ${_id} not in database`) 
     })
+
+    function getImageFile(image){
+        glob(`${config.imagePath}/${_id}.*`, function (err, files) {
+            if (err) deferred.reject(err.name + ': ' + err.message)
+            else if (files) fs.readFile(files[0], (err, data) => {
+                if (err) deferred.reject(err.name + ': ' + err.message)
+                else if (data){
+                    let processed = {
+                        image: data, 
+                        mimetype: image.mimetype, 
+                    }
+                    deferred.resolve(processed)
+                } else deferred.reject(`Image file with id ${_id} was not found`) // Not found
+            })
+        })
+    }
  
     return deferred.promise
 }
 
-function create(childParams) {
-    var deferred = Q.defer()
-    try {
-        let id = shortId.generate()
-
-        fs.writeFile(config.upload, req.file, function(err) {
-            if(err) {
-                return deferred.defer(`Error writing image to disk: ${err}`);
-            }
-        
-            console.log("The file was saved!");
-        }); 
-
-        req.file
-
-        db.saveDatabase();
-        res.send({ id: data.$loki, fileName: data.filename, originalName: data.originalname });
-    } catch (err) {
-        deferred.defer("Error writing image to disk")
+function create(image) {
+    let deferred = Q.defer()
+    let _id = shortId.generate()
+    let ext = image.originalname.split('.').pop()
+    // Check size somewhere here
+    let processed = {
+        _id: _id,
+        fieldname: image.fieldname,
+        encoding: image.encoding,
+        mimetype: image.mimetype,
+        ext: ext,
     }
- 
 
+    db.images.insert(processed, (err, doc)=>{
+        if (err) deferred.reject(err.name + ': ' + err.message)
+        else fs.writeFile(`${config.imagePath}/${_id}.${ext}`, image.buffer, err =>{
+            if (err) deferred.reject(err.name + ': ' + err.message)
+            else deferred.resolve(doc)
+        })
+    })
+    
+    return deferred.promise
+}
+
+function update(_id, image) {
+    let deferred = Q.defer()
+    let ext = image.originalname.split('.').pop()
  
-    function creageImage() {  
-        if (!shortid.isValid(childParams._id))
-            childParams._id = shortid.generate()
-        
-        db.children.insert(
-            childParams,
-            function (err, doc) {
+    db.images.findOne({ _id: _id }, (err, dbImage) => {
+        if (err) deferred.reject(err.name + ': ' + err.message)
+        else if (dbImage) updateImage(dbImage.ext) // Pass original file extension
+        else deferred.reject(`Image with id ${_id} not in database`) 
+    })
+ 
+    function updateImage(originalExt) {
+        let processed = {
+            fieldname: image.fieldname,
+            encoding: image.encoding,
+            mimetype: image.mimetype,
+            ext: ext,
+        }
+
+        db.images.update({ _id: _id }, { $set: processed }, (err, doc) => {
+            if (err) deferred.reject(err.name + ': ' + err.message)
+            else fs.unlink(`${config.imagePath}/${_id}.${originalExt}`, err => {
                 if (err) deferred.reject(err.name + ': ' + err.message)
- 
-                deferred.resolve()
-            }
-        )
+                else fs.writeFile(`${config.imagePath}/${_id}.${ext}`, image.buffer, err =>{
+                    if (err) deferred.reject(err.name + ': ' + err.message)
+                    else deferred.resolve('Image updated successfully')
+                })    
+            })
+        })
     }
  
     return deferred.promise
 }
 
 function _delete(_id) {
-    var deferred = Q.defer()
- 
-    db.children.remove(
-        { _id: mongojs.ObjectId(_id) },
-        function (err) {
+    let deferred = Q.defer()
+    
+    db.images.remove({ _id: _id }, (err) => {
+        if (err) deferred.reject(err.name + ': ' + err.message)
+        else glob(`${config.imagePath}/${_id}.*`, function (err, files) {
             if (err) deferred.reject(err.name + ': ' + err.message)
- 
-            deferred.resolve()
+            else fs.unlink(files[0], err => {
+                if (err) deferred.reject(err.name + ': ' + err.message)
+                else deferred.resolve('Image deleted successfully')
+            })
         })
+    })
  
     return deferred.promise
 }
-
-

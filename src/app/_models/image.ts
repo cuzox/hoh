@@ -1,4 +1,7 @@
 export class Image {
     _id?: string
-    childId?: string
+    fieldname?: string
+    encoding?: string
+    mimetype?: string
+    ext?: number
 }

@@ -17,9 +17,7 @@ function hookJWTStrategy(passport) {
 
     passport.use(new JWTStrategy(options, function(JWTPayload, callback) {
         db.users.findOne({ _id: mongojs.ObjectID(JWTPayload._id)}, function(err, user) {
-            if (err) {
-                return callback(err, false)
-            }
+            if (err) return callback(err, false)
             
             if(user) {
                 callback(null, user)

@@ -1,6 +1,7 @@
 var Q = require('q')
 var mongojs = require('mongojs')
 var config = require('../config')
+var shortid = require('shortid')
 var db = mongojs(config.connectionString, ['children'])
 
 var service = {}
@@ -17,10 +18,9 @@ module.exports = service
 function getAll() {
     var deferred = Q.defer()
  
-    db.children.find().toArray(function (err, children) {
+    db.children.find().toArray( (err, children) => {
         if (err) deferred.reject(err.name + ': ' + err.message)
-
-        deferred.resolve(children)
+        else deferred.resolve(children)
     })
  
     return deferred.promise
@@ -29,16 +29,10 @@ function getAll() {
 function getById(_id) {
     var deferred = Q.defer()
  
-    db.children.finOne(
-        { _id: mongojs.ObjectID(_id)}, 
-        function (err, child) {
+    db.children.finOne({ _id: _id }, (err, child) => {
         if (err) deferred.reject(err.name + ': ' + err.message)
- 
-        if (child) {
-            deferred.resolve(child)
-        } else {
-            deferred.resolve()
-        }
+        else if (child) deferred.resolve(child)
+        else deferred.reject(`Child with id ${_id} not in database`)
     })
  
     return deferred.promise
@@ -46,31 +40,20 @@ function getById(_id) {
 
 function create(childParams) {
     var deferred = Q.defer()
+    let _id = shortid.generate()
  
-    // validation
-    db.children.findOne(
-        { _id: mongojs.ObjectId(childParams._id) },
-        function (err, child) {
-            if (err) deferred.reject(err.name + ': ' + err.message)
- 
-            if (child) {
-                deferred.reject('Child already in database')
-            } else {
-                createChild()
-            }
-        })
+    db.children.findOne({ _id: _id }, (err, child) => {
+        if (err) deferred.reject(err.name + ': ' + err.message)
+        else if (child) deferred.reject(`Child with id ${_id} already in database`)
+        else createChild()
+    })
  
     function createChild() {  
-        delete childParams._id
-        
-        db.children.insert(
-            childParams,
-            function (err, doc) {
-                if (err) deferred.reject(err.name + ': ' + err.message)
- 
-                deferred.resolve()
-            }
-        )
+        childParams._id = _id
+        db.children.insert( childParams, (err, child) => {
+            if (err) deferred.reject(err.name + ': ' + err.message)
+            else deferred.resolve(child)
+        })
     }
  
     return deferred.promise
@@ -79,31 +62,19 @@ function create(childParams) {
 function update(_id, childParams) {
     var deferred = Q.defer()
  
-    // validation
-    db.children.findById(
-        { _id: mongojs.ObjectId(childParams._id) }, 
-        function (err, child) {
+    db.children.findOne({ _id: _id }, (err, child) => {
         if (err) deferred.reject(err.name + ': ' + err.message)
- 
-        if (!child) {
-            deferred.reject('Child no longer in database')
-        } else {
-            updateChild()
-        }
+        else if (child) updateChild()
+        else deferred.reject(`Child with id ${_id} not in database`)
     })
  
     function updateChild() {
         delete childParams._id
         
-        db.children.update(
-            { _id: mongojs.ObjectId(_id) },
-            { $set: childParams },
-            function (err, doc) {
-                if (err) deferred.reject(err.name + ': ' + err.message)
- 
-                deferred.resolve()
-            }
-        )
+        db.children.update({ _id: _id }, { $set: childParams }, (err, doc) => {
+            if (err) deferred.reject(err.name + ': ' + err.message)
+            else deferred.resolve('Child updated successfully')
+        })
     }
  
     return deferred.promise
@@ -112,13 +83,10 @@ function update(_id, childParams) {
 function _delete(_id) {
     var deferred = Q.defer()
  
-    db.children.remove(
-        { _id: mongojs.ObjectId(_id) },
-        function (err) {
-            if (err) deferred.reject(err.name + ': ' + err.message)
- 
-            deferred.resolve()
-        })
+    db.children.remove({ _id: _id }, err => {
+        if (err) deferred.reject(err.name + ': ' + err.message)
+        else deferred.resolve('Child deleted successfully')
+    })
  
     return deferred.promise
 }

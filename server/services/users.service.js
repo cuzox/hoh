@@ -61,7 +61,7 @@ function getAll() {
 function getById(_id) {
     var deferred = Q.defer()
  
-    db.users.findOne({ _id: mongojs.ObjectID(_id) }, function (err, user) {
+    db.users.findOne({ _id: _id }, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message)
         else if (user) deferred.resolve(_.omit(user, 'hash'))
         else deferred.reject('User not found')

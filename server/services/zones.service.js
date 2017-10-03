@@ -1,6 +1,7 @@
 var Q = require('q')
 var mongojs = require('mongojs')
 var config = require('../config')
+var shortId = require('shortid')
 var db = mongojs(config.connectionString, ['zones'])
 
 var service = {}
@@ -40,14 +41,16 @@ function getById(_id) {
 function create(zoneParams) {
     var deferred = Q.defer()
  
-    // validation
-    db.zones.findOne({ _id: _id }, (err, zone) => {
+    db.zones.findOne({ value: zoneParams.value }, (err, zone) => {
         if (err) deferred.reject(err.name + ': ' + err.message)
-        else if (zone) deferred.reject('zone already in database')
-        else db.zones.insert( zoneParams, (err, zone) => {
-            if (err) deferred.reject(err.name + ': ' + err.message)
-            else deferred.resolve(zone)
-        })
+        else if (zone) deferred.reject('Zone already in database')
+        else {
+            zoneParams._id = shortId.generate()
+            db.zones.insert( zoneParams, (err, zone) => {
+                if (err) deferred.reject(err.name + ': ' + err.message)
+                else deferred.resolve(zone)
+            })
+        }
     })
  
     return deferred.promise

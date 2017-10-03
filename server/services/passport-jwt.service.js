@@ -16,7 +16,7 @@ function hookJWTStrategy(passport) {
     options.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('Bearer')
 
     passport.use(new JWTStrategy(options, function(JWTPayload, callback) {
-        db.users.findOne({ _id: mongojs.ObjectID(JWTPayload._id)}, function(err, user) {
+        db.users.findOne({ _id: JWTPayload._id }, function(err, user) {
             if (err) return callback(err, false)
             
             if(user) {

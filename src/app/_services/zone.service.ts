@@ -1,18 +1,19 @@
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core'
-import { Http, Headers, RequestOptions, Response } from '@angular/http'
 
 import { Zone } from '../_models/zone'
 
 @Injectable()
 export class ZoneService {
-    constructor(private http: Http) { }
+    constructor(private http: HttpClient) { }
 
-    getAll() {
-        return this.http.get('/api/zones').map((response: Response) => response.json())
+    getAll(): Observable<Zone[]> {
+        return this.http.get<Zone[]>('/api/zones')
     }
 
-    getById(_id: string) {
-        return this.http.get('/api/zones/' + _id).map((response: Response) => response.json())
+    getById(_id: string): Observable<Zone> {
+        return this.http.get('/api/zones/' + _id)
     }
 
     create(zone: Zone) {

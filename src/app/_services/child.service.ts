@@ -1,17 +1,18 @@
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core'
-import { Http, Headers, RequestOptions, Response } from '@angular/http'
 import { Child } from '../_models/child'
 
 @Injectable()
 export class ChildService {
-    constructor(private http: Http) { }
+    constructor(private http: HttpClient) { }
 
-    getAll() {
-        return this.http.get('/api/children').map((response: Response) => response.json())
+    getAll(): Observable<Child[]> {
+        return this.http.get<Child[]>('/api/children')
     }
 
-    getById(_id: string) {
-        return this.http.get('/api/children/' + _id).map((response: Response) => response.json())
+    getById(_id: string): Observable<Child> {
+        return this.http.get('/api/children/' + _id)
     }
 
     create(child: Child) {

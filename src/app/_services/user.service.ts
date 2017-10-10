@@ -1,18 +1,21 @@
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core'
-import { Http, Headers, RequestOptions, Response } from '@angular/http'
+import { Headers, RequestOptions, Response } from '@angular/http'
+import { HttpClient } from '@angular/common/http'
+
 
 import { User } from '../_models/user'
 
 @Injectable()
 export class UserService {
-    constructor(private http: Http) { }
+    constructor(private http: HttpClient) { }
 
-    getAll() {
-        return this.http.get('/api/users').map((response: Response) => response.json())
+    getAll(): Observable<User[]> {
+        return this.http.get<User[]>('/api/users')
     }
 
-    getById(_id: string) {
-        return this.http.get('/api/users/' + _id).map((response: Response) => response.json())
+    getById(_id: string): Observable<User> {
+        return this.http.get('/api/users/' + _id)
     }
 
     create(user: User) {

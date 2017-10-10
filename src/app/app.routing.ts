@@ -29,12 +29,12 @@ const appRoutes: Routes = [
                 pathMatch: 'full'
             },
             {
-                path: 'users',
-                component: UserListComponent
-            },
-            {
                 path: 'children',
                 component: ChildListComponent
+            },
+            {
+                path: 'users',
+                component: UserListComponent
             }
         ]
     },
@@ -60,7 +60,7 @@ const appRoutes: Routes = [
         component: RegisterComponent
     },
 
-    // otherwise redirect to home
+    // Otherwise redirect to home
     {
         path: '**',
         redirectTo: ''

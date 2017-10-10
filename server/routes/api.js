@@ -40,8 +40,8 @@ var APIRoutes = (passport) => {
 
     // IMAGES
     router.get('/images/:_id', imagesController.getById)
-    router.post('/images', [upload.single('childPhoto'), ...auth(config.accessLevels.admin, imagesController.create)])
-    router.put('/images/:_id', [upload.single('childPhoto'), ...auth(config.accessLevels.admin, imagesController.update)])
+    router.post('/images', upload.single('childPhoto'), auth(config.accessLevels.admin, imagesController.create))
+    router.put('/images/:_id', upload.single('childPhoto'), auth(config.accessLevels.admin, imagesController.update))
     router.delete('/images/:_id', auth(config.accessLevels.super_admin, imagesController.delete))
     
     // AUTH HELPER FUNCTION

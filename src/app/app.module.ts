@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
 import { RouterModule } from '@angular/router'
 import { AppComponent } from './app.component'
+import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Third party
 import { FlexLayoutModule } from '@angular/flex-layout'
@@ -17,7 +19,6 @@ import { ButtonModule } from 'primeng/components/button/button';
 
 // Custom
 import { routing } from './app.routing'
-import { customHttpProvider } from './_helpers/custom-http'
 import { AlertComponent } from './_directives/alert.component'
 import { AuthGuard } from './_guards/auth.guards'
 import { AlertService, AuthenticationService, UserService, ChildService, DialogService, ZoneService } from './_services/index'
@@ -30,6 +31,7 @@ import { ChildCrudComponent } from './child/child-crud/child-crud.component'
 import { ChildCardComponent } from './child/child-card/child-card.component'
 import { UserListComponent } from './user/user-list.component'
 import { ConfirmDialogComponent } from './dialog/confirm-dialog.component';
+import { JWTInterceptor } from './_interceptors/http-interceptor';
 
 @NgModule({
   declarations: [
@@ -58,17 +60,22 @@ import { ConfirmDialogComponent } from './dialog/confirm-dialog.component';
     DropdownModule,
     TooltipModule,
     InputTextModule,
-    ButtonModule
+    ButtonModule,
+    HttpClientModule
   ],
   providers: [
-    customHttpProvider,
     AuthGuard,
     AlertService,
     AuthenticationService,
     UserService,
     ChildService,
     DialogService,
-    ZoneService
+    ZoneService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JWTInterceptor,
+      multi: true,
+    }
   ],
   entryComponents: [
     ConfirmDialogComponent,

@@ -1,4 +1,4 @@
-<h2 md-dialog-title> {{title}}</h2>
+<h2 mat-dialog-title> {{title}}</h2>
 
 <span *ngIf="reference.admin">
     <ul *ngIf="data">
@@ -10,16 +10,16 @@
 </span>
 
 <span *ngIf="reference.zone">
-    <md-input-container class="full-width form-group">
-        <input mdInput type="text" name="zoneName" placeholder="Zone Name" [(ngModel)]="newZoneName">
-    </md-input-container>
+    <mat-input-container class="full-width form-group">
+        <input matInput type="text" name="zoneName" placeholder="Zone Name" [(ngModel)]="newZoneName">
+    </mat-input-container>
 </span>
 
 <div id="dialog-buttons">
-    <button type="button" class="green" (click)="confirmed()" md-icon-button>
-        <md-icon>check_circle</md-icon>
+    <button type="button" class="green" (click)="confirmed()" mat-icon-button>
+        <mat-icon>check_circle</mat-icon>
     </button>
-    <button type="button" class="red" (click)="dialogRef.close()" md-icon-button>
-        <md-icon>cancel</md-icon>
+    <button type="button" class="red" (click)="dialogRef.close()" mat-icon-button>
+        <mat-icon>cancel</mat-icon>
     </button>
 </div>

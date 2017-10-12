@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Rx'
-import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material'
+import { MatDialogRef, MatDialog, MatDialogConfig } from '@angular/material'
 import { Injectable } from '@angular/core'
 
 // For admin-dialog
@@ -15,14 +15,14 @@ import { AlertService, ChildService } from '../_services/index'
 export class DialogService {
     
     constructor(
-        private dialog: MdDialog,
+        private dialog: MatDialog,
         private alertService: AlertService,
         private cs: ChildService,
         private router: Router
     ) {}
     
-    private dialogRef: MdDialogRef<ConfirmDialogComponent>
-    private config = new MdDialogConfig()
+    private dialogRef: MatDialogRef<ConfirmDialogComponent>
+    private config = new MatDialogConfig()
 
     public confirm(title: string, message: string = "", data: string[] = []): Observable<boolean> {
 

@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~https://fonts.googleapis.com/icon?family=Material+Icons';
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import url('~https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('~@angular/material/prebuilt-themes/indigo-pink.css');
 
 body {
     min-width: 320px;
@@ -10,7 +10,7 @@ body {
     display: none;
 }
 
-.md-icon-button{
+.mat-icon-button{
     cursor: pointer;
 }
 
@@ -35,7 +35,7 @@ body {
     margin-top: 0;
 }
 
-.auth-forms md-input-container{
+.auth-forms mat-input-container{
     padding-bottom: 10px;
     margin-bottom: 0px;
 

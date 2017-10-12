@@ -5,19 +5,19 @@
             <span class="col-xs-6 col-sm-4">
                 <button *ngIf="currentUser.role === appConfig.accessTypes.super_admin"
                         (click)="deleteUser(user, 'Delete ' + user.firstName + ' ' + user.lastName)"  
-                        class="pull-right" md-icon-button style="color: red;">
-                    <md-icon pTooltip="Remove User" tooltipPosition="top" showDelay="600">remove_circle</md-icon>
+                        class="pull-right" mat-icon-button style="color: red;">
+                    <mat-icon pTooltip="Remove User" tooltipPosition="top" showDelay="600">remove_circle</mat-icon>
                 </button>
                 <button *ngIf="currentUser.role === appConfig.accessTypes.super_admin"
                         (click)="manageSuperAdmin(user)"
                         [ngClass]="{'hoh-green-font': checkUser(user).isSA }" 
-                        class="pull-right" md-icon-button>
-                    <md-icon pTooltip="Make Super Admin" tooltipPosition="top" showDelay="600">vpn_key</md-icon>
+                        class="pull-right" mat-icon-button>
+                    <mat-icon pTooltip="Make Super Admin" tooltipPosition="top" showDelay="600">vpn_key</mat-icon>
                 </button>
                 <button (click)="manageAdmin(user)" 
                         [ngClass]="{'hoh-green-font': checkUser(user).isA }" 
-                        class="pull-right" md-icon-button>
-                    <md-icon pTooltip="Make Admin" tooltipPosition="top" showDelay="600">child_care</md-icon>
+                        class="pull-right" mat-icon-button>
+                    <mat-icon pTooltip="Make Admin" tooltipPosition="top" showDelay="600">child_care</mat-icon>
                 </button>
             </span>
         </div>

@@ -1,1 +1,9 @@
-<image-upload url="https://httpbin.org/status/200"></image-upload>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div>
+            <input id="childPhoto" type="file" name="childPhoto" #childPhoto (change)="updateImageDisplay()" placeholder="Upload file..." accept=".jpg, .jpeg, .png"/>
+            <button type="button" (click)="upload(childPhoto)">Upload</button>
+        </div>
+        <div id="preview" #preview></div>
+    </div>
+</div>

@@ -2,24 +2,24 @@
     <div class="col-xs-3 center-block auth-forms">
         <h3>Login</h3>
         <form name="login-form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
-            <md-input-container class="full-width form-group">
-                <input type="text" name="email" mdInput placeholder="Email" [formControl]="emailFormControl" [(ngModel)]="model.email" required>
-                <md-error *ngIf="emailFormControl.hasError('pattern')">
+            <mat-input-container class="full-width form-group">
+                <input type="text" name="email" matInput placeholder="Email" [formControl]="emailFormControl" [(ngModel)]="model.email" required>
+                <mat-error *ngIf="emailFormControl.hasError('pattern')">
                     Please enter a valid email address
-                </md-error>
-                <md-error *ngIf="emailFormControl.hasError('required')">
+                </mat-error>
+                <mat-error *ngIf="emailFormControl.hasError('required')">
                     Email is <strong>required</strong>
-                </md-error>
-            </md-input-container>
-            <md-input-container class="full-width form-group">
-                <input mdInput type="password" name="password"  placeholder="Password" [(ngModel)]="model.password" #password="ngModel" required>
-                <md-error *ngIf="!password.valid">
+                </mat-error>
+            </mat-input-container>
+            <mat-input-container class="full-width form-group">
+                <input matInput type="password" name="password"  placeholder="Password" [(ngModel)]="model.password" #password="ngModel" required>
+                <mat-error *ngIf="!password.valid">
                     Password is <strong>required</strong>
-                </md-error>
-            </md-input-container>
+                </mat-error>
+            </mat-input-container>
             <div class="auth-buttons ">
                 <button [disabled]="loading" class="btn btn-primary">Login</button>
-                <md-spinner id="login-spin" *ngIf="loading"></md-spinner>
+                <mat-spinner id="login-spin" *ngIf="loading"></mat-spinner>
                 <a [routerLink]="['/register']" class="btn btn-link">Register</a>
             </div>
         </form>

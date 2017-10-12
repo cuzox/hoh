@@ -6,16 +6,16 @@
             <button 
                 *ngIf="showDelete" (click)="deleteZone()"
                 class="remove-zone red"
-                md-icon-button
+                mat-icon-button
                 id="zone-icons">
-                <md-icon pTooltip="Delete Community" tooltopposition="top" showDelay="600">remove_circle_outline</md-icon>
+                <mat-icon pTooltip="Delete Community" tooltopposition="top" showDelay="600">remove_circle_outline</mat-icon>
             </button>
             <button  
                 (click)="createZone()" 
                 class="hoh-green-font" 
-                md-icon-button 
+                mat-icon-button 
                 id="zone-icons">
-                <md-icon pTooltip="Create Community" tooltipPosition="top" showDelay="600">add_circle_outline</md-icon>
+                <mat-icon pTooltip="Create Community" tooltipPosition="top" showDelay="600">add_circle_outline</mat-icon>
             </button>
         </span>
         <span id="child-search" class="ui-xs-4">

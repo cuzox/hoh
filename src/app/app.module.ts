@@ -10,12 +10,20 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 // Third party
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { MaterialModule } from '@angular/material'
-import { ImageUploadModule } from 'angular2-image-upload'
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { ButtonModule } from 'primeng/components/button/button';
+
+import { MatIconModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material';
+import { MatMenuModule } from '@angular/material';
+import { MatTabsModule } from '@angular/material';
+import { MatToolbarModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material';
+
+
+
 
 // Custom
 import { routing } from './app.routing'
@@ -54,14 +62,19 @@ import { JWTInterceptor } from './_interceptors/http-interceptor';
     HttpModule,
     routing,
     FlexLayoutModule,
-    MaterialModule,
     ReactiveFormsModule,
-    ImageUploadModule.forRoot(),
     DropdownModule,
     TooltipModule,
     InputTextModule,
     ButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    MatIconModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatDialogModule
+
   ],
   providers: [
     AuthGuard,

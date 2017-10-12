@@ -1,32 +1,32 @@
-<md-toolbar [class.fixed]="fixedNav" id="swanky-nav" color="primary">
-    <button id="logo" md-button routerLink="/">
+<mat-toolbar [class.fixed]="fixedNav" id="swanky-nav" color="primary">
+    <button id="logo" mat-button routerLink="/">
         <img class="png-icon" src="/assets/images/hoh.png" style="width: 50px; height: 50px;">
         <span id="logo-text">Hands Of Hope</span>
     </button>
     <!-- This fills the remaining space of the current row -->
     <span class="fill-remaining-space"></span>
     <div fxLayout="row" fxShow="false" fxShow.gt-sm>
-        <button class="hoh-green" md-button routerLink="/sponsorship">CHILD SPONSORSHIP</button>
-        <button md-button routerLink="/projets">PROJECTS</button>
-        <button md-button routerLink="/about">ABOUT US</button>
-        <button md-button routerLink="/contact">CONTACT</button>
+        <button class="hoh-green" mat-button routerLink="/sponsorship">CHILD SPONSORSHIP</button>
+        <button mat-button routerLink="/projets">PROJECTS</button>
+        <button mat-button routerLink="/about">ABOUT US</button>
+        <button mat-button routerLink="/contact">CONTACT</button>
         
-        <button md-icon-button [routerLink]="loggedIn ? [''] : ['login']">
-            <md-icon>account_circle</md-icon>
+        <button mat-icon-button [routerLink]="loggedIn ? [''] : ['login']">
+            <mat-icon >account_circle</mat-icon>
         </button>
-        <button *ngIf="loggedIn" md-icon-button [routerLink]="['login']">
-                <md-icon>exit_to_app</md-icon>
+        <button *ngIf="loggedIn" mat-icon-button [routerLink]="['login']">
+                <mat-icon>exit_to_app</mat-icon>
         </button>
     </div>
-    <button md-icon-button [md-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
-        <md-icon>menu</md-icon>
+    <button mat-icon-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
+        <mat-icon>menu</mat-icon>
     </button>
-</md-toolbar>
-<md-menu x-position="before" #menu="mdMenu">
-    <button md-menu-item routerLink="/sponsorship">CHILD SPONSORSHIP</button>
-    <button md-menu-item routerLink="/projets">PROJECTS</button>
-    <button md-menu-item routerLink="/about">ABOUT US</button>
-    <button md-menu-item routerLink="/contact">CONTACT</button>
-</md-menu>
+</mat-toolbar>
+<mat-menu x-position="before" #menu="matMenu">
+    <button mat-menu-item routerLink="/sponsorship">CHILD SPONSORSHIP</button>
+    <button mat-menu-item routerLink="/projets">PROJECTS</button>
+    <button mat-menu-item routerLink="/about">ABOUT US</button>
+    <button mat-menu-item routerLink="/contact">CONTACT</button>
+</mat-menu>
 <alert></alert>
 <router-outlet></router-outlet>

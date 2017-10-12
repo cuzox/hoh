@@ -1,7 +1,7 @@
 <div class="main-container">
-  <nav md-tab-nav-bar>
+  <nav mat-tab-nav-bar>
       <span 
-          md-tab-link
+          mat-tab-link
           *ngFor="let link of tabs"
           [routerLink]="link.route"
           routerLinkActive #rla="routerLinkActive"

@@ -10,6 +10,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 // Third party
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { ImageUploadModule } from 'angular2-image-upload'
+
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
@@ -73,7 +75,8 @@ import { JWTInterceptor } from './_interceptors/http-interceptor';
     MatMenuModule,
     MatTabsModule,
     MatToolbarModule,
-    MatDialogModule
+    MatDialogModule,
+    ImageUploadModule.forRoot(),
 
   ],
   providers: [

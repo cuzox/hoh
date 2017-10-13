@@ -1,6 +1,24 @@
-#preview {
-    width: 600px;
-    img {
-        width: 600px;
+.customClass {
+  background-color: #dd3;
+  border-radius: 5px;
+  margin: 5px;
+  .img-ul-upload {
+    background-color: #000 !important;
+  }
+  
+  .img-ul-clear {
+    background-color: #B819BB !important;
+  }
+  
+  .img-ul-drag-box-msg {
+    color: purple !important;
+  }
+  
+  .img-ul-container{
+    margin: auto;
+    .img-ul-image {
+      height: 400px;
+      width: 400px;
     }
+  } 
 }

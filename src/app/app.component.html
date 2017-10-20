@@ -10,12 +10,12 @@
         <button mat-button routerLink="/projets">PROJECTS</button>
         <button mat-button routerLink="/about">ABOUT US</button>
         <button mat-button routerLink="/contact">CONTACT</button>
-        
+
         <button mat-icon-button [routerLink]="loggedIn ? [''] : ['login']">
-            <mat-icon >account_circle</mat-icon>
+            <mat-icon>account_circle</mat-icon>
         </button>
         <button *ngIf="loggedIn" mat-icon-button [routerLink]="['login']">
-                <mat-icon>exit_to_app</mat-icon>
+            <mat-icon>exit_to_app</mat-icon>
         </button>
     </div>
     <button mat-icon-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>

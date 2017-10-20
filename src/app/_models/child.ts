@@ -3,7 +3,7 @@ export class Child {
     firstName?: string
     lastName?: string
     gender?: string
-    dob?: string
+    dob?: Date
     age?: number
     school?: {
         grade?: number,

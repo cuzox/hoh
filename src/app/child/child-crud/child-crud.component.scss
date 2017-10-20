@@ -1,24 +1,31 @@
-.customClass {
-  background-color: #dd3;
-  border-radius: 5px;
-  margin: 5px;
-  .img-ul-upload {
-    background-color: #000 !important;
+$imageSize: 225px;
+
+#preview {
+  img {
+      max-width: $imageSize;
+      max-height: $imageSize;
   }
-  
-  .img-ul-clear {
-    background-color: #B819BB !important;
+}
+
+#file-input{
+  margin-top: 10px;
+
+
+  #childPhoto{
+    width: $imageSize;
+    height: $imageSize;
   }
-  
-  .img-ul-drag-box-msg {
-    color: purple !important;
+}
+
+
+#gender-select{
+  .ui-button {
+    width: 70px;
   }
-  
-  .img-ul-container{
-    margin: auto;
-    .img-ul-image {
-      height: 400px;
-      width: 400px;
-    }
-  } 
+}
+
+#progress-select {
+  .ui-button {
+    width: 33.3%;
+  }
 }

@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { NgModule } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpModule } from '@angular/http'
@@ -6,26 +7,27 @@ import { RouterModule } from '@angular/router'
 import { AppComponent } from './app.component'
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FlexLayoutModule } from '@angular/flex-layout'
 
 // Third party
-import { FlexLayoutModule } from '@angular/flex-layout'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { ImageUploadModule } from 'angular2-image-upload'
-
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { ButtonModule } from 'primeng/components/button/button';
+import { SelectButtonModule } from 'primeng/primeng';
+import { CalendarModule } from 'primeng/primeng';
+import { InputTextareaModule } from 'primeng/primeng';
 
+// Material
 import { MatIconModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
 import { MatMenuModule } from '@angular/material';
 import { MatTabsModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material';
 import { MatDialogModule } from '@angular/material';
-
-
-
+import { MatDatepickerModule } from '@angular/material';
+import { MatInputModule } from '@angular/material';
+import { SpinnerModule } from 'primeng/primeng';
 
 // Custom
 import { routing } from './app.routing'
@@ -76,7 +78,12 @@ import { JWTInterceptor } from './_interceptors/http-interceptor';
     MatTabsModule,
     MatToolbarModule,
     MatDialogModule,
-    ImageUploadModule.forRoot(),
+    MatDatepickerModule,
+    MatInputModule,
+    SelectButtonModule,
+    CalendarModule,
+    SpinnerModule,
+    InputTextareaModule
 
   ],
   providers: [

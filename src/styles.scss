@@ -1,9 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('~https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('~https://fonts.googleapis.com/css?family=Poppins');
 @import url('~@angular/material/prebuilt-themes/indigo-pink.css');
 
 body {
     min-width: 320px;
+    font-family: "Poppins", sans-serif;
 }
 
 ::-webkit-scrollbar {
@@ -29,21 +31,20 @@ body {
     margin-top: 50px;
     padding: 25px;
     min-width: 250px;
+    h3{
+        margin-top: 0;
+    }
+    mat-input-container{
+        padding-bottom: 10px;
+        margin-bottom: 0px;
+    
+    }
+    .auth-buttons{
+        margin-top: 20px;
+    }
 }
 
-.auth-forms h3{
-    margin-top: 0;
-}
 
-.auth-forms mat-input-container{
-    padding-bottom: 10px;
-    margin-bottom: 0px;
-
-}
-
-.auth-forms .auth-buttons{
-    margin-top: 20px;
-}
 
 .main-container{
     max-width: 1333px; 
@@ -65,4 +66,43 @@ body {
 
 .red{
     color: red !important;
+}
+
+#zoneList {
+    width: 200px;
+    .ui-dropdown-label.ui-inputtex{
+
+        padding: 10px;
+    }
+}
+
+
+#children-inputs {
+    padding-right: 30px;
+    h4 {
+        margin-bottom: 3px;
+    }
+    
+    #child-search{
+        #title{
+            margin-top: 16px;
+        }
+    }
+    
+    #zone-icons {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+p-calendar{
+    input {
+        width: 100%
+    }
+}
+
+p-selectbutton {
+    span {
+        height: 27px;
+    }
 }

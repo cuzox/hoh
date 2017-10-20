@@ -110,4 +110,25 @@
       </div>
     </div>
   </div>
+  <div class="row" style="margin-top: 40px;">
+    <div class="col-md-3">
+      <h4>Administrative</h4>
+    </div>
+    <div class="col-md-9">
+      <div class="row" style="margin-top: 10px;">
+        <span class="col-xs-12 col-sm-3">
+          <h5>Observations</h5>
+          <textarea type="text" [rows]="1" [cols]="20" autoResize="true" pInputTextarea></textarea>
+        </span>
+        <span class="col-xs-12 col-sm-3">
+          <h5>Registration Date</h5>
+          <p-calendar name="birthday" [(ngModel)]="model.dob" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030"></p-calendar>
+        </span>
+        <span class="col-xs-12 col-sm-3">
+          <h5>Staff in charge</h5>
+          <input type="text" pInputText>
+        </span>
+      </div>
+    </div>
+  </div>
 </div>

@@ -43,7 +43,7 @@
           </span>
           <span class="col-xs-12 col-sm-3">
             <h5>Lives with</h5>
-            <input type="text" [(ngModel)]="model.livesWith" name="model.livesWith" pInputText>
+            <input type="text" [(ngModel)]="model.household.livesWith" name="livesWith" pInputText>
           </span>
           <span class="col-xs-12 col-sm-3">
             <h5>People in household</h5>
@@ -99,7 +99,7 @@
           </span>
           <span class="col-xs-12 col-sm-3">
             <h5>Siblings</h5>
-            <p-spinner placeholder="Enter number" size="25" [min]="0" [max]="20" [(ngModel)]="model.household.siblins" name="siblins"></p-spinner>
+            <p-spinner placeholder="Enter number" size="25" [min]="0" [max]="20" [(ngModel)]="model.household.siblings" name="household.siblings"></p-spinner>
           </span>
         </div>
         <div class="row" style="margin-top: 10px;">

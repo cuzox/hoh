@@ -1,32 +1,57 @@
-.fill-remaining-space {
-  /*This fills the remaining space, by using flexbox.  
-  Every toolbar row uses a flexbox row layout. */
-  flex: 1 1 auto;
-}
 
-#swanky-nav{
-  top: 0px;
-  right: 0px;
-  left: 0px;
-  z-index: 10;
+.tbar{
+  background-color: rgba(27, 27, 27, 0.9);
   position: fixed;
-  min-width: 400px;
-  
-  #logo{
-    #logo-text{
-      font-size: 1.5rem !important;
-      letter-spacing: 1.2px;
-      margin-left: 5px;
-      font-family: 'Istok Web', sans-serif;
-      font-weight: bold !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  box-sizing: border-box;
+  .left{
+    color:white;
+    img{
+      width: 60px;
+      margin-right: 0.5em;
     }
   }
-  
+
+  .png-icon{
+    &:after{
+      content: attr(text);
+      color:white;
+    }
+  }
+
+  @media (max-width: 900px) {
+    background-color: rgb(42, 42, 42);
+  }
+  .col-sm-12{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .right{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .mat-icon{
+    color:white;
+  }
   #nav-menu{
     list-style-type: none;
-    margin: 6px 0 0 0;
     padding: 0;
     overflow: hidden;
+    display:flex;
+    margin:0;
+    @media (max-width: 900px) {
+      flex-direction: column;
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 4em;
+      background-color: #262626;
+    }
     li {
       font-family: 'Istok Web', sans-serif;
       font-weight: bold !important;
@@ -40,6 +65,8 @@
         padding: 0 15px 0 15px;
         text-decoration: none;
         position: relative;
+        font-weight: normal;
+        letter-spacing: 0.05em;
 
         &:hover::after {
           content: "";
@@ -49,28 +76,16 @@
           bottom: 0;
           border: 1.2px solid #88b235;
         }
+        @media (max-width: 900px) {
+          padding: 1em;
+          text-align: left;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+          &:nth-last-child(){
+            border-bottom:none;
+          }
+        }
       }
     }
   } 
-
-  &.mat-primary {
-    background-color: rgba(27, 27, 27, 0.9);
-  }
-  #child-icon >span.ui-button-icon-left.fa-child{
-    font-size: 30px;
-  }
-
-  .png-icon{
-   padding: 0;
-   display: inline-block;
-   background-repeat: no-repeat no-repeat;
-   pointer-events: none;
- }
 }
-.mat-toolbar .mat-toolbar-row{
-  max-width: 1200px!important;
-  margin: auto;
-}
-
-
 

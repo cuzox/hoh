@@ -8,7 +8,14 @@
 
 body {
     min-width: 400px;
-    padding-top: 67px;
+    padding-top: 64px;
+}
+
+@media(max-width:600px){
+    body {
+        padding-top: 56px;
+    }
+
 }
 
 ::-webkit-scrollbar {

@@ -56,7 +56,6 @@
   &.mat-primary {
     background-color: rgba(27, 27, 27, 0.9);
   }
-  
   #child-icon >span.ui-button-icon-left.fa-child{
     font-size: 30px;
   }
@@ -67,6 +66,10 @@
    background-repeat: no-repeat no-repeat;
    pointer-events: none;
  }
+}
+.mat-toolbar .mat-toolbar-row{
+  max-width: 1200px!important;
+  margin: auto;
 }
 
 

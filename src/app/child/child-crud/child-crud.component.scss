@@ -1,25 +1,28 @@
 $imageSize: 225px;
 
-#preview {
-  img {
-      max-width: $imageSize;
-      max-height: $imageSize;
+#child-crud{
+  font-family: 'Poppins', sans-serif;
+  #preview {
+    img {
+        max-width: $imageSize;
+        max-height: $imageSize;
+    }
   }
-}
-
-#file-input{
-  margin-top: 10px;
-
-
-  #childPhoto{
-    width: $imageSize;
-    height: $imageSize;
+  
+  #file-input{
+    margin-top: 10px;
+  
+  
+    #childPhoto{
+      width: $imageSize;
+      height: $imageSize;
+    }
   }
-}
-
-
-#gender-select{
-  .ui-button {
-    width: 70px;
+  
+  
+  #gender-select{
+    .ui-button {
+      width: 70px;
+    }
   }
 }

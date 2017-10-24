@@ -1,0 +1,19 @@
+#collage {
+  background-image: url('/assets/images/collage.png');
+  background-size: 120%;
+  height: 550px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -1000;
+}
+
+#bigger-logo {
+  height: 483px;
+  background-color: rgba(27, 27, 27, 0.9);
+  #bigger-logo-img{
+    height: 200px;
+    width: auto;
+  }
+}

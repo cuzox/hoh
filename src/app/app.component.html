@@ -1,32 +1,66 @@
-<mat-toolbar [class.fixed]="fixedNav" id="swanky-nav" color="primary">
-    <button id="logo" mat-button routerLink="/">
-        <img class="png-icon" src="/assets/images/hoh.png" style="width: 50px; height: 50px;">
-        <span id="logo-text">Hands Of Hope</span>
-    </button>
-    <!-- This fills the remaining space of the current row -->
-    <span class="fill-remaining-space"></span>
-    <div fxLayout="row" fxShow="false" fxShow.gt-sm>
-        <button class="hoh-green" mat-button routerLink="/sponsorship">CHILD SPONSORSHIP</button>
-        <button mat-button routerLink="/projets">PROJECTS</button>
-        <button mat-button routerLink="/about">ABOUT US</button>
-        <button mat-button routerLink="/contact">CONTACT</button>
-
-        <button mat-icon-button [routerLink]="loggedIn ? [''] : ['login']">
-            <mat-icon>account_circle</mat-icon>
-        </button>
-        <button *ngIf="loggedIn" mat-icon-button [routerLink]="['login']">
+<mat-toolbar id="swanky-nav" color="primary">
+  <button id="logo" style="height: 64px; overflow: hidden;" mat-button routerLink="/">
+    <img class="png-icon" src="/assets/images/hoh.png" style="width: 60px; height: 60px;">
+    <span id="logo-text">HANDS OF HOPE DR</span>
+  </button>
+  <!-- This fills the remaining space of the current row -->
+  <span class="fill-remaining-space"></span>
+  <button pButton routerLink="/sponsorship" id="child-icon" style="margin-right: 30px;" icon="fa-child" class="ui-button-success hoh-green"
+    pTooltip="Sponsor a child!" tooltipPosition="bottom"></button>
+  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+    <ul id="nav-menu">
+      <li>
+        <a [routerLink]="['/']" href="#">HOME</a>
+      </li>
+      <li routerLink="/projets">
+        <a href="#">PROJECTS</a>
+      </li>
+      <li class="divider dropdown-divider"></li>
+      <li routerLink="/about">
+        <a href="#">ABOUT US</a>
+      </li>
+      <li routerLink="/contact">
+        <a href="#">CONTACT</a>
+      </li>
+    </ul>
+    <div class="btn-group" dropdown>
+      <button mat-icon-button dropdownToggle>
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
+        <li role="menuitem">
+          <a *ngIf="loggedIn" style="padding-left: 10px; height: 30px; vertical-align:middle;" class="dropdown-item" [routerLink]="loggedIn ? ['login'] : ['']">
             <mat-icon>exit_to_app</mat-icon>
-        </button>
+            <span style="margin-left: 10px;">LOG OUT</span>
+          </a>
+        </li>
+      </ul>
     </div>
-    <button mat-icon-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
-        <mat-icon>menu</mat-icon>
+  </div>
+  <div class="btn-group" dropdown>
+    <button mat-icon-button dropdownToggle type="button" fxHide="false" fxHide.gt-sm>
+      <mat-icon>menu</mat-icon>
     </button>
+    <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
+      <li routerLink="/sponsorship">
+        <a class="dropdown-item" href="#">SPONSOR CHILD</a>
+      </li>
+      <li>
+        <a class="dropdown-item" href="#">HOME</a>
+      </li>
+      <li routerLink="/projets">
+        <a class="dropdown-item" href="#">PROJECTS</a>
+      </li>
+      <li class="divider dropdown-divider"></li>
+      <li routerLink="/about">
+        <a class="dropdown-item" href="#">ABOUT US</a>
+      </li>
+      <li routerLink="/contact">
+        <a class="dropdown-item" href="#">CONTACT</a>
+      </li>
+    </ul>
+  </div>
+
 </mat-toolbar>
-<mat-menu x-position="before" #menu="matMenu">
-    <button mat-menu-item routerLink="/sponsorship">CHILD SPONSORSHIP</button>
-    <button mat-menu-item routerLink="/projets">PROJECTS</button>
-    <button mat-menu-item routerLink="/about">ABOUT US</button>
-    <button mat-menu-item routerLink="/contact">CONTACT</button>
-</mat-menu>
 <alert></alert>
 <router-outlet></router-outlet>

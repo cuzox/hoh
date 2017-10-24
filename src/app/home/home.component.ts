@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ViewEncapsulation } from '@angular/core'
 
 @Component({
    moduleId: module.id,
-   templateUrl: 'home.component.html'
+   templateUrl: 'home.component.html',
+   styleUrls: ['./home.component.scss'],
+   encapsulation: ViewEncapsulation.None
 })
 
 export class HomeComponent implements OnInit {

@@ -1,41 +1,72 @@
 .fill-remaining-space {
-    /*This fills the remaining space, by using flexbox.  
-   Every toolbar row uses a flexbox row layout. */
-   flex: 1 1 auto;
- }
-
- .mat-toolbar.mat-primary {
-  background-color: rgba(34,40,39,0.8);
-  color: white;
-  // border-bottom-style: solid;
-  // border-color: black;
- }
-
- .png-icon{
-  padding: 0;
-  display: inline-block;
-  background-repeat: no-repeat no-repeat;
-  pointer-events: none;
+  /*This fills the remaining space, by using flexbox.  
+  Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
 }
 
-#logo{
-  #logo-text{
-    font-size: 2rem;
-    margin-left: 5px;
-  }
-}
-
-.mat-toolbar{
+#swanky-nav{
   top: 0px;
   right: 0px;
   left: 0px;
   z-index: 10;
-  -moz-transition: all 0.8s;
-  -webkit-transition: all 0.8s;
-  -o-transition: all 0.8s;
-  transition: all 0.8s;
+  position: fixed;
   
-  &.fixed {
-    position: fixed;
+  #logo{
+    #logo-text{
+      font-size: 1.5rem !important;
+      letter-spacing: 1.2px;
+      margin-left: 5px;
+      font-family: 'Istok Web', sans-serif;
+      font-weight: bold !important;
+    }
   }
+  
+  #nav-menu{
+    list-style-type: none;
+    margin: 6px 0 0 0;
+    padding: 0;
+    overflow: hidden;
+    li {
+      font-family: 'Istok Web', sans-serif;
+      font-weight: bold !important;
+      font-size: 1.5rem;
+      float: left;
+      opacity: 0.9;
+      a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 0 15px 0 15px;
+        text-decoration: none;
+        position: relative;
+
+        &:hover::after {
+          content: "";
+          position: absolute;
+          left: 20%;
+          right: 20%;
+          bottom: 0;
+          border: 1.2px solid #88b235;
+        }
+      }
+    }
+  } 
+
+  &.mat-primary {
+    background-color: rgba(27, 27, 27, 0.9);
+  }
+  
+  #child-icon >span.ui-button-icon-left.fa-child{
+    font-size: 30px;
+  }
+
+  .png-icon{
+   padding: 0;
+   display: inline-block;
+   background-repeat: no-repeat no-repeat;
+   pointer-events: none;
+ }
 }
+
+
+

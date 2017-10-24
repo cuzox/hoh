@@ -67,4 +67,4 @@ const appRoutes: Routes = [
     }
 ]
 
-export const routing = RouterModule.forRoot(appRoutes)
+export const Routing = RouterModule.forRoot(appRoutes)

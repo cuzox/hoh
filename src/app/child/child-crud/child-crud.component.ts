@@ -76,7 +76,7 @@ export class ChildCrudComponent implements OnInit {
 
     this.zs.getAll().subscribe(zones => {
       this.zones = zones
-      zones.unshift({label:'',value:''})
+      zones.unshift({label:'Select community',value:''})
     })
   }
 

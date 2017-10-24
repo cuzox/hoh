@@ -2,7 +2,12 @@
   width: 100vw;
   overflow-x: hidden;
 }
-
+h1,h2,h3,h4,h5{
+  font-family: 'Istok Web', sans-serif!important;
+}
+body{
+  font-family: 'Open Sans', sans-serif!important;
+}
 .tbar{
   background-color: rgba(27, 27, 27, 0.9);
   position: fixed;
@@ -13,18 +18,14 @@
   box-sizing: border-box;
   .left{
     color:white;
+    font-family: 'Istok Web', sans-serif;
+    font-weight: bold;
     img{
       width: 60px;
       margin-right: 0.5em;
     }
   }
 
-  .png-icon{
-    &:after{
-      content: attr(text);
-      color:white;
-    }
-  }
   .col-sm-12{
     display: flex;
     justify-content: space-between;
@@ -51,7 +52,7 @@
       vertical-align: text-bottom;
       margin-right: 0.3em;
     }
-    @media (max-width: 900px) {
+    @media (max-width: 1000px) {
       flex-direction: column;
       position: fixed;
       left: 0;
@@ -82,7 +83,7 @@
         &:hover{
           background-color: rgba(255, 255, 255, 0.08);
         }
-        @media (max-width: 900px) {
+        @media (max-width: 1000px) {
           padding: 1em;
           justify-content: flex-start;
           border-bottom: 1px solid rgba(255, 255, 255, 0.04);

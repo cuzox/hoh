@@ -12,6 +12,32 @@
   z-index: -1000;
 
 }
+h1,h2,h3,h4,h5{
+  font-family: 'Istok Web', sans-serif!important;
+}
+h2{
+  font-weight: bold;
+}
+h3{
+  margin: 0.5em 0;
+}
+p{
+  margin: 0 0 10px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+}
+button{
+  border: none;
+  border-radius: 20px;
+  padding: 0.7em 1.3em;
+  background-color: #b5da71;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1em;
+  border-top: 1px solid #9ac44c;
+  border-bottom: 1px solid #9ac44c;
+  text-shadow: 0 0px 2px rgba(0, 0, 0, 0.28);
+}
 .header{
   min-height: 560px;
   display: flex;

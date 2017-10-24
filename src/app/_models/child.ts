@@ -7,13 +7,15 @@ export class Child {
     age?: number
     school?: {
         grade?: number,
-        favSubject?: string
+        favSubject?: string,
+        progress?: string
     }
     misc?: {
         favActivities?: string,
-        chores?: string
+        health?: string
     }
     household?: {
+        favChores?: string,
         livesWith?: string,
         father?: {
             name?: string,
@@ -27,7 +29,8 @@ export class Child {
         houseConstruction?: string,
         howMany?: number,
         bathrooms?: number,
-        monthlyIncome?: number
+        monthlyIncome?: number,
+        details?: string
     }
     zone?: string
     sponsor?: {
@@ -36,4 +39,7 @@ export class Child {
         months?: number,
     }
     imageId?: string
+    observations?: string
+    registered?: Date
+    staff_id?: string
 }

@@ -1,11 +1,15 @@
+.body{
+  width: 100vw;
+  overflow-x: hidden;
+}
 
 .tbar{
   background-color: rgba(27, 27, 27, 0.9);
   position: fixed;
   top: 0;
   left: 0;
+  right:0;
   z-index: 999;
-  width: 100vw;
   box-sizing: border-box;
   .left{
     color:white;
@@ -52,7 +56,7 @@
       position: fixed;
       left: 0;
       top:64px;
-      width:100vw;
+      right:0;
       background-color: rgba(27, 27, 27, 0.9);
       height:auto;
     }

@@ -27,6 +27,7 @@
     "@angular/platform-browser": "^4.4.4",
     "@angular/platform-browser-dynamic": "^4.4.4",
     "@angular/router": "^4.4.4",
+    "angular-spinners": "^5.0.4",
     "bcryptjs": "^2.4.3",
     "body": "^5.1.0",
     "bootstrap": "^3.3.7",

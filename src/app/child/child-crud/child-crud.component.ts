@@ -8,10 +8,16 @@ import { Zone } from './../../_models/zone';
 import { ZoneService } from './../../_services/zone.service';
 import { Child } from '../../_models/child'
 import { AlertService, ChildService } from '../../_services/index'
+
 import { User } from './../../_models/user';
 import { UserService } from './../../_services/user.service';
+import { Image } from './../../_models/index';
+import { ImageService } from './../../_services/image.service';
+
+import { SpinnerService } from 'angular-spinners';
 
 import { appConfig } from './../../app.config';
+
 @Component({
   selector: 'child-crud',
   templateUrl: './child-crud.component.html',
@@ -68,7 +74,10 @@ export class ChildCrudComponent implements OnInit {
     private _cs: ChildService,
     private _route: ActivatedRoute,
     private _zs: ZoneService,
-    private _us: UserService
+    private _us: UserService,
+    private _ss: SpinnerService,
+    private _is: ImageService,
+    private _router: Router
   ) { }
 
 
@@ -126,8 +135,20 @@ export class ChildCrudComponent implements OnInit {
   }
 
   upload() {
-    console.log(this.childPhoto.nativeElement.files)
-
+    this._ss.show('realSpinner');
+    console.log('This is the model', this.model)
+    if (this.childPhoto.nativeElement.files.length > 0) {
+      let image = this.childPhoto.nativeElement.files[0]
+      let formData = new FormData();
+      formData.append('childPhoto', image, image.name)
+      this._is.create(formData).subscribe(res => {
+        console.log(res)
+        this._ss.hide('realSpinner');
+      }, err =>{
+        console.log('Error uploading image', err)
+        this._ss.hide('realSpinner');
+      })
+    }
   }
 
   updateImageDisplay() {
@@ -156,9 +177,5 @@ export class ChildCrudComponent implements OnInit {
       if (file.type === type) return true
     })
     return false
-  }
-
-  login(){
-    console.log('This is model', this.model)
   }
 }

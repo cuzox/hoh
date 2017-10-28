@@ -11,6 +11,9 @@ import { FlexLayoutModule } from '@angular/flex-layout'
 import { UIModule } from './_ui/ui.module';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { SpinnerModule } from 'angular-spinners';
+
+import { ImageService } from './_services/image.service';
 
 import { Routing } from './app.routing'
 import { AlertComponent } from './_directives/alert.component'
@@ -52,7 +55,8 @@ import { ChildDetailsComponent } from './child/child-details/child-details.compo
     FlexLayoutModule,
     ReactiveFormsModule,
     UIModule,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    SpinnerModule
 
   ],
   providers: [
@@ -67,7 +71,8 @@ import { ChildDetailsComponent } from './child/child-details/child-details.compo
       provide: HTTP_INTERCEPTORS,
       useClass: JWTInterceptor,
       multi: true,
-    }
+    },
+    ImageService
   ],
   entryComponents: [ConfirmDialogComponent],
   bootstrap: [AppComponent]

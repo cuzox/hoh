@@ -32,4 +32,9 @@ $imageSize: 225px;
     height: 35px;
     width: 100px;
   }
+
+  h5.required::after{
+    content: "*";
+    color: red;
+  }
 }

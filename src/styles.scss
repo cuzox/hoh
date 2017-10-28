@@ -106,3 +106,22 @@ p-selectbutton {
         height: 27px;
     }
 }
+
+.spinner{
+    div {
+        background-color: rgba(49, 37, 37, 0.2);
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        content: " ";
+
+        img{
+            position: absolute;
+            top: 50%;
+            right: 50%;
+        }
+    }
+
+}

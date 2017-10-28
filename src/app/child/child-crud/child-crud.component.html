@@ -1,5 +1,5 @@
 <div id="child-crud" class="container">
-  <form name="child-form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+  <form name="child-form" (ngSubmit)="f.form.valid && upload()" #f="ngForm" novalidate>
     <div class="row" style="margin-top: 10px;">
       <div class="col-md-3" style="margin-top: 10px;">
         <h4>Child information</h4>
@@ -12,27 +12,28 @@
       <div class="col-md-9">
         <div class="row" style="margin-top: 10px;">
           <span class="col-xs-12 col-sm-3">
-            <h5>First name</h5>
-            <input type="text" [(ngModel)]="model.firstName" name="firstName" pInputText>
+            <h5 class="required">First name</h5>
+            <input type="text" [(ngModel)]="model.firstName" name="firstName" pInputText required>
           </span>
           <span class="col-xs-12 col-sm-3">
-            <h5>Last name</h5>
-            <input type="text" [(ngModel)]="model.lastName" name="lastName" pInputText>
+            <h5 class="required">Last name</h5>
+            <input type="text" [(ngModel)]="model.lastName" name="lastName" pInputText required>
           </span>
         </div>
         <div class="row" style="margin-top: 10px;">
           <span class="col-xs-12 col-sm-3">
-            <h5>Gender</h5>
-            <p-selectButton id="gender-select" name="gender" [options]="genderTypes" [(ngModel)]="model.gender" name="gender"></p-selectButton>
+            <h5 class="required">Gender</h5>
+            <p-selectButton id="gender-select" name="gender" [options]="genderTypes" [(ngModel)]="model.gender" name="gender" required></p-selectButton>
           </span>
           <span class="col-xs-12 col-sm-3">
-            <h5>Date of birth</h5>
-            <p-calendar name="dob" placeholder="Select date" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" [(ngModel)]="model.dob"></p-calendar>
+            <h5 class="required">Date of birth</h5>
+            <p-calendar name="dob" placeholder="Select date" [dateFormat]="'mm.dd.yy'" [monthNavigator]="true" [yearNavigator]="true" yearRange="1990:2030" [(ngModel)]="model.dob"
+              required></p-calendar>
           </span>
           <span class="col-xs-12 col-sm-3">
-            <h5>Community</h5>
+            <h5 class="required">Community</h5>
             <p-dropdown id="zoneList" [style]="{'width': '200px'}" id="zoneList" name="zoneList" [filter]="true" [options]="zones" [(ngModel)]="model.zone"
-              name="zone"></p-dropdown>
+              name="zone" required></p-dropdown>
           </span>
         </div>
         <div class="row" style="margin-top: 10px;">
@@ -127,21 +128,21 @@
             <textarea type="text" [rows]="1" [cols]="20" autoResize="true" [(ngModel)]="model.observations" name="observations" pInputTextarea></textarea>
           </span>
           <span class="col-xs-12 col-sm-3">
-            <h5>Registration Date</h5>
-            <p-calendar name="birthday" placeholder="Select date" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030"
-              [(ngModel)]="model.registered" name="registered"></p-calendar>
+            <h5 class="required">Registration Date</h5>
+            <p-calendar name="birthday" placeholder="Select date" dateFormat="mm.dd.yy" [monthNavigator]="true" [yearNavigator]="true"
+              yearRange="1990:2030" [(ngModel)]="model.registered" name="registered" required></p-calendar>
           </span>
           <span class="col-xs-12 col-sm-3">
             <h5>Staff in charge</h5>
             <p-dropdown id="zoneList" [style]="{'width': '200px'}" id="staffList" name="staffList" [filter]="true" [options]="staff"
-              [(ngModel)]="model.staff_id" name="registered"></p-dropdown>
+              [(ngModel)]="model.staff_id"></p-dropdown>
           </span>
         </div>
       </div>
     </div>
     <div class="row" style="margin-top: 40px;">
       <div class="col-sm-1 col-sm-offset-9" style="margin-top: 10px;">
-        <button id="submit-child" pButton type="submit" label="Submit" class="ui-button-success"></button>
+        <button [disabled]="!f.form.valid" id="submit-child" pButton type="submit" label="Submit" class="ui-button-success"></button>
       </div>
     </div>
   </form>

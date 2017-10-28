@@ -125,3 +125,182 @@ p-selectbutton {
     }
 
 }
+
+.body{
+    width: 100vw;
+    overflow-x: hidden;
+  }
+  h1,h2,h3,h4,h5{
+    font-family: 'Istok Web', sans-serif!important;
+  }
+  body{
+    font-family: 'Open Sans', sans-serif!important;
+    color:#000;
+  }
+  .tbar{
+    background-color: rgba(27, 27, 27, 0.9);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right:0;
+    z-index: 999;
+    box-sizing: border-box;
+    button{
+        box-shadow: none!important;
+    }
+    @media (max-width: 1000px) {
+        background-color: #1b1b1b;
+        .row{
+            background-color: #1d1d1d;
+        }
+    }
+    .left{
+      color:white;
+      font-family: 'Roboto', sans-serif;
+      img{
+        width: 60px;
+        margin-right: 0.5em;
+      }
+    }
+  
+    .col-sm-12{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .right{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .mat-icon{
+      color:white;
+    }
+    #toggleMenu{
+        display:none;
+        z-index: 99999999999;
+        color:white;
+        font-size:1.2em;
+        margin-left:0.5em;
+        padding: 0.5em;
+        @media (max-width: 1000px) {
+            display:block;
+        }
+    }
+    #nav-menu{
+      list-style-type: none;
+      padding: 0;
+      overflow: hidden;
+      display:flex;
+      margin:0;
+      height:100%;
+      i{
+        font-size: 1.5em;
+        vertical-align: text-bottom;
+        margin-right: 0.3em;
+      }
+      @media (min-width: 1000px) {
+        transform:none!important;
+      }
+      @media (max-width: 1000px) {
+        flex-direction: column;
+        position: fixed;
+        left: 0;
+        top:64px;
+        right:0;
+        height:auto;
+        z-index: -1;
+        background-color: #1d1d1d;
+      }
+      li {
+        font-family: 'Istok Web', sans-serif;
+        font-size: 1.5rem;
+        float: left;
+        opacity: 0.9;
+        &:nth-last-child(){
+          display:none;
+        }
+        a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          padding: 0 15px 0 15px;
+          text-decoration: none;
+          letter-spacing: 0.05em;
+          height:100%;
+          transition: all 300ms cubic-bezier(0.0, 0.0, 0.2, 1);
+          font-family: 'Roboto', sans-serif;
+          &:hover{
+            background-color: rgba(255, 255, 255, 0.08);
+          }
+          @media (max-width: 1000px) {
+            padding: 1em;
+            justify-content: flex-start;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            &:nth-last-child(){
+              border-bottom:none;
+            }
+          }
+        }
+      }
+    } 
+  }
+  .scroll-X{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    margin-left: -1em;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    padding: 10px 0.7vw;
+    .item{
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: 31.5%;
+        margin: 1em;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 3em;
+        box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.08);
+        @media (max-width: 1000px) {
+            flex-basis: 100%;
+          }
+        p{
+            font-size: 0.9em;
+            display: block;
+            width: 90%;
+            max-width: 280px;
+            margin-bottom:1em;
+        
+            strong{
+                font-size: 1.1em;
+            }
+        }
+        .photo{
+            height: 10em;
+            width: 10em;
+            border-radius: 100%;
+            object-fit: cover;
+            object-position: center;
+            margin-bottom:1.5em;
+            
+        }
+    }
+}
+  .footer{
+    background-color: #3b403b;
+    padding: 2em;
+    color:white;
+    i{
+        color: white;
+        font-size: 1.5em;
+        margin: 1em 0.3em 0 0.3em;
+    }
+  }

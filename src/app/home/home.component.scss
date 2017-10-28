@@ -1,25 +1,14 @@
-#collage {
-  background-image: url('/assets/images/collage.png');
-  background-repeat: no-repeat;
-  background-position:0% 50%;
 
-  background-size:cover;     
-  min-height: 550px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width:100%;
-  z-index: -1000;
-
-}
 h1,h2,h3,h4,h5{
   font-family: 'Istok Web', sans-serif!important;
 }
 h2{
   font-weight: bold;
+  font-size: 3em;
 }
 h3{
   margin: 0.5em 0;
+  line-height: 1.3em;
 }
 p{
   margin: 0 0 10px;
@@ -30,13 +19,16 @@ button{
   border: none;
   border-radius: 20px;
   padding: 0.7em 1.3em;
-  background-color: #b5da71;
+  background-color: #93c23e;
   color: white;
-  font-weight: bold;
   font-size: 1.1em;
-  border-top: 1px solid #9ac44c;
-  border-bottom: 1px solid #9ac44c;
-  text-shadow: 0 0px 2px rgba(0, 0, 0, 0.28);
+  letter-spacing: 0.05em;
+  box-shadow: 0 0 5px rgba(163, 212, 68, 0.35);
+  margin: 1em 0;
+  &:hover{
+    background-color: #86b432;
+  }
+  
 }
 .header{
   min-height: 560px;
@@ -56,11 +48,10 @@ button{
     right: 0;
     bottom: 0;
     background-size:cover;
-    background-image: url('/assets/images/collage.png');
+    background-image: url('/assets/images/bg1.jpg');
     background-repeat: no-repeat;
     background-position: center;
-    filter: brightness(30%) blur(1px);
-    transform: scale(1.1);
+    filter: brightness(30%);
     z-index: -1;
   }
   img{
@@ -78,6 +69,19 @@ button{
     @media (max-width: 700px) {
       font-size: 7vw;
     }
+  }
+}
+.flexRow{
+  display:flex;
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    padding-top: 1em;
+  }
+  .a{
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
   }
 }
 #bigger-logo {

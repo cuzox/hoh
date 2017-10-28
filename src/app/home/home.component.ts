@@ -1,3 +1,5 @@
+import { Child } from './../_models/child';
+import { ChildService } from './../_services/child.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core'
 
 @Component({
@@ -8,13 +10,17 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core'
 })
 
 export class HomeComponent implements OnInit {
-
-  constructor() {
+  children: Child[]
+  constructor(
+    private _cs: ChildService
+  ) {
 
   }
 
   ngOnInit() {
-
+    this._cs.getAll().subscribe(children =>{
+      this.children = children
+    })
   }
 
 }

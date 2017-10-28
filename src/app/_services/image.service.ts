@@ -11,7 +11,7 @@ export class ImageService {
     return this.http.get('/api/images/' + _id)
   }
 
-  create(formData: FormData) {
+  create(formData: FormData): Observable<Image> {
     return this.http.post('/api/images', formData)
   }
 

@@ -76,25 +76,6 @@
     }
 }
 
-
-#children-inputs {
-    padding-right: 30px;
-    h4 {
-        margin-bottom: 3px;
-    }
-    
-    #child-search{
-        #title{
-            margin-top: 16px;
-        }
-    }
-    
-    #zone-icons {
-        width: 30px;
-        height: 30px;
-    }
-}
-
 p-calendar{
     input {
         width: 100%
@@ -176,9 +157,6 @@ p-selectbutton {
       align-items: center;
       justify-content: space-between;
       height: 64px;
-    }
-    .mat-icon{
-      color:white;
     }
     #toggleMenu{
         display:none;

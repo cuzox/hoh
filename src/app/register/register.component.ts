@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, ViewEncapsulation } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
 import { FormControl, Validators } from '@angular/forms'
 import { AlertService, UserService } from '../_services/index'
@@ -7,7 +7,9 @@ const EMAIL_REGEX = /^(([^<>()\[\]\\.,:\s@"]+(\.[^<>()\[\]\\.,:\s@"]+)*)|(".+"))
 
 @Component({
     moduleId: module.id,
-    templateUrl: 'register.component.html'
+    templateUrl: 'register.component.html',
+    styleUrls: ['./register.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 
 export class RegisterComponent {

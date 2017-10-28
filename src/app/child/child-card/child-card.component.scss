@@ -1,0 +1,53 @@
+
+.child{
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 31.5%;
+    max-width: 350px;
+    margin: 1em;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 3em;
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.08);
+    @media (max-width: 1000px) {
+        flex-basis: 100%;
+    }
+    p{
+        font-size: 0.9em;
+        display: block;
+        width: 90%;
+        max-width: 280px;
+        margin-bottom:1em;
+
+        strong{
+            font-size: 1.1em;
+        }
+    }
+    .photo{
+        height: 10em;
+        width: 10em;
+        border-radius: 100%;
+        object-fit: cover;
+        object-position: center;
+        margin-bottom:1.5em;
+        
+    }
+
+    button{
+        border: none;
+        border-radius: 20px;
+        padding: 0.7em 1.3em;
+        background-color: #93c23e;
+        color: white;
+        font-size: 1.1em;
+        letter-spacing: 0.05em;
+        box-shadow: 0 0 5px rgba(163, 212, 68, 0.35);
+        margin: 1em 0;
+        &:hover{
+            background-color: #86b432;
+        }
+    }
+}

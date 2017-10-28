@@ -1,22 +1,24 @@
-import { SelectItem } from 'primeng/primeng';
 import { Component, OnInit, Input, ViewChild, ViewEncapsulation } from '@angular/core'
 import { Router, ActivatedRoute, ParamMap } from '@angular/router'
 import { FormControl } from '@angular/forms'
 import 'rxjs/add/operator/switchMap';
 
+import { SpinnerService } from 'angular-spinners';
+
 import { Zone } from './../../_models/zone';
 import { ZoneService } from './../../_services/zone.service';
 import { Child } from '../../_models/child'
-import { AlertService, ChildService } from '../../_services/index'
+import { ChildService } from '../../_services/index'
 
 import { User } from './../../_models/user';
 import { UserService } from './../../_services/user.service';
 import { Image } from './../../_models/index';
 import { ImageService } from './../../_services/image.service';
-
-import { SpinnerService } from 'angular-spinners';
+import { DialogService } from './../../_services/dialog.service';
 
 import { appConfig } from './../../app.config';
+
+import { SelectItem } from 'primeng/primeng';
 
 @Component({
   selector: 'child-crud',
@@ -26,10 +28,8 @@ import { appConfig } from './../../app.config';
 })
 export class ChildCrudComponent implements OnInit {
   model: Child
-  loading = false
   title: string
   childParam: any
-  theChild: any
   token: any
 
   zones: Zone[]
@@ -77,21 +77,13 @@ export class ChildCrudComponent implements OnInit {
     private _us: UserService,
     private _ss: SpinnerService,
     private _is: ImageService,
-    private _router: Router
+    private _router: Router,
+    private _ds: DialogService
   ) { }
 
 
   ngOnInit() {
-    // Init model
-    this.model = {}
-    this.model.school = {}
-    this.model.misc = {}
-    this.model.household = {}
-    this.model.household.mother = {}
-    this.model.household.father = {}
-    this.model.sponsor = {}
-    
-    this.theChild = this.child || this.theChild
+    this.model = this.child || this.emptyChild()
     this.childParam = this._route.paramMap.switchMap((params: ParamMap) =>
       this._cs.getById(params.get('id'))
     );
@@ -116,22 +108,20 @@ export class ChildCrudComponent implements OnInit {
     })
   }
 
-  ngAfterViewInit() {
-    this.updateImageDisplay()
+  emptyChild(){
+    let emptyModel: Child = {}
+    emptyModel.school = {}
+    emptyModel.misc = {}
+    emptyModel.household = {}
+    emptyModel.household.mother = {}
+    emptyModel.household.father = {}
+    emptyModel.sponsor = {}
+
+    return emptyModel
   }
 
-  create() {
-    this.loading = true
-    this._cs.create(this.model).subscribe(success, error)
-
-    function success(success) {
-      this.alertService.success('Child creation successful', true)
-    }
-
-    function error(error) {
-      this.alertService.error(error)
-      this.loading = false
-    }
+  ngAfterViewInit() {
+    this.updateImageDisplay()
   }
 
   upload() {
@@ -142,11 +132,29 @@ export class ChildCrudComponent implements OnInit {
       let formData = new FormData();
       formData.append('childPhoto', image, image.name)
       this._is.create(formData).subscribe(res => {
-        console.log(res)
-        this._ss.hide('realSpinner');
+        this.model.imageId = res._id
+        childUpload.bind(this)()
+        console.log('Image upload result', res)
       }, err =>{
-        console.log('Error uploading image', err)
         this._ss.hide('realSpinner');
+        console.log('Error uploading image', err)
+      })
+    } else childUpload.bind(this)()
+
+    function childUpload(){
+      this._cs.create(this.model).subscribe( res => {
+        this._ss.hide('realSpinner');
+        this._ds.confirm('Child successfully added!', 'Would you like to add another one?').subscribe(succ => {
+          if(succ){
+            this.model = this.emptyChild()
+          } else {
+            this._router.navigate(['/admin/children'])
+          }
+        })
+        console.log('Child upload result', res)
+      }, err => {
+        this._ss.hide('realSpinner');
+        console.log('Error uploading child', err)
       })
     }
   }

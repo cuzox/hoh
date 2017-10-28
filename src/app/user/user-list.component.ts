@@ -57,8 +57,7 @@ export class UserListComponent implements OnInit {
   }
 
   openDialog(title: string, forRole: string[] = []) {
-    return this.ds
-      .confirm(title, 'Are you sure you want to do this?', forRole)
+    return this.ds.confirm(title, 'Are you sure you want to do this?', forRole)
   }
 
   checkUser(user: User){

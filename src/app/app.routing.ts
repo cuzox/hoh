@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component'
 import { AdminComponent } from './admin/admin.component'
 import { ChildListComponent } from './child/child-list/child-list.component'
 import { ChildCrudComponent } from './child/child-crud/child-crud.component'
+import { ChildDetailsComponent } from './child/child-details/child-details.component';
 import { UserListComponent } from './user/user-list.component'
 import { AuthGuard } from './_guards/auth.guards'
 import { appConfig } from './app.config'
@@ -33,6 +34,10 @@ const appRoutes: Routes = [
                 component: ChildListComponent
             },
             {
+                path: 'create-child',
+                component: ChildCrudComponent
+            },
+            {
                 path: 'users',
                 component: UserListComponent
             }
@@ -41,15 +46,15 @@ const appRoutes: Routes = [
     {
         path: 'children',
         component: ChildListComponent
-    },
-    {
-        path: 'test',
-        component: ChildCrudComponent
-    },
+    }, 
     {
         path: 'children/:id',
-        component: ChildCrudComponent
+        component: ChildDetailsComponent
 
+    },
+    {
+        path: 'create-child',
+        component: ChildCrudComponent
     },
     {
         path: 'login',

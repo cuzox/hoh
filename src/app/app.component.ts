@@ -1,4 +1,4 @@
-import {Inject, Component, HostListener, ChangeDetectorRef, ViewEncapsulation} from '@angular/core'
+import { Inject, Component, HostListener, ViewEncapsulation } from '@angular/core'
 import { trigger, state, style, transition, animate } from '@angular/animations'
 import { User } from './_models/user'
 import { AuthenticationService } from './_services/index'
@@ -23,21 +23,35 @@ import { DOCUMENT } from '@angular/common'
 
 export class AppComponent {
   sliding = 'slideUp';
-  loggedIn: Boolean = false
+  loggedIn: boolean = false
   currentUser: User
+  isAdmin: boolean = false
+
+  sub = new Array()
 
   constructor (
-    private as: AuthenticationService,
-    private cdr: ChangeDetectorRef
+    private _as: AuthenticationService,
   ){}
   toggleSlide(){
     console.log('toggle');
     this.sliding == 'slideUp' ? this.sliding = 'slideDown' : this.sliding = 'slideUp';
   }
   ngOnInit() {
-    this.loggedIn = this.as.isCurrentUser()
-    this.as.isLoggedIn().subscribe(loggedIn => {
+    let sub = this._as.isLoggedIn().subscribe(loggedIn => {
       this.loggedIn = loggedIn
+    })
+
+    let sub2 = this._as.isAdmin().subscribe(isAdmin => {
+      this.isAdmin = isAdmin
+    })
+
+    this.sub.push(sub)
+    this.sub.push(sub2)
+  }
+
+  ngOnDestroy(){
+    this.sub.forEach((sub: any)=>{
+      sub.unsubscribe()
     })
   }
 }

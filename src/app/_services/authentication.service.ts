@@ -8,7 +8,10 @@ import 'rxjs/add/operator/map'
 export class AuthenticationService {
 
     private loggedIn = false
+    private admin = false
     private logger = new Subject<boolean>()
+    private adminLogger = new Subject<boolean>()
+
 
     constructor(private http: HttpClient) { }
 
@@ -16,23 +19,10 @@ export class AuthenticationService {
         return this.logger.asObservable()
     }
 
-    isCurrentUser(){
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'))
-        if (currentUser) {
-            return true
-        }
-        return false
+    isAdmin(): Observable<boolean>{
+        return this.adminLogger.asObservable()
     }
 
-    idAdmin(){
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'))
-        if (currentUser) {
-            if (currentUser.role === '010'){
-                return true
-            }
-        }
-        return false
-    }
 
     login(email: string, password: string) {
         return this.http.post('/api/users/authenticate', { email: email, password: password }).map((user: any) => {
@@ -42,6 +32,11 @@ export class AuthenticationService {
                     localStorage.setItem('currentUser', JSON.stringify(user))
                     this.loggedIn = true
                     this.logger.next(this.loggedIn)
+
+                    if (user.role === 2 || user.role === 4){
+                        this.admin = true
+                        this.adminLogger.next(this.admin)
+                    } 
                 }
 
                 return user
@@ -50,8 +45,12 @@ export class AuthenticationService {
 
     logout() {
         // remove user from local storage to log user out
+        let user = JSON.parse(localStorage.getItem('currentUser'))
         localStorage.removeItem('currentUser')
         this.loggedIn = false
         this.logger.next(this.loggedIn)
+
+        this.admin = false
+        this.adminLogger.next(this.admin)
     }
 }

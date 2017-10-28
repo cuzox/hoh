@@ -7,7 +7,7 @@
               HANDS OF HOPE DR
             </div>
             <div class='right'>
-                <ul id="nav-menu">
+                <ul id="nav-menu" [@slide]="sliding">
                     <li>
                       <a [routerLink]="['/']" href="#">HOME</a>
                     </li>
@@ -39,6 +39,7 @@
                         </li>
                       </ul>
                     </div>
+                    <i class="fa fa-bars" aria-hidden="true" id='toggleMenu' (tap)='toggleSlide()'></i>
 
             </div>
         </div>

@@ -1,13 +1,17 @@
-import { ZoneService } from './../../_services/zone.service';
-import { Zone } from './../../_models/zone';
 import { SelectItem } from 'primeng/primeng';
 import { Component, OnInit, Input, ViewChild, ViewEncapsulation } from '@angular/core'
 import { Router, ActivatedRoute, ParamMap } from '@angular/router'
 import { FormControl } from '@angular/forms'
-import { AlertService, ChildService } from '../../_services/index'
-import { Child } from '../../_models/child'
 import 'rxjs/add/operator/switchMap';
 
+import { Zone } from './../../_models/zone';
+import { ZoneService } from './../../_services/zone.service';
+import { Child } from '../../_models/child'
+import { AlertService, ChildService } from '../../_services/index'
+import { User } from './../../_models/user';
+import { UserService } from './../../_services/user.service';
+
+import { appConfig } from './../../app.config';
 @Component({
   selector: 'child-crud',
   templateUrl: './child-crud.component.html',
@@ -15,7 +19,7 @@ import 'rxjs/add/operator/switchMap';
   encapsulation: ViewEncapsulation.None
 })
 export class ChildCrudComponent implements OnInit {
-  model: any
+  model: Child
   loading = false
   title: string
   childParam: any
@@ -23,6 +27,8 @@ export class ChildCrudComponent implements OnInit {
   token: any
 
   zones: Zone[]
+
+  staff: User[]
 
   genderTypes: SelectItem[] = [
     { value: 'male', label: "Boy" },
@@ -59,24 +65,45 @@ export class ChildCrudComponent implements OnInit {
   @ViewChild('preview') preview;
 
   constructor(
-    private alertService: AlertService,
-    private cs: ChildService,
-    private route: ActivatedRoute,
-    private zs: ZoneService
+    private _cs: ChildService,
+    private _route: ActivatedRoute,
+    private _zs: ZoneService,
+    private _us: UserService
   ) { }
 
 
   ngOnInit() {
+    // Init model
     this.model = {}
+    this.model.school = {}
+    this.model.misc = {}
+    this.model.household = {}
+    this.model.household.mother = {}
+    this.model.household.father = {}
+    this.model.sponsor = {}
+    
     this.theChild = this.child || this.theChild
-    this.childParam = this.route.paramMap.switchMap((params: ParamMap) =>
-      this.cs.getById(params.get('id'))
+    this.childParam = this._route.paramMap.switchMap((params: ParamMap) =>
+      this._cs.getById(params.get('id'))
     );
     this.token = JSON.parse(localStorage.getItem('currentUser')).token
 
-    this.zs.getAll().subscribe(zones => {
+    this._zs.getAll().subscribe(zones => {
       this.zones = zones
-      zones.unshift({label:'Select community',value:''})
+      zones.unshift({label:'Select Community',value:''})
+    })
+
+    this._us.getAll().subscribe(users => {
+      this.staff = users.filter(user => {
+        return appConfig.accessTypes.admin & user.role
+      })
+
+      this.staff.forEach((one: any) => {
+        one.value = one._id
+        if(one.firstName && one.lastName) one.label = `${one.firstName} ${one.lastName}`
+      })
+
+      this.staff.unshift(<any>{ label: 'Select Staff', value: '' })
     })
   }
 
@@ -86,7 +113,7 @@ export class ChildCrudComponent implements OnInit {
 
   create() {
     this.loading = true
-    this.cs.create(this.model).subscribe(success, error)
+    this._cs.create(this.model).subscribe(success, error)
 
     function success(success) {
       this.alertService.success('Child creation successful', true)
@@ -131,5 +158,7 @@ export class ChildCrudComponent implements OnInit {
     return false
   }
 
-
+  login(){
+    console.log('This is model', this.model)
+  }
 }

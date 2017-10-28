@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router'
 import { HomeComponent } from './home/home.component'
 import { LoginComponent } from './login/login.component'
 import { RegisterComponent } from './register/register.component'
+import { AboutComponent } from './about/about.component'
 import { AdminComponent } from './admin/admin.component'
 import { ChildListComponent } from './child/child-list/child-list.component'
 import { ChildCrudComponent } from './child/child-crud/child-crud.component'
@@ -59,7 +60,10 @@ const appRoutes: Routes = [
         path: 'register',
         component: RegisterComponent
     },
-
+    {
+        path: 'about',
+        component: AboutComponent
+    },
     // Otherwise redirect to home
     {
         path: '**',

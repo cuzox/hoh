@@ -29,7 +29,8 @@ import { ChildCardComponent } from './child/child-card/child-card.component'
 import { UserListComponent } from './user/user-list.component'
 import { ConfirmDialogComponent } from './dialog/confirm-dialog.component'
 import { JWTInterceptor } from './_interceptors/http-interceptor';
-import { ChildDetailsComponent } from './child/child-details/child-details.component'
+import { ChildDetailsComponent } from './child/child-details/child-details.component';
+import { AboutComponent } from './about/about.component'
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ChildDetailsComponent } from './child/child-details/child-details.compo
     AdminComponent,
     UserListComponent,
     ConfirmDialogComponent,
-    ChildDetailsComponent
+    ChildDetailsComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

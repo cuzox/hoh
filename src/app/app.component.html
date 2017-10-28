@@ -3,26 +3,25 @@
     <div class='row'>
         <div class='col col-sm-12'>
             <div class='left' routerLink="/" >
-              <img class="png-icon" src="/assets/images/hoh.png">
-              HANDS OF HOPE DR
+              <img class="png-icon" src="/assets/images/hoh.svg">
             </div>
             <div class='right'>
                 <ul id="nav-menu" [@slide]="sliding">
                     <li>
                       <a [routerLink]="['/']" href="/">HOME</a>
                     </li>
-                    <li routerLink="/projets">
-                      <a href="#">PROJECTS</a>
+                    <li >
+                      <a [routerLink]="['/projets']">PROJECTS</a>
                     </li>
                     <li class="divider dropdown-divider"></li>
-                    <li routerLink="/about">
-                      <a href="#">ABOUT US</a>
+                    <li>
+                      <a [routerLink]="['/about']">ABOUT US</a>
                     </li>
-                    <li routerLink="/contact">
-                      <a href="#">CONTACT</a>
+                    <li>
+                      <a [routerLink]="['/contact']">CONTACT</a>
                     </li>
-                    <li routerLink="/sponsorship">
-                      <a href="#" style='color: #88b236;text-shadow: 0 0 5px rgba(163, 212, 68, 0.35);'><i class="fa fa-heart" aria-hidden="true"></i>SPONSOR A CHILD</a>
+                    <li >
+                      <a [routerLink]="['/sponsorship']" style='color: #88b236;text-shadow: 0 0 5px rgba(163, 212, 68, 0.35);'><i class="fa fa-heart" aria-hidden="true"></i>SPONSOR A CHILD</a>
                     </li>
                   </ul>
 

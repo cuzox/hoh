@@ -3,25 +3,25 @@
     <div class='row'>
       <div class='col col-sm-12'>
         <div class='left' routerLink="/">
-          <img class="png-icon" src="/assets/images/hoh.png"> HANDS OF HOPE DR
+          <img class="png-icon" src="/assets/images/hoh.svg">
         </div>
         <div class='right'>
           <ul id="nav-menu" [@slide]="sliding">
             <li>
               <a [routerLink]="['/']" href="/">HOME</a>
             </li>
-            <li routerLink="/projets">
-              <a href="#">PROJECTS</a>
+            <li>
+              <a [routerLink]="['/projets']">PROJECTS</a>
             </li>
             <li class="divider dropdown-divider"></li>
-            <li routerLink="/about">
-              <a href="#">ABOUT US</a>
+            <li>
+              <a [routerLink]="['/about']">ABOUT US</a>
             </li>
-            <li routerLink="/contact">
-              <a href="#">CONTACT</a>
+            <li>
+              <a [routerLink]="['/contact']">CONTACT</a>
             </li>
-            <li routerLink="/sponsorship">
-              <a href="#" style='color: #88b236;text-shadow: 0 0 5px rgba(163, 212, 68, 0.35);'>
+            <li>
+              <a [routerLink]="['/sponsorship']" style='color: #88b236;text-shadow: 0 0 5px rgba(163, 212, 68, 0.35);'>
                 <i class="fa fa-heart" aria-hidden="true"></i>SPONSOR A CHILD</a>
             </li>
           </ul>
@@ -58,22 +58,24 @@
 <router-outlet></router-outlet>
 <spinner class="spinner" name="realSpinner" loadingImage="/assets/images/spinner.gif"></spinner>
 <div class='footer'>
-    <div class='container'>
-        <div class='row'>
-            <div class='col col-md-12' style='text-align:center;'>
-                <p>
-                    <strong>HANDS OF HOPE DR</strong> <br> info@handsofhopedr.org<br>
-                    <a href='https://www.facebook.com/HOHDominicanRepublic/' target='_blank'>
-                        <i class="fa fa-facebook-official" aria-hidden="true"></i>
-                    </a>
-                    <a href='https://www.youtube.com/channel/UC7dKJQMtvEmLVGclvsQdq8g' target='_blank'>
-                        <i class="fa fa-youtube" aria-hidden="true"></i>
-                    </a>
-                    <a href='https://www.youtube.com/channel/UC7dKJQMtvEmLVGclvsQdq8g' target='_blank'>
-                        <i class="fa fa-share-alt" aria-hidden="true"></i>
-                    </a>
-                </p>
-            </div>
-        </div>
+  <div class='container'>
+    <div class='row'>
+      <div class='col col-md-12' style='text-align:center;'>
+        <p>
+          <strong>HANDS OF HOPE DR</strong>
+          <br> info@handsofhopedr.org
+          <br>
+          <a href='https://www.facebook.com/HOHDominicanRepublic/' target='_blank'>
+            <i class="fa fa-facebook-official" aria-hidden="true"></i>
+          </a>
+          <a href='https://www.youtube.com/channel/UC7dKJQMtvEmLVGclvsQdq8g' target='_blank'>
+            <i class="fa fa-youtube" aria-hidden="true"></i>
+          </a>
+          <a href='https://www.youtube.com/channel/UC7dKJQMtvEmLVGclvsQdq8g' target='_blank'>
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          </a>
+        </p>
+      </div>
     </div>
+  </div>
 </div>

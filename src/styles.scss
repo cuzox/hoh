@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 @import url(https://fonts.googleapis.com/css?family=Istok+Web);
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 @import url(https://fonts.googleapis.com/css?family=Poppins);
 @import url('~@angular/material/prebuilt-themes/indigo-pink.css');
@@ -146,6 +146,10 @@ p-selectbutton {
     button{
         box-shadow: none!important;
     }
+    .container {
+        width: 100%;
+        max-width: 1500px;
+    }
     @media (max-width: 1000px) {
         .row{
             background-color: #292b29;
@@ -155,7 +159,7 @@ p-selectbutton {
       color:white;
       font-family: 'Roboto', sans-serif;
       img{
-        width: 60px;
+        width: 200px;
         margin-right: 0.5em;
       }
     }
@@ -194,8 +198,9 @@ p-selectbutton {
         vertical-align: text-bottom;
         margin-right: 0.3em;
       }
-      @media (min-width: 1000px) {
+      @media (min-width: 1001px) {
         transform:none!important;
+        display:flex!important;
       }
       @media (max-width: 1000px) {
         flex-direction: column;
@@ -276,6 +281,7 @@ p-selectbutton {
             strong{
                 font-size: 1.1em;
                 letter-spacing: 0.05em;
+                text-transform: uppercase;
             }
         }
         .photo{
@@ -287,6 +293,15 @@ p-selectbutton {
             margin-bottom:1.5em;
             
         }
+    }
+}
+.static{
+    flex-wrap: wrap;
+    .item{
+        flex-basis: 20%;
+        box-shadow: none;
+        padding: 0;
+        justify-content: flex-start;
     }
 }
   .footer{
@@ -303,4 +318,33 @@ p-selectbutton {
         font-size: 1.5em;
         margin: 1em 0.3em 0 0.3em;
     }
+  }
+  .flexRow{
+    display:flex;
+    @media (max-width: 1000px) {
+      flex-direction: column;
+      padding-top: 1em;
+    }
+    .a{
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+    }
+  }
+  h1,h2,h3,h4,h5{
+    font-family: 'Istok Web', sans-serif!important;
+  }
+  h2{
+    font-weight: bold;
+    font-size: 3em;
+  }
+  h3{
+    margin: 0.5em 0;
+    line-height: 1.3em;
+  }
+  p{
+    margin: 0 0 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
   }

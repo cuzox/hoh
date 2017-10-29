@@ -40,6 +40,9 @@ html {
 .align-center{
     text-align: center;
 }
+.align-justify{
+    text-align: justify;
+}
 
 .auth-forms {
     border-style: solid;
@@ -281,10 +284,7 @@ p-selectbutton {
             strong{
                 font-size: 1.1em;
                 letter-spacing: 0.05em;
-<<<<<<< Updated upstream
                 text-transform: uppercase;
-=======
->>>>>>> Stashed changes
             }
         }
         .photo{
@@ -314,7 +314,7 @@ p-selectbutton {
     right: 0;
     bottom: 0;
     left: 0;
-    padding: 1rem;
+    padding: 1.5em;
     text-align: center;
     i{
         color: white;
@@ -348,6 +348,4 @@ p-selectbutton {
   }
   p{
     margin: 0 0 10px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
   }

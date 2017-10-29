@@ -264,6 +264,7 @@ p-selectbutton {
             strong{
                 font-size: 1.1em;
                 letter-spacing: 0.05em;
+                text-transform: uppercase;
             }
         }
         .photo{
@@ -275,6 +276,15 @@ p-selectbutton {
             margin-bottom:1.5em;
             
         }
+    }
+}
+.static{
+    flex-wrap: wrap;
+    .item{
+        flex-basis: 20%;
+        box-shadow: none;
+        padding: 0;
+        justify-content: flex-start;
     }
 }
   .footer{
@@ -299,4 +309,20 @@ p-selectbutton {
       align-items: flex-start;
       justify-content: center;
     }
+  }
+  h1,h2,h3,h4,h5{
+    font-family: 'Istok Web', sans-serif!important;
+  }
+  h2{
+    font-weight: bold;
+    font-size: 3em;
+  }
+  h3{
+    margin: 0.5em 0;
+    line-height: 1.3em;
+  }
+  p{
+    margin: 0 0 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
   }

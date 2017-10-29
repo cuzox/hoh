@@ -1,20 +1,5 @@
 
-h1,h2,h3,h4,h5{
-  font-family: 'Istok Web', sans-serif!important;
-}
-h2{
-  font-weight: bold;
-  font-size: 3em;
-}
-h3{
-  margin: 0.5em 0;
-  line-height: 1.3em;
-}
-p{
-  margin: 0 0 10px;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 16px;
-}
+
 button{
   border: none;
   border-radius: 20px;
@@ -74,19 +59,7 @@ button{
     }
   }
 }
-.flexRow{
-  display:flex;
-  @media (max-width: 1000px) {
-    flex-direction: column;
-    padding-top: 1em;
-  }
-  .a{
-    display: inline-flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-  }
-}
+
 #bigger-logo {
   text-align: center;
   height: 486px;

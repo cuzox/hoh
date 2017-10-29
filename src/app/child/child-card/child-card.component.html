@@ -1,7 +1,7 @@
 <div class='child'>
   <img [src]="src" class='photo'>
   <strong>{{ child.firstName + ' ' + child.lastName }} </strong>
-  {{ child.age }} Years old {{child.shchool?.grade ? ' - ' + child.school?.grade + 'grade' : ''}}
+  {{ child.age }} Years old {{child.school?.grade ? ' - ' + child.school?.grade + 'grade' : ''}}
   <br> Community: {{child.zone}}
   <span *ngIf="child.household?.livesWith">Lives with: {{ child.household?.livesWith }} </span>
   <span *ngIf="child.misc?.favActivities">Loves: {{ child.misc?.favActivities }} </span>

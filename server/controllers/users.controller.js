@@ -24,8 +24,8 @@ function authenticate(req, res) {
 }
 
 function register(req, res) {
-    userService.create(req.body).then( () => {
-        res.sendStatus(200)
+    userService.create(req.body).then( (doc) => {
+        res.send(doc)
     })
     .catch( (err) => {
         res.status(400).send(err)

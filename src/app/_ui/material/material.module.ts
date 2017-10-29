@@ -7,6 +7,7 @@ import { MatToolbarModule } from '@angular/material'
 import { MatDialogModule } from '@angular/material'
 import { MatDatepickerModule } from '@angular/material'
 import { MatInputModule } from '@angular/material'
+import { MatProgressSpinnerModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { MatInputModule } from '@angular/material'
     MatToolbarModule,
     MatDialogModule,
     MatDatepickerModule,
-    MatInputModule
+    MatInputModule,
+    MatProgressSpinnerModule
   ],
   exports:[
     MatIconModule,

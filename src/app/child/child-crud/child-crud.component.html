@@ -1,4 +1,4 @@
-<div id="child-crud" class="container">
+<div id="child-crud" class="container" style="max-width: 920px;">
   <form name="child-form" (ngSubmit)="f.form.valid && upload()" #f="ngForm" novalidate>
     <div class="row" style="margin-top: 10px;">
       <div class="col-md-3" style="margin-top: 10px;">
@@ -23,32 +23,34 @@
         <div class="row" style="margin-top: 10px;">
           <span class="col-xs-12 col-sm-3">
             <h5 class="required">Gender</h5>
-            <p-selectButton id="gender-select" name="gender" [options]="genderTypes" [(ngModel)]="model.gender" name="gender" required></p-selectButton>
+            <p-selectButton id="gender-select" [style]="{'width': '168px'}" name="gender" [options]="genderTypes" [(ngModel)]="model.gender" name="gender" required></p-selectButton>
           </span>
           <span class="col-xs-12 col-sm-3">
             <h5 class="required">Date of birth</h5>
-            <p-calendar name="dob" placeholder="Select date" [dateFormat]="'mm.dd.yy'" [monthNavigator]="true" [yearNavigator]="true" yearRange="1990:2030" [(ngModel)]="model.dob"
-              required></p-calendar>
-          </span>
-          <span class="col-xs-12 col-sm-3">
-            <h5 class="required">Community</h5>
-            <p-dropdown id="zoneList" [style]="{'width': '200px'}" id="zoneList" name="zoneList" [filter]="true" [options]="zones" [(ngModel)]="model.zone"
-              name="zone" required></p-dropdown>
+            <p-calendar name="dob" [style]="{'width': '168px'}" placeholder="Select date" [dateFormat]="'mm.dd.yy'" [monthNavigator]="true" [yearNavigator]="true"
+              yearRange="1990:2030" [(ngModel)]="model.dob" required></p-calendar>
           </span>
         </div>
         <div class="row" style="margin-top: 10px;">
+          <span class="col-xs-12 col-sm-3">
+            <h5 class="required">Community</h5>
+            <p-dropdown id="zoneList" [style]="{'width': '168px'}" id="zoneList" name="zoneList" [filter]="true" [options]="zones" [(ngModel)]="model.zone"
+              name="zone" required></p-dropdown>
+          </span>
           <span class="col-xs-12 col-sm-3">
             <h5>Home details</h5>
             <textarea type="text" [rows]="1" [cols]="20" autoResize="true" [(ngModel)]="model.household.details" name="household.details"
               pInputTextarea></textarea>
           </span>
+        </div>
+        <div class="row" style="margin-top: 10px;">
           <span class="col-xs-12 col-sm-3">
             <h5>Lives with</h5>
             <input type="text" [(ngModel)]="model.household.livesWith" name="livesWith" pInputText>
           </span>
           <span class="col-xs-12 col-sm-3">
             <h5>People in household</h5>
-            <p-spinner placeholder="Enter number" size="25" [min]="0" [max]="20" [(ngModel)]="model.household.howMany" name="household.howMany"></p-spinner>
+            <p-spinner placeholder="Enter number" size="20" [min]="0" [max]="20" [(ngModel)]="model.household.howMany" name="household.howMany"></p-spinner>
           </span>
         </div>
         <div class="row" style="margin-top: 10px;">
@@ -60,9 +62,11 @@
             <h5>Grade</h5>
             <input type="text" [(ngModel)]="model.school.grade" name="school.grade" pInputText>
           </span>
+        </div>
+        <div class="row" style="margin-top: 10px;">
           <span class="col-xs-12 col-sm-3">
             <h5>School progress</h5>
-            <p-selectButton [style]="{'width': '200px'}" id="progress-select" name="gender" [options]="progressTypes" [(ngModel)]="model.school.progress"
+            <p-selectButton [style]="{'width': '168px'}" id="progress-select" name="gender" [options]="progressTypes" [(ngModel)]="model.school.progress"
               name="school.progress"></p-selectButton>
           </span>
         </div>
@@ -100,7 +104,7 @@
           </span>
           <span class="col-xs-12 col-sm-3">
             <h5>Siblings</h5>
-            <p-spinner placeholder="Enter number" size="25" [min]="0" [max]="20" [(ngModel)]="model.household.siblings" name="household.siblings"></p-spinner>
+            <p-spinner placeholder="Enter number" size="20" [min]="0" [max]="20" [(ngModel)]="model.household.siblings" name="household.siblings"></p-spinner>
           </span>
         </div>
         <div class="row" style="margin-top: 10px;">
@@ -111,7 +115,7 @@
           </span>
           <span class="col-xs-12 col-sm-3">
             <h5>Health</h5>
-            <p-selectButton [style]="{'width': '200px'}" id="health-select" name="health" [options]="progressTypes" [(ngModel)]="model.misc.health"
+            <p-selectButton [style]="{'width': '168px'}" id="health-select" name="health" [options]="progressTypes" [(ngModel)]="model.misc.health"
               name="health"></p-selectButton>
           </span>
         </div>
@@ -129,19 +133,21 @@
           </span>
           <span class="col-xs-12 col-sm-3">
             <h5 class="required">Registration Date</h5>
-            <p-calendar name="birthday" placeholder="Select date" dateFormat="mm.dd.yy" [monthNavigator]="true" [yearNavigator]="true"
+            <p-calendar name="birthday" [style]="{'width': '168px'}" placeholder="Select date" dateFormat="mm.dd.yy" [monthNavigator]="true" [yearNavigator]="true"
               yearRange="1990:2030" [(ngModel)]="model.registered" name="registered" required></p-calendar>
           </span>
+        </div>
+        <div class="row" style="margin-top: 10px;">
           <span class="col-xs-12 col-sm-3">
             <h5>Staff in charge</h5>
-            <p-dropdown id="zoneList" [style]="{'width': '200px'}" id="staffList" name="staffList" [filter]="true" [options]="staff"
+            <p-dropdown id="zoneList" [style]="{'width': '168px'}" id="staffList" name="staffList" [filter]="true" [options]="staff"
               [(ngModel)]="model.staffId"></p-dropdown>
           </span>
         </div>
       </div>
     </div>
     <div class="row" style="margin-top: 40px;">
-      <div class="col-sm-1 col-sm-offset-9" style="margin-top: 10px;">
+      <div class="col-sm-1 col-sm-offset-7" style="margin-top: 10px;">
         <button [disabled]="!f.form.valid" id="submit-child" pButton type="submit" label="Submit" class="ui-button-success"></button>
       </div>
     </div>

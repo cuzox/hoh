@@ -44,8 +44,10 @@ export class UserListComponent implements OnInit {
     if (this.currentUser._id !== user._id){
       this.openDialog(title).subscribe(result => {
         if (result) {
-          this.us.delete(user).subscribe((res: Response) => {
-            if (res.status !== 400) this.loadAllUsers()
+          this.us.delete(user).subscribe( res => {
+            if (res){
+              this.loadAllUsers()
+            }
           })
         }
       })

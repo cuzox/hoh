@@ -27,6 +27,6 @@ export class UserService {
     }
 
     delete(user: User) {
-        return this.http.delete('/api/users/' + user._id)
+        return this.http.delete('/api/users/' + user._id, {responseType: "text"})
     }
 }

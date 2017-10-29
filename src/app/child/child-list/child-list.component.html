@@ -26,6 +26,6 @@
     </div>
 
     <span>
-        <child-card *ngFor="let child of children" [child]="child"></child-card>
+        <child-card *ngFor="let child of children" [child]="child" (click)="openChildCrudModal(child)"></child-card>
     </span>
 </div>

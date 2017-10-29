@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ViewEncapsulation } from '@angular/core'
+import { Component, OnInit, Input, ViewChild, ViewEncapsulation, Optional, AfterViewInit } from '@angular/core'
 import { Router, ActivatedRoute, ParamMap } from '@angular/router'
 import { FormControl } from '@angular/forms'
 import 'rxjs/add/operator/switchMap';
@@ -15,6 +15,8 @@ import { UserService } from './../../_services/user.service';
 import { Image } from './../../_models/index';
 import { ImageService } from './../../_services/image.service';
 import { DialogService } from './../../_services/dialog.service';
+
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
 import { appConfig } from './../../app.config';
 
@@ -35,7 +37,7 @@ export class ChildCrudComponent implements OnInit {
   zones: Zone[]
 
   staff: User[]
-
+  
   genderTypes: SelectItem[] = [
     { value: 'male', label: "Boy" },
     { value: 'female', label: "Girl"}
@@ -43,7 +45,7 @@ export class ChildCrudComponent implements OnInit {
 
   progressTypes: SelectItem[] = [
     { value: 'good', label: "Good" },
-    { value: 'regular', label: "Regular"},
+    { value: 'regular', label: "Reg"},
     { value: 'bad', label: "Bad"}
   ];
 
@@ -66,7 +68,6 @@ export class ChildCrudComponent implements OnInit {
     'image/png'
   ]
 
-  @Input() child: Child
   @ViewChild('childPhoto') childPhoto;
   @ViewChild('preview') preview;
 
@@ -78,12 +79,13 @@ export class ChildCrudComponent implements OnInit {
     private _ss: SpinnerService,
     private _is: ImageService,
     private _router: Router,
-    private _ds: DialogService
+    private _ds: DialogService,
+    @Optional() public bsModalRef: BsModalRef
   ) { }
 
 
   ngOnInit() {
-    this.model = this.child || this.emptyChild()
+    this.model = this.emptyChild()
     this.childParam = this._route.paramMap.switchMap((params: ParamMap) =>
       this._cs.getById(params.get('id'))
     );
@@ -121,7 +123,12 @@ export class ChildCrudComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.updateImageDisplay()
+    console.log('model from after init', this.model)
+    if (this.model.imageId) {
+      this._is.getById(this.model.imageId).subscribe(src => {
+        this.updateImageDisplay(src)
+      })
+    } else this.updateImageDisplay()
   }
 
   upload() {
@@ -157,15 +164,25 @@ export class ChildCrudComponent implements OnInit {
         console.log('Error uploading child', err)
       })
     }
+
+    function childUpdate() {
+      this._cs.update(this.mode._id, this.model).subscribe(res => {
+        this._ss.hide('realSpinner'); 
+
+      }, err => {
+        this._ss.hide('realSpinner');
+        console.log('Error uploading child', err)
+      })
+    }
   }
 
-  updateImageDisplay() {
+  updateImageDisplay(existing = null) {
     if (this.preview.nativeElement.hasChildNodes()) this.preview.nativeElement.removeChild(this.preview.nativeElement.childNodes[0]);
     let image = document.createElement('img');
     if (this.childPhoto.nativeElement.files.length !== 0) {
       image.src = window.URL.createObjectURL(this.childPhoto.nativeElement.files[0]);
     } else {
-      image.src = this.noImage;
+      image.src = existing || this.noImage;
     }
     this.preview.nativeElement.appendChild(image);
   }

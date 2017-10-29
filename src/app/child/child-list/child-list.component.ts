@@ -1,3 +1,4 @@
+import { ChildCrudComponent } from './../child-crud/child-crud.component';
 import { Component, OnInit, Input, ViewChild } from '@angular/core'
 import { Child, Zone } from '../../_models/index'
 import { ChildService, ZoneService, DialogService} from '../../_services/index'
@@ -5,6 +6,9 @@ import { SelectItem } from 'primeng/primeng'
 import { Dropdown } from 'primeng/components/dropdown/dropdown'
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
+
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
 @Component({
   selector: 'child-list',
@@ -18,14 +22,16 @@ export class ChildListComponent implements OnInit {
   allZone: any = {}
   showDelete: boolean = false
   children: Child[]
+  bsModalRef: BsModalRef
 
   @ViewChild('dropdown') dropdown: Dropdown
 
   constructor(
-    private zs: ZoneService, 
-    private ds: DialogService,
-    private cs: ChildService,
-    private router: Router
+    private _zs: ZoneService, 
+    private _ds: DialogService,
+    private _cs: ChildService,
+    private _router: Router,
+    private _modalService: BsModalService
   ) { }
 
   ngOnInit() {
@@ -36,11 +42,11 @@ export class ChildListComponent implements OnInit {
   }
 
   goToChild(id: number) {
-    this.router.navigate(['/child-crud', id]);
+    this._router.navigate(['/child-crud', id]);
   }
 
   loadZones(){
-    return this.zs.getAll().map(result => {
+    return this._zs.getAll().map(result => {
       this.zones = result
       // Insert on top of array
       this.zones.unshift(this.allZone)
@@ -52,13 +58,13 @@ export class ChildListComponent implements OnInit {
   }
 
   loadChildren(){
-    return this.cs.getAll().subscribe(result =>{
+    return this._cs.getAll().subscribe(result =>{
       this.children = result
     })
   }
 
   createZone(){
-    this.ds.newZone("Create Zone").subscribe(succ => {
+    this._ds.newZone("Create Zone").subscribe(succ => {
       if(succ){
         let zone: any = {}
         // Set zone label to user input
@@ -70,7 +76,7 @@ export class ChildListComponent implements OnInit {
           return section.toLowerCase()
         }).join('-')
 
-        this.zs.create(zone).subscribe(()=>{
+        this._zs.create(zone).subscribe(()=>{
           // Load zones after creating a new one to get the id of the new one
           this.loadZones().subscribe(() => {
             // Set currentZone to newly created zone
@@ -85,9 +91,9 @@ export class ChildListComponent implements OnInit {
   deleteZone(){
     let zone = this.findZone()
     if (zone.value !== "all"){
-      this.ds.confirm("Delete Zone", `Are you sure you want to delete ${this.findZone().label}?`).subscribe(succ =>{
+      this._ds.confirm("Delete Zone", `Are you sure you want to delete ${this.findZone().label}?`).subscribe(succ =>{
         if (succ){
-          this.zs.delete(zone._id).subscribe(succ => {
+          this._zs.delete(zone._id).subscribe(succ => {
             // Delete the deleted zone from the zones array
             this.zones = this.zones.filter(el => el.value !== zone.value)
             // Set the current zone to All which should be the first element in the zones array
@@ -113,6 +119,13 @@ export class ChildListComponent implements OnInit {
     // Clear the serch input
     this.showDelete = this.findZone().value !== "all"
     this.dropdown.resetFilter()
+  }
+
+  openChildCrudModal(child){
+    this.bsModalRef = this._modalService.show(ChildCrudComponent, { animated: false, class: 'modal-lg' });
+    child.dob = new Date(child.dob)
+    child.registered = new Date(child.registered)
+    this.bsModalRef.content.model = child
   }
 
 }

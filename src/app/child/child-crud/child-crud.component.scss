@@ -22,7 +22,13 @@ $imageSize: 225px;
   
   #gender-select{
     .ui-button {
-      width: 70px;
+      width: 50%;
+    }
+  }
+
+  #health-select, #progress-select{
+    .ui-button {
+      width: 33%;
     }
   }
 

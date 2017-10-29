@@ -10,6 +10,8 @@ import { FlexLayoutModule } from '@angular/flex-layout'
 
 import { UIModule } from './_ui/ui.module';
 
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { SpinnerModule } from 'angular-spinners';
 
@@ -31,6 +33,7 @@ import { ConfirmDialogComponent } from './dialog/confirm-dialog.component'
 import { JWTInterceptor } from './_interceptors/http-interceptor';
 import { ChildDetailsComponent } from './child/child-details/child-details.component';
 import { AboutComponent } from './about/about.component'
+
 
 @NgModule({
   declarations: [
@@ -58,7 +61,8 @@ import { AboutComponent } from './about/about.component'
     ReactiveFormsModule,
     UIModule,
     BsDropdownModule.forRoot(),
-    SpinnerModule
+    SpinnerModule,
+    ModalModule.forRoot()
 
   ],
   providers: [

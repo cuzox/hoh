@@ -88,7 +88,7 @@ function create(userParam) {
  
         db.users.insert(user, (err, doc) => {
             if (err) deferred.reject(err.name + ': ' + err.message)
-            else deferred.resolve()
+            else deferred.resolve(doc)
         })
     }
  

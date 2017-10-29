@@ -2,21 +2,7 @@
 .header:after{
   background-image: url('/assets/images/bg1.jpg');
 }
-button{
-  border: none;
-  border-radius: 20px;
-  padding: 0.7em 1.3em;
-  background-color: #93c23e;
-  color: white;
-  font-size: 1.1em;
-  letter-spacing: 0.05em;
-  box-shadow: 0 0 5px rgba(163, 212, 68, 0.35);
-  margin: 1em 0;
-  &:hover{
-    background-color: #86b432;
-  }
-  
-}
+
 #bigger-logo {
   text-align: center;
   height: 486px;

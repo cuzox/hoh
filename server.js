@@ -32,7 +32,7 @@ app.get('*', (req, res) => {
 })
 
 // Get port from environment and store in Express
-const port = process.env.NODE_ENV === 'production' ? 80 : 3000
+const port = process.env.NODE_ENV === 'production' ? 8080 : 3000
 app.set('port', port)
 
 

@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod && node server.js",
+    "build": "ng build --prod && pm2 restart server",
     "dfront": "ng serve --proxy-config proxy.conf.json",
     "dback": "nodemon server.js",
     "dev": "ng build --dev -w  & nodemon server.js --watch dist --watch server",

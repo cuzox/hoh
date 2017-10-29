@@ -1,14 +1,17 @@
-.photo-round{
-    width: 25em;
-    height: 25em;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 100%;
-    margin: auto;
-    display: block;
-    @media (max-width: 1000px) {
-        width: 80vw;
-        height: 80vw;
+.hedr{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    position:relative;
+    padding: 6em 0.5em 0 0.5em;
+    width: 100vw;
+    overflow: hidden;
+    background-color:#1d1f1e;
+    img{
+        height: 100%;
+        width: auto;
+        max-width: 500px;
     }
 }
 h3{

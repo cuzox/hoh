@@ -29,15 +29,14 @@ function getById(_id) {
     function getImageFile(image){
         glob(`${config.imagePath}/${_id}.*`, function (err, files) {
             if (err) deferred.reject(err.name + ': ' + err.message)
-            else if (files) fs.readFile(files[0], (err, data) => {
-                if (err) deferred.reject(err.name + ': ' + err.message)
-                else if (data){
+            else if (files) fs.exists(files[0], exists => {
+                if (exists){
                     let processed = {
-                        image: data, 
+                        path: files[0], 
                         mimetype: image.mimetype, 
                     }
                     deferred.resolve(processed)
-                } else deferred.reject(`Image file with id ${_id} was not found`) // Not found
+                } else deferred.reject(`Image file with id ${_id} was not found`)
             })
         })
     }

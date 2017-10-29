@@ -1,4 +1,5 @@
 var express = require('express')
+var fs = require('fs')
 var router = express.Router()
 
 var imagesService = require('../services/images.service')
@@ -15,7 +16,7 @@ module.exports = controller
 function getById(req, res) {
     imagesService.getById(req.params._id).then( data => {
         res.setHeader('Content-Type', data.mimetype)
-        res.send(data.image)
+        fs.createReadStream(data.path).pipe(res);
     }).catch( (err) => {
         res.status(400).send(err)
     })

@@ -7,6 +7,23 @@
 @import url('~@angular/material/prebuilt-themes/indigo-pink.css');
 
 
+body {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 11rem;
+    margin: 0;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
 
 ::-webkit-scrollbar {
     display: none;
@@ -274,8 +291,13 @@ p-selectbutton {
 }
   .footer{
     background-color: #3b403b;
-    padding: 2em;
     color:white;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    text-align: center;
     i{
         color: white;
         font-size: 1.5em;

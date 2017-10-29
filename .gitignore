@@ -47,3 +47,6 @@ src/app/**/*.js.map
 
 # Config
 server/config.js
+
+# Images
+server/images/*

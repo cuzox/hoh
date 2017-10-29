@@ -60,18 +60,6 @@ export class UserListComponent implements OnInit {
     return this.ds.confirm(title, 'Are you sure you want to do this?', forRole)
   }
 
-  checkUser(user: User){
-    let isA = false
-    let isSA = false
-    if (user.role === this.appConfig.accessTypes.admin) isA = true
-    else if (user.role === this.appConfig.accessTypes.super_admin) isSA = true
-
-    return {
-      isA: isA,
-      isSA: isSA
-    }
-  }
-
   manageAdmin(user: User){
     let title: string
     if (this.currentUser._id !== user._id){

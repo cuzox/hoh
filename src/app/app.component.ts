@@ -32,11 +32,17 @@ export class AppComponent {
   constructor (
     private _as: AuthenticationService,
   ){}
-  toggleSlide(){
-    console.log('toggle');
-    this.sliding == 'slideUp' ? this.sliding = 'slideDown' : this.sliding = 'slideUp';
-  }
+
   ngOnInit() {
+    let user = JSON.parse(localStorage.getItem('currentUser'))
+    if (user) {
+      this.loggedIn = true
+
+      if (user.role === 2 || user.role === 4) {
+        this.isAdmin = true
+      }
+    }
+
     let sub = this._as.isLoggedIn().subscribe(loggedIn => {
       this.loggedIn = loggedIn
     })
@@ -47,6 +53,11 @@ export class AppComponent {
 
     this.sub.push(sub)
     this.sub.push(sub2)
+  }
+
+  toggleSlide(){
+    console.log('toggle');
+    this.sliding == 'slideUp' ? this.sliding = 'slideDown' : this.sliding = 'slideUp';
   }
 
   ngOnDestroy(){

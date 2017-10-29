@@ -45,7 +45,6 @@ export class AuthenticationService {
 
     logout() {
         // remove user from local storage to log user out
-        let user = JSON.parse(localStorage.getItem('currentUser'))
         localStorage.removeItem('currentUser')
         this.loggedIn = false
         this.logger.next(this.loggedIn)

@@ -1,0 +1,39 @@
+#map{
+    width:100%;
+    height:300px;
+    margin-top: 60px;
+}
+#contact{
+    padding: 3em 0;
+    i{
+        font-size: 3em;
+        background-color: #eee;
+        border-radius: 100%;
+        width: 2em;
+        height: 2em;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: black;
+        margin: 0.3em 0;
+    }
+}
+#form{
+    padding: 3em 0;
+    input, textarea{
+        padding:10px;
+    }
+    .ui-inputgroup{
+        margin: 1em 0;
+    }
+    .ui-inputgroup .ui-inputgroup-addon{
+        width: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+.icn{
+    width:100%;
+    max-width: 500px;
+}

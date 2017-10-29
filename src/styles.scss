@@ -392,3 +392,34 @@ p-selectbutton {
       }
     }
   }
+  .hedr{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    position:relative;
+    padding: 6em 0.5em 0 0.5em;
+    width: 100vw;
+    overflow: hidden;
+    background-color:#1d1f1e;
+    img{
+        height: 100%;
+        width: auto;
+        max-width: 500px;
+    }
+}
+.customButton{
+    border: none;
+    border-radius: 20px;
+    padding: 0.7em 1.3em;
+    background-color: #93c23e;
+    color: white;
+    font-size: 1.1em;
+    letter-spacing: 0.05em;
+    box-shadow: 0 0 5px rgba(163, 212, 68, 0.35);
+    margin: 1em 0;
+    &:hover{
+      background-color: #86b432;
+    }
+    
+  }

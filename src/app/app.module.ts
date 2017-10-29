@@ -32,7 +32,8 @@ import { UserListComponent } from './user/user-list.component'
 import { ConfirmDialogComponent } from './dialog/confirm-dialog.component'
 import { JWTInterceptor } from './_interceptors/http-interceptor';
 import { ChildDetailsComponent } from './child/child-details/child-details.component';
-import { AboutComponent } from './about/about.component'
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component'
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { AboutComponent } from './about/about.component'
     UserListComponent,
     ConfirmDialogComponent,
     ChildDetailsComponent,
-    AboutComponent
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

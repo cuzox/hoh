@@ -19,8 +19,9 @@ import { DialogService } from './../../_services/dialog.service';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
 import { appConfig } from './../../app.config';
-
 import { SelectItem } from 'primeng/primeng';
+
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'child-crud',
@@ -33,29 +34,30 @@ export class ChildCrudComponent implements OnInit {
   title: string
   childParam: any
   token: any
+  previewSrc: any;
 
   zones: Zone[]
 
   staff: User[]
-  
+
   genderTypes: SelectItem[] = [
     { value: 'male', label: "Boy" },
-    { value: 'female', label: "Girl"}
+    { value: 'female', label: "Girl" }
   ];
 
   progressTypes: SelectItem[] = [
     { value: 'good', label: "Good" },
-    { value: 'regular', label: "Reg"},
-    { value: 'bad', label: "Bad"}
+    { value: 'regular', label: "Reg" },
+    { value: 'bad', label: "Bad" }
   ];
 
   es = {
     firstDayOfWeek: 1,
-    dayNames: [ "domingo","lunes","martes","miércoles","jueves","viernes","sábado" ],
-    dayNamesShort: [ "dom","lun","mar","mié","jue","vie","sáb" ],
-    dayNamesMin: [ "D","L","M","X","J","V","S" ],
-    monthNames: [ "enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre" ],
-    monthNamesShort: [ "ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic" ],
+    dayNames: ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"],
+    dayNamesShort: ["dom", "lun", "mar", "mié", "jue", "vie", "sáb"],
+    dayNamesMin: ["D", "L", "M", "X", "J", "V", "S"],
+    monthNames: ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"],
+    monthNamesShort: ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"],
     today: 'Hoy',
     clear: 'Borrar'
   }
@@ -69,7 +71,6 @@ export class ChildCrudComponent implements OnInit {
   ]
 
   @ViewChild('childPhoto') childPhoto;
-  @ViewChild('preview') preview;
 
   constructor(
     private _cs: ChildService,
@@ -80,6 +81,7 @@ export class ChildCrudComponent implements OnInit {
     private _is: ImageService,
     private _router: Router,
     private _ds: DialogService,
+    private _sanitizer: DomSanitizer,
     @Optional() public bsModalRef: BsModalRef
   ) { }
 
@@ -93,7 +95,7 @@ export class ChildCrudComponent implements OnInit {
 
     this._zs.getAll().subscribe(zones => {
       this.zones = zones
-      zones.unshift({label:'Select Community',value:''})
+      zones.unshift({ label: 'Select Community', value: '' })
     })
 
     this._us.getAll().subscribe(users => {
@@ -103,14 +105,14 @@ export class ChildCrudComponent implements OnInit {
 
       this.staff.forEach((one: any) => {
         one.value = one._id
-        if(one.firstName && one.lastName) one.label = `${one.firstName} ${one.lastName}`
+        if (one.firstName && one.lastName) one.label = `${one.firstName} ${one.lastName}`
       })
 
       this.staff.unshift(<any>{ label: 'Select Staff', value: '' })
     })
   }
 
-  emptyChild(){
+  emptyChild() {
     let emptyModel: Child = {}
     emptyModel.school = {}
     emptyModel.misc = {}
@@ -123,12 +125,18 @@ export class ChildCrudComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    console.log('model from after init', this.model)
-    if (this.model.imageId) {
-      this._is.getById(this.model.imageId).subscribe(src => {
-        this.updateImageDisplay(src)
-      })
-    } else this.updateImageDisplay()
+    this._ss.show('realSpinner');
+    setTimeout(() => {
+      if (this.model.imageId) {
+        this._is.getById(this.model.imageId).subscribe(src => {
+          this.updateImageDisplay(src)
+          this._ss.hide('realSpinner');
+        })
+      } else {
+        this.updateImageDisplay()
+        this._ss.hide('realSpinner');
+      }
+    }, 200);
   }
 
   upload() {
@@ -140,19 +148,22 @@ export class ChildCrudComponent implements OnInit {
       formData.append('childPhoto', image, image.name)
       this._is.create(formData).subscribe(res => {
         this.model.imageId = res._id
-        childUpload.bind(this)()
-        console.log('Image upload result', res)
-      }, err =>{
+        if (this.model._id) childUpdate.bind(this)()
+        else childUpload.bind(this)()
+      }, err => {
         this._ss.hide('realSpinner');
         console.log('Error uploading image', err)
       })
-    } else childUpload.bind(this)()
+    } else {
+      if (this.model._id) childUpdate.bind(this)()
+      else childUpload.bind(this)()
+    }
 
-    function childUpload(){
-      this._cs.create(this.model).subscribe( res => {
+    function childUpload() {
+      this._cs.create(this.model).subscribe(res => {
         this._ss.hide('realSpinner');
         this._ds.confirm('Child successfully added!', 'Would you like to add another one?').subscribe(succ => {
-          if(succ){
+          if (succ) {
             this.model = this.emptyChild()
           } else {
             this._router.navigate(['/admin/children'])
@@ -166,9 +177,9 @@ export class ChildCrudComponent implements OnInit {
     }
 
     function childUpdate() {
-      this._cs.update(this.mode._id, this.model).subscribe(res => {
-        this._ss.hide('realSpinner'); 
-
+      this._cs.update(this.model).subscribe(res => {
+        this._ss.hide('realSpinner');
+        this.bsModalRef.hide()
       }, err => {
         this._ss.hide('realSpinner');
         console.log('Error uploading child', err)
@@ -177,14 +188,11 @@ export class ChildCrudComponent implements OnInit {
   }
 
   updateImageDisplay(existing = null) {
-    if (this.preview.nativeElement.hasChildNodes()) this.preview.nativeElement.removeChild(this.preview.nativeElement.childNodes[0]);
-    let image = document.createElement('img');
     if (this.childPhoto.nativeElement.files.length !== 0) {
-      image.src = window.URL.createObjectURL(this.childPhoto.nativeElement.files[0]);
+      this.previewSrc = this._sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(this.childPhoto.nativeElement.files[0]));
     } else {
-      image.src = existing || this.noImage;
+      this.previewSrc = existing || this.noImage;
     }
-    this.preview.nativeElement.appendChild(image);
   }
 
   returnFileSize(number) {

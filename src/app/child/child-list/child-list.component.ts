@@ -122,10 +122,14 @@ export class ChildListComponent implements OnInit {
   }
 
   openChildCrudModal(child){
-    this.bsModalRef = this._modalService.show(ChildCrudComponent, { animated: false, class: 'modal-lg' });
     child.dob = new Date(child.dob)
     child.registered = new Date(child.registered)
+    this.bsModalRef = this._modalService.show(ChildCrudComponent, { animated: false, class: 'modal-lg' });
     this.bsModalRef.content.model = child
+    let sub = this._modalService.onHide.subscribe((reason: string) => {
+      this.loadChildren()
+      sub.unsubscribe()
+    })
   }
 
 }

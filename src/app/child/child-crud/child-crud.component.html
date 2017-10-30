@@ -4,7 +4,9 @@
       <div class="col-md-3" style="margin-top: 10px;">
         <h4>Child information</h4>
         <div id="file-input">
-          <label #preview for="childPhoto" id="preview"></label>
+          <label for="childPhoto" id="preview">
+            <img [src]="previewSrc">
+          </label>
           <input style="opacity: 0; display: none;" id="childPhoto" type="file" name="childPhoto" #childPhoto (change)="updateImageDisplay()"
             placeholder="Upload file..." accept=".jpg, .jpeg, .png" />
         </div>

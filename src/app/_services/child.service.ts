@@ -20,10 +20,10 @@ export class ChildService {
     }
 
     update(child: Child) {
-        return this.http.put('/api/children/' + child._id, child)
+        return this.http.put('/api/children/' + child._id, child, {responseType: 'text'})
     }
 
     delete(_id: string) {
-        return this.http.delete('/api/children/' + _id)
+        return this.http.delete('/api/children/' + _id, { responseType: 'text' })
     }
 }

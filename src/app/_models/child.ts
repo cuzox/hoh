@@ -6,7 +6,7 @@ export class Child {
     dob?: Date
     age?: number
     school?: {
-        grade?: number,
+        grade?: string,
         favSubject?: string,
         progress?: string
     }

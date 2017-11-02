@@ -142,44 +142,26 @@ export class ChildCrudComponent implements OnInit {
   upload() {
     this._ss.show('realSpinner');
     console.log('This is the model', this.model)
-    if (this.childPhoto.nativeElement.files.length > 0) {
-      let image = this.childPhoto.nativeElement.files[0]
-      let formData = new FormData();
-      formData.append('childPhoto', image, image.name)
-      this._is.create(formData).subscribe(res => {
-        this.model.imageId = res._id
-        if (this.model._id) childUpdate.bind(this)()
-        else childUpload.bind(this)()
-      }, err => {
-        this._ss.hide('realSpinner');
-        console.log('Error uploading image', err)
-      })
-    } else {
-      if (this.model._id) childUpdate.bind(this)()
-      else childUpload.bind(this)()
-    }
+    let files = this.childPhoto.nativeElement.files
 
-    function childUpload() {
-      this._cs.create(this.model).subscribe(res => {
-        this._ss.hide('realSpinner');
-        this._ds.confirm('Child successfully added!', 'Would you like to add another one?').subscribe(succ => {
-          if (succ) {
-            this.model = this.emptyChild()
-          } else {
-            this._router.navigate(['/admin/children'])
-          }
-        })
-        console.log('Child upload result', res)
-      }, err => {
-        this._ss.hide('realSpinner');
-        console.log('Error uploading child', err)
-      })
-    }
-
-    function childUpdate() {
-      this._cs.update(this.model).subscribe(res => {
+    if(this.model._id){
+      let method = files.length > 0 ? 'updateWithPic' : 'update';
+      this._cs[method](this.model, files[0]).subscribe(res => {  // Files[0] ignored if 'update'
         this._ss.hide('realSpinner');
         this.bsModalRef.hide()
+      }, err => {
+        this._ss.hide('realSpinner');
+        console.log('Error updating child', err)
+      })
+    } else {
+      let method = files.length > 0 ? 'createWithPic' : 'create';
+      this._cs[method](this.model, files[0]).subscribe(res => {
+        this._ss.hide('realSpinner');
+        this._ds.confirm('Child successfully added!', 'Would you like to add another one?').subscribe(succ => {
+          if (succ) this.model = this.emptyChild()
+          else this._router.navigate(['/admin/children'])
+        })
+        console.log('Child upload result', res)
       }, err => {
         this._ss.hide('realSpinner');
         console.log('Error uploading child', err)
@@ -191,7 +173,7 @@ export class ChildCrudComponent implements OnInit {
     if (this.childPhoto.nativeElement.files.length !== 0) {
       this.previewSrc = this._sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(this.childPhoto.nativeElement.files[0]));
     } else {
-      this.previewSrc = existing || this.noImage;
+      this.previewSrc = existing || this.previewSrc || this.noImage;
     }
   }
 

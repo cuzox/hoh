@@ -22,8 +22,8 @@ export class ImageService {
     return this._http.post('/api/images', formData)
   }
 
-  update(image: Image) {
-    return this._http.put('/api/images/' + image._id, image)
+  update(_id: string, formData: FormData) {
+    return this._http.put('/api/images/' + _id, formData, { responseType: 'text' })
   }
 
   delete(_id: string) {

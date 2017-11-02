@@ -127,7 +127,7 @@ export class ChildListComponent implements OnInit {
     this.bsModalRef = this._modalService.show(ChildCrudComponent, { animated: false, class: 'modal-lg' });
     this.bsModalRef.content.model = child
     let sub = this._modalService.onHide.subscribe((reason: string) => {
-      this.loadChildren()
+      if (!reason) this.loadChildren()
       sub.unsubscribe()
     })
   }

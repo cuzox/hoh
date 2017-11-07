@@ -23,6 +23,7 @@ export class ChildListComponent implements OnInit {
   showDelete: boolean = false
   children: Child[]
   bsModalRef: BsModalRef
+  childSearch: string;
 
   @ViewChild('dropdown') dropdown: Dropdown
 

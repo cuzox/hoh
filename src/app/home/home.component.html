@@ -1,28 +1,31 @@
 <div class='header'>
-    <img id="bigger-logo-img" src="/assets/images/hoh.png">
-    <h1>Partnering to make God's love visible through Education, Housing & Health</h1>
+    <img id="bigger-logo-img" src="/assets/images/hohr.png">
+    <div style='margin-left:20px;'>
+        <h1>HANDS<br> OF HOPE DR</h1>
+        <h3>Partnering to make God's love visible through
+            <b>Education, Housing & Health</b>
+        </h3>
+    </div>
 </div>
 
-<div style="background-color: #fbfbfb">
+<div style="background-color: #fff">
     <div class='container'>
         <div class='row' class='flexRow' style='display:flex;'>
             <div class='col col-md-6 a'>
-                <h2>About us</h2>
-                <h3>Partnering to make God's love visible through
-                    <b>Education, Housing & Health</b>
-                </h3>
+                <h2>What we do</h2>
+                <h3><b>Sharing</b> the love of Christ with the community</h3>
                 <p>Hands of Hope partners with communities, developing organizations, churches and leaders so that children's
                     educational opportunities are increased, decent housing is developed and spiritual, physical and medical
                     needs are addressed.</p>
-                <button type='button' [routerLink]="['/about']">READ MORE</button>
+                <button type='button' [routerLink]="['/about']" class='customButton'>READ MORE</button>
             </div>
             <div class='col col-md-6'>
-                <img id="bigger-logo-img" src="/assets/images/hoh.png" style='width:100%;'>
+                <img id="bigger-logo-img" src="/assets/images/a.jpg" style='width:100%;'>
             </div>
         </div>
     </div>
 </div>
-<div style="background-color: #fff">
+<div style="background-color: #fbfbfb" *ngIf='children?.length > 0'>
     <div class='container'>
         <div class='row' style='padding: 4em 0;'>
             <div class='col col-md-12' style='text-align:center;'>

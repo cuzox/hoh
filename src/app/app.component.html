@@ -6,19 +6,19 @@
           <img class="png-icon" src="/assets/images/hoh.svg">
         </div>
         <div class='right'>
-          <ul id="nav-menu" [@slide]="sliding">
+          <ul id="nav-menu" [@slide]="sliding" (@slide.done)=menuOpen($event)>
             <li>
-              <a [routerLink]="['/']" href="/">HOME</a>
+              <a [routerLink]="['/']" href="/" >HOME</a>
             </li>
             <li>
-              <a [routerLink]="['/projets']">PROJECTS</a>
+              <a [routerLink]="['/projets']" >PROJECTS</a>
             </li>
             <li class="divider dropdown-divider"></li>
             <li>
-              <a [routerLink]="['/about']">ABOUT US</a>
+              <a [routerLink]="['/about']" >ABOUT US</a>
             </li>
             <li>
-              <a [routerLink]="['/contact']">CONTACT</a>
+              <a [routerLink]="['/contact']" >CONTACT</a>
             </li>
             <li>
               <a [routerLink]="['/children']" style='color: #88b236;text-shadow: 0 0 5px rgba(163, 212, 68, 0.35);'>
@@ -38,7 +38,7 @@
                 </a>
               </li>
               <li role="menuitem">
-                <a style="padding-left: 10px; height: 30px; vertical-align:middle;" class="dropdown-item" [routerLink]="['login']">
+                <a style="padding-left: 10px; height: 30px; vertical-align:middle;" class="dropdown-item" [routerLink]="['login']" >
                   <mat-icon *ngIf="loggedIn">exit_to_app</mat-icon>
                   <span style="margin-left: 10px;">{{loggedIn ? 'LOG OUT': 'LOG IN'}}</span>
                 </a>

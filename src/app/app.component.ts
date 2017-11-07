@@ -25,6 +25,7 @@ import { DOCUMENT } from '@angular/common'
 
 export class AppComponent {
   sliding = 'slideUp';
+  menu = false;
   loggedIn: boolean = false
   currentUser: User
   isAdmin: boolean = false
@@ -33,8 +34,9 @@ export class AppComponent {
 
   constructor (
     private _as: AuthenticationService,
-  ){}
-
+  ){
+    document.addEventListener('click', () => this.closeMenu(),false);
+  }
   ngOnInit() {
     let user = JSON.parse(localStorage.getItem('currentUser'))
     if (user) {
@@ -58,10 +60,24 @@ export class AppComponent {
   }
 
   toggleSlide(){
-    console.log('toggle');
-    this.sliding == 'slideUp' ? this.sliding = 'slideDown' : this.sliding = 'slideUp';
+    if(this.sliding == 'slideUp'){
+      this.sliding = 'slideDown';
+    }else{
+      this.sliding = 'slideUp'
+    }
   }
 
+  closeMenu(){
+    if(this.menu == true){
+      this.toggleSlide();
+      this.menu = false;
+    }
+  }
+  menuOpen(event){
+    if(event.toState=="slideDown"){
+      this.menu = true;
+    }
+  }
   ngOnDestroy(){
     this.sub.forEach((sub: any)=>{
       sub.unsubscribe()

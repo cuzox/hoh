@@ -1,14 +1,29 @@
 
 .header:after{
-  background-image: url('/assets/images/bg1.jpg');
+  background-image: url('/assets/images/collage.png');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #bigger-logo {
   text-align: center;
   height: 486px;
   background-color: rgba(27, 27, 27, 0.9);
+
+}
+.header{
+  h1{
+    color: rgb(231, 231, 231);
+  }
   #bigger-logo-img{
-    height: 250px;
+    height: 300px;
     width: auto;
   }
 }
+
+  #about-logo{
+    height: 600px;
+    width: auto;
+  }

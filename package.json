@@ -4,10 +4,9 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build --prod && pm2 restart server",
-    "dfront": "ng serve --proxy-config proxy.conf.json",
-    "dback": "nodemon server.js",
+    "server": "nodemon server.js",
     "dev": "ng build --dev -w  & nodemon server.js --watch dist --watch server",
     "test": "ng test",
     "lint": "ng lint",

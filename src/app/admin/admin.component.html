@@ -1,13 +1,8 @@
 <div id="admin-console" class="main-container">
   <nav mat-tab-nav-bar>
-      <span 
-          mat-tab-link
-          *ngFor="let link of tabs"
-          [routerLink]="link.route"
-          routerLinkActive #rla="routerLinkActive"
-          [active]="rla.isActive">
-          {{link.label}}
-      </span>
-    </nav>
-    <router-outlet></router-outlet>
-  </div>
+    <span mat-tab-link *ngFor="let link of tabs" [routerLink]="link.route" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
+      {{link.label}}
+    </span>
+  </nav>
+  <router-outlet></router-outlet>
+</div>

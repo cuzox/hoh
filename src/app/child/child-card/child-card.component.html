@@ -2,7 +2,7 @@
   <img [src]="src" class='photo'>
   <strong>{{ child.firstName + ' ' + child.lastName }} </strong>
   {{ child.age }} Years old {{child.school?.grade ? ' - ' + child.school?.grade + 'grade' : ''}}
-  <br> Community: {{child.zone}}
+  <br> Community: {{zoneLabel}}
   <span *ngIf="child.household?.livesWith">Lives with: {{ child.household?.livesWith }} </span>
   <span *ngIf="child.misc?.favActivities">Loves: {{ child.misc?.favActivities }} </span>
   <span *ngIf="child.household?.livesWith">Favorite subject: {{ child.school?.favSubject }} </span>

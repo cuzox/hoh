@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core'
 import { Child } from '../_models/child'
+import 'rxjs/add/operator/switchMap'
 
 @Injectable()
 export class ChildService {
@@ -27,9 +28,9 @@ export class ChildService {
     }
 
     createWithPic(child: Child, image: File) {
-        let formData = new FormData();
+        let formData = new FormData();  
         formData.append('childPhoto', image, image.name)
-        return this._is.create(formData).map(res => {
+        return this._is.create(formData).switchMap(res => {
             child.imageId = res._id
             return this.create(child)
         }, err => {
@@ -44,11 +45,20 @@ export class ChildService {
     updateWithPic(child: Child, image: File) {
         let formData = new FormData();
         formData.append('childPhoto', image, image.name)
-        return this._is.update(child.imageId, formData).map(res => {
-            return this.update(child)
-        }, err => {
-            console.log('Error uploading image', err)
-        })
+        if(child.imageId){
+            return this._is.update(child.imageId, formData).switchMap(res => {
+                return this.update(child)
+            }, err => {
+                console.log('Error uploading image', err)
+            })
+        } else {
+            return this._is.create(formData).switchMap(res => {
+                child.imageId = res._id
+                return this.update(child)
+            }, err => {
+                console.log('Error uploading image', err)
+            })
+        }
     }
 
     delete(_id: string) {

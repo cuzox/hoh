@@ -33,13 +33,10 @@ export class Child {
         details?: string
     }
     zone?: string
-    sponsor?: {
-        has?: boolean,
-        userId?: string,
-        months?: number,
-    }
     imageId?: string
     observations?: string
     registered?: Date
     staffId?: string
+    sponsorEmail?: string
+
 }

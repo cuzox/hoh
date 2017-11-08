@@ -34,7 +34,7 @@ export class ChildCrudComponent implements OnInit {
   title: string
   childParam: any
   token: any
-  previewSrc: any;
+  previewSrc: string = "";
 
   zones: Zone[]
 
@@ -119,7 +119,6 @@ export class ChildCrudComponent implements OnInit {
     emptyModel.household = {}
     emptyModel.household.mother = {}
     emptyModel.household.father = {}
-    emptyModel.sponsor = {}
 
     return emptyModel
   }
@@ -143,10 +142,12 @@ export class ChildCrudComponent implements OnInit {
     this._ss.show('realSpinner');
     console.log('This is the model', this.model)
     let files = this.childPhoto.nativeElement.files
-
+    let length = files.length > 0
+    let args = [this.model]
+    if (length) args.push(files[0])
     if(this.model._id){
-      let method = files.length > 0 ? 'updateWithPic' : 'update';
-      this._cs[method](this.model, files[0]).subscribe(res => {  // Files[0] ignored if 'update'
+      let method = length ? 'updateWithPic' : 'update';
+      this._cs[method](...args).subscribe(res => { 
         this._ss.hide('realSpinner');
         this.bsModalRef.hide()
       }, err => {
@@ -154,24 +155,23 @@ export class ChildCrudComponent implements OnInit {
         console.log('Error updating child', err)
       })
     } else {
-      let method = files.length > 0 ? 'createWithPic' : 'create';
-      this._cs[method](this.model, files[0]).subscribe(res => {
+      let method = length ? 'createWithPic' : 'create';
+      this._cs[method](...args).subscribe(res => {
         this._ss.hide('realSpinner');
         this._ds.confirm('Child successfully added!', 'Would you like to add another one?').subscribe(succ => {
           if (succ) this.model = this.emptyChild()
           else this._router.navigate(['/admin/children'])
         })
-        console.log('Child upload result', res)
       }, err => {
         this._ss.hide('realSpinner');
-        console.log('Error uploading child', err)
+        console.log('Error creating child', err)
       })
     }
   }
 
   updateImageDisplay(existing = null) {
     if (this.childPhoto.nativeElement.files.length !== 0) {
-      this.previewSrc = this._sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(this.childPhoto.nativeElement.files[0]));
+      this.previewSrc = <string>this._sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(this.childPhoto.nativeElement.files[0]));
     } else {
       this.previewSrc = existing || this.previewSrc || this.noImage;
     }

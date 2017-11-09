@@ -25,7 +25,7 @@
         </div>
     </div>
 
-    <span>
+    <span style="display: flex; flex-wrap: wrap;">
         <ng-container *ngFor="let child of children">
             <child-card *ngIf="!childSearch || (child.firstName + ' ' + child.lastName).toLowerCase().indexOf(childSearch) > -1" [child]="child"
                 (click)="openChildCrudModal(child)">

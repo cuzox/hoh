@@ -26,21 +26,30 @@
             </li>
           </ul>
 
-          <div class="btn-group" dropdown>
-            <button mat-icon-button dropdownToggle>
+          <div class="btn-group" style="font-family: 'Poppins', sans-serif;" dropdown>
+            <button *ngIf="loggedIn" mat-icon-button dropdownToggle>
+              <mat-icon style="color: white;">account_circle</mat-icon>
+            </button>
+            <button *ngIf="!loggedIn" mat-icon-button [routerLink]="['/login']">
               <mat-icon style="color: white;">account_circle</mat-icon>
             </button>
             <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
+              <li role="menuitem">
+                <a style="padding-left: 10px; height: 30px; vertical-align:middle;" class="dropdown-item" [routerLink]="['/']">
+                  <mat-icon>child_care</mat-icon>
+                  <span style="margin-left: 10px; top: -7px; position: relative;">My Children</span>
+                </a>
+              </li>
               <li *ngIf="isAdmin" role="menuitem">
                 <a style="padding-left: 10px; height: 30px; vertical-align:middle;" class="dropdown-item" [routerLink]="['/admin']">
                   <mat-icon>build</mat-icon>
-                  <span style="margin-left: 10px;">ADMIN PORTAL</span>
+                  <span style="margin-left: 10px; top: -7px; position: relative;">Admin Portal</span>
                 </a>
               </li>
               <li role="menuitem">
                 <a style="padding-left: 10px; height: 30px; vertical-align:middle;" class="dropdown-item" [routerLink]="['login']" >
                   <mat-icon *ngIf="loggedIn">exit_to_app</mat-icon>
-                  <span style="margin-left: 10px;">{{loggedIn ? 'LOG OUT': 'LOG IN'}}</span>
+                  <span style="margin-left: 10px; top: -7px; position: relative;">Log Out</span>
                 </a>
               </li>
             </ul>

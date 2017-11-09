@@ -119,6 +119,8 @@ export class ChildCrudComponent implements OnInit {
     emptyModel.household = {}
     emptyModel.household.mother = {}
     emptyModel.household.father = {}
+    this.childPhoto.nativeElement.values = ""
+    this.previewSrc = this.noImage;   
 
     return emptyModel
   }

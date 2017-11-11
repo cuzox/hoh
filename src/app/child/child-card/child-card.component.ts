@@ -1,4 +1,3 @@
-import { TextProcessingService } from './../../_services/text-processing.service';
 import { ImageService } from './../../_services/image.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Child } from '../../_models'
@@ -19,7 +18,6 @@ export class ChildCardComponent implements OnInit {
 
   constructor(
     private _is: ImageService,
-    private _tp: TextProcessingService
   ) { }
 
   ngOnInit() {

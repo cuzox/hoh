@@ -25,13 +25,6 @@ export class ChildCardComponent implements OnInit {
     this.child.zone.split('-').forEach(el => {
       this.zoneLabel += el.charAt(0).toUpperCase() + el.slice(1) + " "
     })
-    if (this.child.misc && this.child.misc.favActivities){
-      this._tp.getPhrases(this.child.misc.favActivities).subscribe((res: any) => {
-        if(this.child.misc.favActivities.split(' ')[0].toLowerCase() == res.VP[0]){
-          this.loves += 'to'
-        }
-      })
-    }
     if (this.child.imageId){
       this._is.getById(this.child.imageId).subscribe(image => {
         this.src = image

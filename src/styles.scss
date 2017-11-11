@@ -34,13 +34,14 @@ p{
 body{
     font-family: 'Open Sans', sans-serif!important;
     color:#000;
-    overflow: auto;
-    display:block;
 }
 img{width:100%;}
 app-root{
-    padding-top:64px;
-    display:block;
+    padding-top: 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
 }
 .row{padding:2em 0;}
 .modal-content{

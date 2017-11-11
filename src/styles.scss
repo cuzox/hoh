@@ -7,29 +7,25 @@
 @import url('~@angular/material/prebuilt-themes/indigo-pink.css');
 
 
-body {
-    min-height: 100%;
-    position: relative;
-    padding-top: 67px;
-    padding-bottom: 90px;
-    margin: 0;
-    min-width: 400px;
+h1,h2,h3,h4,h5{
+    font-family: 'Istok Web', sans-serif!important;
 }
-
-html {
-  height: 100%;
-  box-sizing: border-box;
+h2{
+    font-weight: bold;
+    font-size: 3em;
 }
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
+h3{
+    margin: 0.5em 0;
+    line-height: 1.3em;
 }
-
-::-webkit-scrollbar {
-    display: none;
+p{
+    margin: 0 0 10px;
 }
+body{
+    font-family: 'Open Sans', sans-serif!important;
+    color:#000;
+}
+img{width:100%;}
 
 .mat-icon-button{
     cursor: pointer;
@@ -135,17 +131,6 @@ p-selectbutton {
 
 }
 
-.body{
-    width: 100vw;
-    overflow-x: hidden;
-  }
-  h1,h2,h3,h4,h5{
-    font-family: 'Istok Web', sans-serif!important;
-  }
-  body{
-    font-family: 'Open Sans', sans-serif!important;
-    color:#000;
-  }
   .tbar{
     background-color: rgba(41, 43, 41, 0.98);
     position: fixed;
@@ -258,52 +243,33 @@ p-selectbutton {
     } 
   }
   .scroll-X{
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    width: 100%;
-    margin-left: -1em;
-    -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap;
-    overflow-x: scroll;
-    padding: 10px 0.7vw;
-    .item{
+      display:flex;
+      flex-wrap: nowrap;
+      overflow: auto;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    child-card{
+        box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.08);
+        box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.08);
         flex-grow: 0;
         flex-shrink: 0;
-        flex-basis: 31.5%;
-        margin: 1em;
-        display: inline-flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding: 3em;
-        box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.08);
-        @media (max-width: 1000px) {
-            flex-basis: 100%;
-          }
-        p{
-            font-size: 0.9em;
-            display: block;
-            width: 90%;
-            max-width: 280px;
-            margin-bottom:1em;
-        
-            strong{
-                font-size: 1.1em;
-                letter-spacing: 0.05em;
-                text-transform: uppercase;
-            }
-        }
-        .photo{
-            height: 10em;
+        flex-basis: 31.4%;
+        margin: 1%;
+        display: flex;
+        img{
             width: 10em;
-            border-radius: 100%;
+            height: 10em;
             object-fit: cover;
-            object-position: center;
-            margin-bottom:1.5em;
-            
+            border-radius: 100%;
         }
+    }
+    .child{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        flex-basis: 100%;
     }
 }
 .static{
@@ -317,7 +283,6 @@ p-selectbutton {
 }
 
 .footer{
-    position: absolute;
     right: 0;
     bottom: 0;
     left: 0;
@@ -333,33 +298,6 @@ p-selectbutton {
         margin: 1em 0.3em 0 0.3em;
     }
 }
-.flexRow{
-    display:flex;
-    @media (max-width: 1000px) {
-        flex-direction: column;
-        padding-top: 1em;
-    }
-    .a{
-        display: inline-flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
-    }
-}
-  h1,h2,h3,h4,h5{
-    font-family: 'Istok Web', sans-serif!important;
-  }
-  h2{
-    font-weight: bold;
-    font-size: 3em;
-  }
-  h3{
-    margin: 0.5em 0;
-    line-height: 1.3em;
-  }
-  p{
-    margin: 0 0 10px;
-  }
   .header{
     min-height: 500px;
     display: flex;

@@ -1,10 +1,10 @@
 <div class='child'>
   <img [src]="src" class='photo'>
   <strong>{{ child.firstName + ' ' + child.lastName }} </strong>
-  <button type='button'class='customButton'>Sponsor {{child.firstName.split(" ")[0]}}</button>
   {{ child.age }} Years old {{child.school?.grade.trim() ? ' - ' + (child.school?.grade.length > 4 ? 'In ' + child.school?.grade : child.school?.grade + ' grade') : ''}}
   <br> From {{zoneLabel.trim()}}.
   <span *ngIf="child.household?.livesWith">Lives with {{child.gender == 'female' ? 'her ':'his '}}{{ child.household?.livesWith.toLowerCase().trim() }}. </span>
   <span *ngIf="child.misc?.favActivities">Loves: {{ child.misc?.favActivities }} </span>
   <span *ngIf="child.household?.livesWith">{{child.gender == 'female' ? 'Her ':'His '}}favorite subject is {{ child.school?.favSubject.trim() }}. </span>
+  <button type='button'class='customButton'>Sponsor {{child.firstName.split(" ")[0]}}</button>
 </div>

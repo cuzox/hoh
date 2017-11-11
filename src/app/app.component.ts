@@ -69,7 +69,7 @@ export class AppComponent {
 
   closeMenu(){
     if(this.menu == true){
-      this.toggleSlide();
+      this.sliding = 'slideUp';
       this.menu = false;
     }
   }

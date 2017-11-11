@@ -1,17 +1,26 @@
 <div class='header'>
-    <img id="bigger-logo-img" src="/assets/images/hohr.png">
-    <div style='margin-left:20px;'>
-        <h1>HANDS<br> OF HOPE DR</h1>
-        <h3>Partnering to make God's love visible through
-            <b>Education, Housing & Health</b>
-        </h3>
+    <div class='container'>
+        <div class='row'>
+                <div class='col col-md-4' style='text-align:center'>
+                    <img src="/assets/images/hohr.png">
+                </div>
+                <div class='col col-md-6' style='margin-top:5%;'>
+                        <h1>HANDS<br> OF HOPE DR</h1>
+                        <h3>Partnering to make God's love visible through
+                            <b>Education, Housing & Health</b>
+                        </h3>
+                </div>
+            </div>
     </div>
 </div>
 
 <div style="background-color: #fff">
     <div class='container'>
-        <div class='row' class='flexRow' style='display:flex;'>
-            <div class='col col-md-6 a'>
+        <div class='row'>
+            <div class='col col-md-6 col-md-push-6'>
+                <img src="/assets/images/a.jpg">
+            </div>
+            <div class='col col-md-6 col-md-pull-6' style='margin-top:5%;'>
                 <h2>What we do</h2>
                 <h3><b>Sharing</b> the love of Christ with the community</h3>
                 <p>Hands of Hope partners with communities, developing organizations, churches and leaders so that children's
@@ -19,20 +28,21 @@
                     needs are addressed.</p>
                 <button type='button' [routerLink]="['/about']" class='customButton'>READ MORE</button>
             </div>
-            <div class='col col-md-6'>
-                <img id="about-logo" src="/assets/images/a.jpg">
-            </div>
         </div>
     </div>
 </div>
 <div style="background-color: #fbfbfb" *ngIf='children?.length > 0'>
     <div class='container'>
-        <div class='row' style='padding: 4em 0;'>
+        <div class='row'>
             <div class='col col-md-12' style='text-align:center;'>
                 <h2>Child Sponsorship Program</h2>
                 <h3>Sponsor a child for $32/mo</h3>
-                <div class='scroll-X'>
+                <div class='scroll-X' id='scroll-X'>
                     <child-card *ngFor="let child of children" [child]="child"></child-card>
+                    <div class='bullets'>
+                        <i class="fa fa-angle-left" aria-hidden="true" (tap)="scroll('right')"></i>
+                        <i class="fa fa-angle-right" aria-hidden="true" (tap)="scroll('left')"></i>
+                    </div>
                 </div>
             </div>
         </div>

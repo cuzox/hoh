@@ -6,6 +6,23 @@
 @import url(https://fonts.googleapis.com/css?family=Poppins);
 @import url('~@angular/material/prebuilt-themes/indigo-pink.css');
 
+body {
+    min-height: 100%;
+    position: relative;
+    padding-top: 67px;
+    padding-bottom: 90px;
+    margin: 0;
+    min-width: 400px;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
 
 h1,h2,h3,h4,h5{
     font-family: 'Istok Web', sans-serif!important;
@@ -21,11 +38,6 @@ h3{
 p{
     margin: 0 0 10px;
 }
-body{
-    font-family: 'Open Sans', sans-serif!important;
-    color:#000;
-}
-img{width:100%;}
 
 .mat-icon-button{
     cursor: pointer;
@@ -246,23 +258,12 @@ p-selectbutton {
       display:flex;
       flex-wrap: nowrap;
       overflow: auto;
-    &::-webkit-scrollbar {
-        display: none;
-    }
-    child-card{
-        box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.08);
-        box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.08);
+
+      child-card{
         flex-grow: 0;
         flex-shrink: 0;
         flex-basis: 31.4%;
         margin: 1%;
-        display: flex;
-        img{
-            width: 10em;
-            height: 10em;
-            object-fit: cover;
-            border-radius: 100%;
-        }
     }
     .child{
         display: flex;
@@ -283,6 +284,7 @@ p-selectbutton {
 }
 
 .footer{
+    position: absolute;
     right: 0;
     bottom: 0;
     left: 0;

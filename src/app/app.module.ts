@@ -80,8 +80,7 @@ import { ContactComponent } from './contact/contact.component'
       useClass: JWTInterceptor,
       multi: true,
     },
-    ImageService,
-    TextProcessingService
+    ImageService
   ],
   entryComponents: [ConfirmDialogComponent],
   bootstrap: [AppComponent]

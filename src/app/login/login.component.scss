@@ -4,3 +4,24 @@
     width: 24px;
     margin: 5px 10px 0px 0px;
 }
+.main-container:after{
+    content:'';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: -1;
+    background-image: url('/assets/images/bg1.jpg');
+    background-attachment: fixed;
+    filter: brightness(50%);
+}
+input{margin-bottom:1em;}
+.auth-forms{
+    background-color: rgba(255, 255, 255, 0.32);
+    color: white;
+    max-width: 400px;
+}

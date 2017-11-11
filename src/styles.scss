@@ -43,6 +43,13 @@ app-root{
     justify-content: space-between;
     min-height: 100vh;
 }
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color: white;
+    -webkit-box-shadow: 0 0 0 30px white inset;
+    background-image: none;
+    color: rgb(0, 0, 0);
+}
 .row{padding:2em 0;}
 .modal-content{
     max-height:90vh;

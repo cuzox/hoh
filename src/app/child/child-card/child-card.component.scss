@@ -1,16 +1,17 @@
 
 .child{
     width: 300px;
-    height: 460px;
+    height: 400px;
     margin: 1em;
     flex-grow: 1;
+    cursor: default;
     display: inline-flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 3em;
+    padding: 25px 15px;
     box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.08);
+    font-family: "Poppins", sans-serif;
     @media (max-width: 1000px) {
         flex-basis: 100%;
     }
@@ -30,22 +31,28 @@
         border-radius: 100%;
         object-fit: cover;
         object-position: center;
-        margin-bottom:1.5em;
+        margin-bottom:10px;
         
     }
 
     button{
         border: none;
         border-radius: 20px;
-        padding: 0.7em 1.3em;
+        padding: 5px 20px;
         background-color: #93c23e;
         color: white;
         font-size: 1.1em;
         letter-spacing: 0.05em;
         box-shadow: 0 0 5px rgba(163, 212, 68, 0.35);
-        margin: 1em 0;
+        margin: 10px 0;
+        bottom: 0;
+        position: relative;
+        bottom: 0;
         &:hover{
             background-color: #86b432;
+        }
+        &:focus{
+            outline: none;
         }
     }
 }

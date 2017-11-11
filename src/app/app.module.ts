@@ -20,7 +20,7 @@ import { ImageService } from './_services/image.service';
 import { Routing } from './app.routing'
 import { AlertComponent } from './_directives/alert.component'
 import { AuthGuard } from './_guards/auth.guards'
-import { AlertService, AuthenticationService, UserService, ChildService, DialogService, ZoneService } from './_services/index'
+import { AlertService, AuthenticationService, UserService, ChildService, DialogService, ZoneService } from './_services'
 import { HomeComponent } from './home/home.component'
 import { LoginComponent } from './login/login.component'
 import { RegisterComponent } from './register/register.component'
@@ -80,7 +80,8 @@ import { ContactComponent } from './contact/contact.component'
       useClass: JWTInterceptor,
       multi: true,
     },
-    ImageService
+    ImageService,
+    TextProcessingService
   ],
   entryComponents: [ConfirmDialogComponent],
   bootstrap: [AppComponent]

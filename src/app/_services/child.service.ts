@@ -47,6 +47,7 @@ export class ChildService {
         formData.append('childPhoto', image, image.name)
         if(child.imageId){
             return this._is.update(child.imageId, formData).switchMap(res => {
+                console.log('res uploading image', res)
                 return this.update(child)
             }, err => {
                 console.log('Error uploading image', err)

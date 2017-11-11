@@ -1,6 +1,6 @@
 
 .header:after{
-  background-image: url('/assets/images/bg1.jpg');
+  background-image: url('/assets/images/collage.png');
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -10,14 +10,14 @@
 
 .header{
   h1{
-    color: white;
+    color: rgb(231, 231, 231);
   }
   img{
     max-width: 300px;
   }
 }
 
-  #about-logo{
-    height: 600px;
-    width: auto;
-  }
+#about-logo{
+  height: 600px;
+  width: auto;
+}

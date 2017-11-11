@@ -2,22 +2,11 @@
 .header:after{
   background-image: url('/assets/images/bg1.jpg');
   background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   filter: brightness(50%);
 }
 
 .header{
-  h1{
-    color: white;
-  }
   img{
     max-width: 300px;
   }
 }
-
-  #about-logo{
-    height: 600px;
-    width: auto;
-  }

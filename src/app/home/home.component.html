@@ -39,7 +39,7 @@
                 <h3>Sponsor a child for $32/mo</h3>
                 <div class='scroll-X' id='scroll-X'>
                     <child-card *ngFor="let child of children" [child]="child"></child-card>
-                    <div class='bullets'>
+                    <div class='buttons'>
                         <i class="fa fa-angle-left" aria-hidden="true" (tap)="scroll('right')"></i>
                         <i class="fa fa-angle-right" aria-hidden="true" (tap)="scroll('left')"></i>
                     </div>

@@ -4,11 +4,6 @@ $imageSize: 225px;
 }
 #child-crud{
   font-family: 'Poppins', sans-serif;
-  margin-left: 20px;
-
-  h5 {
-    white-space: nowrap;
-  }
   #preview {
     img {
       width: 8.7em;
@@ -22,18 +17,7 @@ $imageSize: 225px;
     text-align: center;
   }
   
-  
-  #gender-select{
-    .ui-button {
-      width: 50%;
-    }
-  }
 
-  #health-select, #progress-select{
-    .ui-button {
-      width: 33%;
-    }
-  }
 
   #submit-child {
     margin-bottom: 20px;
@@ -41,7 +25,7 @@ $imageSize: 225px;
     width: 100px;
   }
 
-  h5.required::after{
+  label.required::after{
     content: "*";
     color: red;
   }

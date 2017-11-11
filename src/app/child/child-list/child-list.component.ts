@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+declare var jquery:any;
+declare var $ :any;
 
 @Component({
   selector: 'child-list',
@@ -57,7 +59,19 @@ export class ChildListComponent implements OnInit {
       this.zones.unshift(this.allZone)
     })
   }
-
+  scroll(direction){
+    let parent = document.getElementById("scroll-X");
+    if (direction=='left'){
+      $('#scroll-X').animate({
+        scrollLeft: parent.scrollLeft + parent.offsetWidth
+      }, 1000);
+    }
+    if (direction=='right'){
+      $('#scroll-X').animate({
+        scrollLeft: parent.scrollLeft - parent.offsetWidth
+      }, 1000);
+    }
+  }
   loadChildren(){
     return this._cs.getAll().subscribe(result =>{
       this.children = result

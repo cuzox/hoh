@@ -1,5 +1,7 @@
 $imageSize: 225px;
-
+.cntainr{
+  margin-bottom:1em!important;
+}
 #child-crud{
   font-family: 'Poppins', sans-serif;
   margin-left: 20px;
@@ -9,19 +11,15 @@ $imageSize: 225px;
   }
   #preview {
     img {
-        max-width: $imageSize;
-        max-height: $imageSize;
+      width: 8.7em;
+      height: 8.7em;
+      border-radius: 100%;
+      object-fit: cover;
     }
   }
   
   #file-input{
-    margin-top: 10px;
-  
-  
-    #childPhoto{
-      width: $imageSize;
-      height: $imageSize;
-    }
+    text-align: center;
   }
   
   

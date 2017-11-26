@@ -60,16 +60,17 @@ export class ChildListComponent implements OnInit {
     })
   }
   scroll(direction){
+    $('#scroll-X').stop()
     let parent = document.getElementById("scroll-X");
     if (direction=='left'){
       $('#scroll-X').animate({
         scrollLeft: parent.scrollLeft + parent.offsetWidth
-      }, 1000);
+      }, 500);
     }
     if (direction=='right'){
       $('#scroll-X').animate({
         scrollLeft: parent.scrollLeft - parent.offsetWidth
-      }, 1000);
+      }, 500);
     }
   }
   loadChildren(){

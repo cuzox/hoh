@@ -1,6 +1,7 @@
 import { Child } from './../_models/child';
 import { ChildService } from './../_services/child.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core'
+import { Timeouts } from 'selenium-webdriver';
 declare var jquery:any;
 declare var $ :any;
 
@@ -13,6 +14,7 @@ declare var $ :any;
 
 export class HomeComponent implements OnInit {
   children: Child[]
+
   constructor(
     private _cs: ChildService
   ) {
@@ -25,16 +27,17 @@ export class HomeComponent implements OnInit {
     })
   }
   scroll(direction){
+    $('#scroll-X').stop()
     let parent = document.getElementById("scroll-X");
     if (direction=='left'){
       $('#scroll-X').animate({
         scrollLeft: parent.scrollLeft + parent.offsetWidth
-      }, 1000);
+      }, 500);
     }
     if (direction=='right'){
       $('#scroll-X').animate({
         scrollLeft: parent.scrollLeft - parent.offsetWidth
-      }, 1000);
+      }, 500);
     }
   }
 

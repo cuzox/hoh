@@ -1,7 +1,7 @@
 var Q = require('q')
 var mongojs = require('mongojs')
 var config = require('../config')
-var db = mongojs(config.connectionString, ['images'])
+var db = mongojs(config.dbConnectionString, ['images'])
 var fs = require('fs')
 var glob = require('glob')
 var shortId = require('shortid')

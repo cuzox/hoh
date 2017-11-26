@@ -4,7 +4,7 @@ var bcrypt = require('bcryptjs')
 var Q = require('q')
 var mongojs = require('mongojs')
 var config = require('../config')
-var db = mongojs(config.connectionString, ['users'])
+var db = mongojs(config.dbConnectionString, ['users'])
 var shortId = require('shortid')
  
 var service = {}

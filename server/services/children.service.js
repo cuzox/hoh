@@ -2,7 +2,7 @@ var Q = require('q')
 var mongojs = require('mongojs')
 var config = require('../config')
 var shortid = require('shortid')
-var db = mongojs(config.connectionString, ['children'])
+var db = mongojs(config.dbConnectionString, ['children'])
 
 var service = {}
 

@@ -5,7 +5,7 @@ var ExtractJwt = require('passport-jwt').ExtractJwt
 
 var config = require('./../config.js')
 var mongojs = require('mongojs')
-var db = mongojs(config.connectionString, ['users'])
+var db = mongojs(config.dbConnectionString, ['users'])
 
 
 // Hooks the JWT Strategy.

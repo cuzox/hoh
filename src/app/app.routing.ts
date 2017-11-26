@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component'
 import { RegisterComponent } from './register/register.component'
 import { AboutComponent } from './about/about.component'
 import { ContactComponent } from './contact/contact.component'
+import { ProjectsComponent } from './projects/projects.component'
 import { AdminComponent } from './admin/admin.component'
 import { ChildListComponent } from './child/child-list/child-list.component'
 import { ChildCrudComponent } from './child/child-crud/child-crud.component'
@@ -73,6 +74,10 @@ const appRoutes: Routes = [
     {
         path: 'contact',
         component: ContactComponent
+    },
+    {
+        path: 'projects',
+        component: ProjectsComponent
     },
     // Otherwise redirect to home
     {

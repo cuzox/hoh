@@ -34,6 +34,7 @@ import { JWTInterceptor } from './_interceptors/http-interceptor';
 import { ChildDetailsComponent } from './child/child-details/child-details.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component'
+import { ProjectsComponent } from 'app/projects/projects.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { ContactComponent } from './contact/contact.component'
     ConfirmDialogComponent,
     ChildDetailsComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    ProjectsComponent
   ],
   imports: [
     BrowserModule,

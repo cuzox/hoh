@@ -2,12 +2,12 @@
   <img [src]="src" class='photo'>
   <strong>{{ child.firstName + ' ' + child.lastName }} </strong>
   <ul>
-    <li><b>Age</b> {{ child.age }} y/o</li>
-    <li><b>Grade</b> {{child.school?.grade.trim() ? (child.school?.grade.length > 4 ? 'In ' + child.school?.grade : child.school?.grade + ' grade') : ''}}</li>
-    <li><b>From</b> {{zoneLabel.trim()}}</li>
-    <li *ngIf="child.household?.livesWith"><b>Lives with</b> {{child.gender == 'female' ? 'her ':'his '}}{{ child.household?.livesWith.toLowerCase().trim() }}</li>
-    <li *ngIf="child.misc?.favActivities"><b>Loves</b> {{ child.misc?.favActivities }}</li>
-    <li *ngIf="child.household?.livesWith">{{child.gender == 'female' ? 'Her ':'His '}}favorite subject is {{ child.school?.favSubject.trim() }}</li>
+    <li><b>Age - </b> {{ child.age }} y/o</li>
+    <li><b>Grade - </b> {{child.school?.grade.trim() ? (child.school?.grade.length > 4 ? 'In ' + child.school?.grade : child.school?.grade + ' grade') : ''}}</li>
+    <li><b>From - </b> {{zoneLabel.trim()}}</li>
+    <li *ngIf="child.household?.livesWith"><b>Lives with - </b> {{ child.household?.livesWith.toLowerCase().trim() }}</li>
+    <li *ngIf="child.misc?.favActivities"><b>Enjoys - </b> {{ child.misc?.favActivities }}</li>
+    <li *ngIf="child.household?.livesWith"><b>Favorite subject - </b> {{ child.school?.favSubject.trim() }}</li>
   </ul>
-  <button type='button'class='customButton'>Sponsor {{child.firstName.split(" ")[0]}}</button>
+  <button type='button'class='customButton'>I choose {{child.firstName.split(" ")[0]}}!</button>
 </div>

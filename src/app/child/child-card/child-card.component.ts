@@ -14,7 +14,6 @@ export class ChildCardComponent implements OnInit {
 
   src: any = "/assets/images/no-image.png"
   zoneLabel: string = ""
-  loves: string = ""
 
   constructor(
     private _is: ImageService,

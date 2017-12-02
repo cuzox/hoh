@@ -4,7 +4,33 @@
   background-attachment: fixed;
   filter: brightness(50%);
 }
-
+#features{
+  background-color: white;
+  text-align: center;
+  p{
+    text-align: justify;
+  }
+  .col{
+    padding: 1em 1em 4em 1em;
+    min-height: 17em;
+  }
+  a{
+    color: black;
+    display: block;
+    text-decoration: none;
+    transition: all 100ms ease-in-out;
+    &:hover{
+      color:black;
+      transform:  scale(1.05);
+    }
+  }
+}
+#sponsorship{
+  background-color: #fbfbfb;
+}
+#donate{
+  background-color: white;
+}
 .header{
   img{
     max-width: 300px;

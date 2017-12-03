@@ -15,6 +15,7 @@ export class BlogComponent implements OnInit {
   One of the treats in the DR at holiday time is to include fruit with their meals. When food bags were handed out at the New Year’s Eve party, each child took home sufficient food and fruit for their family.`;
   constructor() { 
     this.article = {
+      id:'capulin-update',
       title:'Capulin Update ',
       display:'https://st.depositphotos.com/1301532/4775/i/950/depositphotos_47750345-stock-photo-happy-kids-with-painted-hands.jpg',
       body:this.paragraph

@@ -2,20 +2,20 @@
   <div class='row'>
     <div class='col-md-8'>
       <div class='article' *ngFor='let item of articles'>
-        <a href=''><img src='{{item.display}}'></a>
-        <a href=''><h2>{{item.title}}</h2></a>
+        <a [routerLink]="['/blog/article/' + item.id]"><img src='{{item.display}}'></a>
+        <a [routerLink]="['/blog/article/' + item.id]"><h2>{{item.title}}</h2></a>
         <div class='date'><i class="fa fa-clock-o" aria-hidden="true"></i> 26 FEBRERO, 2018</div>
         <p>
             {{item.body &&  item.body.length > 500 ? (item.body ).substr(0,500) + "..." : ''}}
             {{item.body &&  item.body.length < 500 ? item.body : ''}}
         </p>
         <br>
-        <a href=''>Edit Post</a>
+        <a [routerLink]="['/blog/create/' + item.id]">Edit Post</a>
       </div>
     </div>
     <div class='col-md-4 rait'>
         <h3 class='title'>ENTRADAS DESTACADAS</h3>
-        <a href='' *ngFor='let item of articles'>
+        <a [routerLink]="['/blog/article/' + item.id]" *ngFor='let item of articles'>
           <img src='{{item.display}}'>
         <div class='text'>
             <h3>{{item.title}}</h3>

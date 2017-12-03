@@ -92,6 +92,15 @@ const appRoutes: Routes = [
         path: 'blog',
         component: BlogComponent
     },
+    {
+        path: 'blog/article/:id',
+        component: ArticleComponent
+
+    },
+    {
+        path: 'blog/create/:id',
+        component: CreateComponent
+    },
     // Otherwise redirect to home
     {
         path: '**',

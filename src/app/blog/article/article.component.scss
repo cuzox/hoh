@@ -1,0 +1,40 @@
+.article{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.071);
+    padding-bottom: 15px;
+    img{
+        height: 250px;
+        object-fit: cover;
+    }
+    p{
+        white-space: pre-line;
+    }
+}
+.date{
+    font-size: 12px;
+    opacity: 0.4;
+    font-weight: 600;
+    margin-top: -0.5em;
+    margin-bottom: 0.5em;
+}
+.rait{
+    a{
+        display:flex;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.071);
+        padding-bottom: 15px;
+    }
+    h3{
+        margin:0;
+    }
+    img{
+        max-width: 100px;
+        height: 100px;
+        object-fit: cover;
+        padding-right: 10px;
+    }
+}
+.title{
+    font-weight: 600;
+    border-bottom: 2px solid black;
+    margin-bottom: 15px!important;
+    font-size: 0.9em;
+}

@@ -211,8 +211,8 @@ p-selectbutton {
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            width: 100%;
+            justify-content: space-around;
             a{
                 display:block;
                 padding: 0.7em 1em;
@@ -220,10 +220,23 @@ p-selectbutton {
                 text-transform: uppercase;
                 letter-spacing: 0.05em;
                 font-size:0.9em;
+                position:relative;
                 &:hover{
                     text-decoration: none;
                     background-color: #ffffff0a;
                 }
+            }
+        }
+        .green{
+            color: #88b236;
+            text-shadow: 0 0 5px rgba(163, 212, 68, 0.35);
+        }
+        .gr{
+            background-color: #85ad37;
+            color: #383838;
+            font-weight:600;
+            &:hover{
+                background-color: #7a9e32;
             }
         }
     }

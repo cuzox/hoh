@@ -2,7 +2,7 @@
   <img [src]="src" class='photo'>
   <strong>{{ child.firstName + ' ' + child.lastName }} </strong>
   <ul>
-    <li><b>Age - </b> {{ child.age }} y/o</li>
+    <li><b>Age - </b> {{ child.age }}</li>
     <li><b>Grade - </b> {{child.school?.grade.trim() ? (child.school?.grade.length > 4 ? 'In ' + child.school?.grade : child.school?.grade + ' grade') : ''}}</li>
     <li><b>From - </b> {{zoneLabel.trim()}}</li>
     <li *ngIf="child.household?.livesWith"><b>Lives with - </b> {{ child.household?.livesWith.toLowerCase().trim() }}</li>

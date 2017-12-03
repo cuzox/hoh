@@ -59,7 +59,6 @@ p{
 
 img{width:100%;}
 
-
 input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     background-color: white;
     -webkit-box-shadow: 0 0 0 30px white inset;
@@ -178,7 +177,7 @@ p-selectbutton {
     }
 }
   .tbar{
-    background-color: rgba(41, 43, 41, 0.98);
+    background-color: #282a28;
     position: fixed;
     top: 0;
     left: 0;
@@ -228,6 +227,7 @@ p-selectbutton {
         width: 100%;
         display: block;
         max-width: 180px;
+        cursor:pointer;
         @media (max-width: 1000px) {
             max-width: 150px;
         }

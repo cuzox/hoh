@@ -37,7 +37,9 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component'
 import { ProjectsComponent } from 'app/projects/projects.component';
 import { CartComponent } from './cart/cart.component';
-import { BlogComponent } from './blog/blog.component';
+import { BlogComponent } from './blog/blog/blog.component';
+import { ArticleComponent } from './blog/article/article.component';
+import { CreateComponent } from './blog/create/create.component';
 
 
 @NgModule({
@@ -59,6 +61,8 @@ import { BlogComponent } from './blog/blog.component';
     ProjectsComponent,
     CartComponent,
     BlogComponent,
+    ArticleComponent,
+    CreateComponent,
   ],
   imports: [
     BrowserModule,

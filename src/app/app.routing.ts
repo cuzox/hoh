@@ -14,7 +14,9 @@ import { UserListComponent } from './user/user-list.component'
 import { AuthGuard } from './_guards/auth.guards'
 import { appConfig } from './app.config'
 import { CartComponent } from 'app/cart/cart.component';
-import { BlogComponent } from 'app/blog/blog.component';
+import { BlogComponent } from './blog/blog/blog.component';
+import { ArticleComponent } from './blog/article/article.component';
+import { CreateComponent } from './blog/create/create.component';
 
 
 const appRoutes: Routes = [

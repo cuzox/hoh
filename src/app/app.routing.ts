@@ -13,6 +13,7 @@ import { ChildDetailsComponent } from './child/child-details/child-details.compo
 import { UserListComponent } from './user/user-list.component'
 import { AuthGuard } from './_guards/auth.guards'
 import { appConfig } from './app.config'
+import { CartComponent } from 'app/cart/cart.component';
 
 const appRoutes: Routes = [
     {
@@ -78,6 +79,10 @@ const appRoutes: Routes = [
     {
         path: 'projects',
         component: ProjectsComponent
+    },
+    {
+        path: 'cart',
+        component: CartComponent
     },
     // Otherwise redirect to home
     {

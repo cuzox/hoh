@@ -19,6 +19,9 @@
           </ul>
 
           <div class="btn-group" style="font-family: 'Poppins', sans-serif;" dropdown>
+            <button *ngIf="loggedIn" mat-icon-button [routerLink]="['/cart']">
+              <mat-icon style="color: white;">shopping_cart</mat-icon>
+            </button>
             <button *ngIf="loggedIn" mat-icon-button dropdownToggle>
               <mat-icon style="color: white;">account_circle</mat-icon>
             </button>

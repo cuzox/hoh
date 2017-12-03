@@ -36,6 +36,7 @@ import { ChildDetailsComponent } from './child/child-details/child-details.compo
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component'
 import { ProjectsComponent } from 'app/projects/projects.component';
+import { CartComponent } from './cart/cart.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { ProjectsComponent } from 'app/projects/projects.component';
     AboutComponent,
     ContactComponent,
     ProjectsComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

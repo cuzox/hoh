@@ -6,6 +6,31 @@
 @import url(https://fonts.googleapis.com/css?family=Poppins);
 @import url('~@angular/material/prebuilt-themes/indigo-pink.css');
 
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100%;
+    position: relative;
+    padding-top: 95px;
+    padding-bottom: 60px;
+    margin: 0;
+    min-width: 400px;
+    font-family: 'Open Sans', sans-serif!important;
+    color:#000;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
 
 h1,h2,h3,h4,h5{
     font-family: 'Istok Web', sans-serif!important;
@@ -31,17 +56,9 @@ p{
         font-size:4vw
     }
 }
-body{
-    font-family: 'Open Sans', sans-serif!important;
-    color:#000;
-}
+
 img{width:100%;}
-app-root{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 100vh;
-}
+
 
 input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     background-color: white;
@@ -150,16 +167,16 @@ p-selectbutton {
     }
 
 }
-    .desktop{
-        @media (max-width: 1000px) {
-            display:none!important;
-        }
+.desktop{
+    @media (max-width: 1000px) {
+        display:none!important;
     }
-    .mobile{
-        @media (min-width: 1000px) {
-            display:none!important;
-        }
+}
+.mobile{
+    @media (min-width: 1000px) {
+        display:none!important;
     }
+}
   .tbar{
     background-color: rgba(41, 43, 41, 0.98);
     position: fixed;
@@ -177,6 +194,7 @@ p-selectbutton {
         }
     }
     .submenu{
+        height: 35px;
         background-color: #383838;
         ul{
             list-style: none;
@@ -396,9 +414,14 @@ p-selectbutton {
 
 .footer{
     background-color: #2e2f2e;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
     color: white;
     padding: 1em;
     font-size: 1.1em;
+    height: 60px;
     .social{
         text-align:right;
         a{
@@ -416,7 +439,8 @@ p-selectbutton {
         margin-right: 0.5em;
     }
 }
-  .header{
+
+.header{
     color: white;
     padding:5em 0;
     h1{
@@ -428,8 +452,8 @@ p-selectbutton {
         margin-left:0;
       }
     }
-  }
-  .hedr{
+}  
+.hedr{
     display: flex;
     align-items: center;
     flex-direction: column;

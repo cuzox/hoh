@@ -1,12 +1,87 @@
 
-.header:after{
-  background-image: url('/assets/images/bg1.jpg');
-  background-attachment: fixed;
-  filter: brightness(50%);
+app-root{
+  padding-top:0!important;
+}
+#header{
+  height:700px;
+  overflow: hidden;
+  position:relative;
+  .info{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width:100%;
+    img{
+      max-width: 300px;
+      filter : drop-shadow(0 0 2px rgba(255, 255, 255, 0.1)) drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+    }
+    h1{
+      font-family: 'Open Sans', sans-serif!important;
+      font-weight: bold;
+      letter-spacing: -0.03em;
+    @media (max-width: 700px) {
+      font-size: 7vw;
+      margin-left:0;
+    }
+  }
+  }
+  .slid{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    ul{
+      margin: 0;
+      padding:0;
+      list-style: none;
+      height: 100%;
+      transition: all 300ms ease-in-out;
+      -moz-animation: slide-animation 30s infinite;
+      -webkit-animation: slide-animation 30s infinite;
+      li{
+        width: 100vw;
+        height: 100%;
+        float: left;
+        img{
+          object-fit: cover;
+          height:100%;
+        }
+      }
+    }
+  }
+  .overlay{
+    position: absolute;
+    z-index: 9;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  p{
+    margin-top: -40px;
+    display: block;
+    width: 100%;
+    height: calc(100% + 40px);
+    overflow: hidden;
+    li{
+      margin:0!important;
+    }
+  }
 }
 #features{
   background-color: white;
   text-align: center;
+  img{
+    max-width: 100px;
+    margin: auto;
+    display: block;
+    opacity:0.8;
+    transition: all 300ms ease-in-out;
+  }
   p{
     text-align: justify;
   }
@@ -22,6 +97,9 @@
     &:hover{
       color:black;
       transform:  scale(1.05);
+      & img{
+        opacity: 1;
+      }
     }
   }
 }
@@ -31,8 +109,33 @@
 #donate{
   background-color: white;
 }
-.header{
-  img{
-    max-width: 300px;
+
+@-webkit-keyframes slide-animation {
+  1%, 18% {
+    transform: translateX(0); 
+  }
+  20%, 58% {
+    transform: translateX(-100vw); 
+  }
+  60%, 98% {
+    transform: translateX(-200vw); 
+  }
+  100% {
+    transform: translateX(0); 
+  }
+}
+
+@-moz-keyframes slide-animation {
+  1%, 18% {
+    transform: translateX(0); 
+  }
+  20%, 58% {
+    transform: translateX(-100vw); 
+  }
+  60%, 98% {
+    transform: translateX(-200vw); 
+  }
+  100% {
+    transform: translateX(0); 
   }
 }

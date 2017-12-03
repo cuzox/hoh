@@ -7,6 +7,7 @@ import { AppComponent } from './app.component'
 import { HttpClientModule } from '@angular/common/http'
 import { HTTP_INTERCEPTORS } from '@angular/common/http'
 import { FlexLayoutModule } from '@angular/flex-layout'
+import {CarouselModule} from 'primeng/primeng';
 
 import { UIModule } from './_ui/ui.module';
 
@@ -53,7 +54,7 @@ import { ProjectsComponent } from 'app/projects/projects.component';
     ChildDetailsComponent,
     AboutComponent,
     ContactComponent,
-    ProjectsComponent
+    ProjectsComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,8 +67,8 @@ import { ProjectsComponent } from 'app/projects/projects.component';
     UIModule,
     BsDropdownModule.forRoot(),
     SpinnerModule,
-    ModalModule.forRoot()
-
+    ModalModule.forRoot(),
+    CarouselModule
   ],
   providers: [
     AuthGuard,

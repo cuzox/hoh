@@ -1,45 +1,39 @@
 
-<section id='header' class='header'>
-    <div class='container'>
+<section id='header'>
+    <div class='container info'>
         <div style='text-align:center'>
-            <img style="opacity: 0.9;" src="/assets/images/hohr.png">
+            <img src="/assets/images/hohr.png">
         </div>
-        <div style='text-align:center; margin-top:5%; color:#e8e8e8;'>
+        <div style='text-align:center; color:#e8e8e8;'>
             <h1>HANDS OF HOPE DR</h1>
             <h3>Partnering to make God's love visible through <b>Education, Housing & Health</b></h3>
         </div>
     </div>
+<div class='slid'>
+    <ul style='width:300vw'>
+        <li *ngFor='let item of images'>
+            <img src='{{item.src}}'>
+        </li>
+    </ul>
+    <div class='overlay'></div>
+</div>
 </section>
-<section id='features'>
-    <div class='container'>
-        <div class='row'>
-            <div class='col col-md-4'>
-                <a [routerLink]="['/projects']">
-                    <h3>What we do</h3>
-                    <p>
-                        Hands of Hope partners with communities, developing organizations, churches and leaders so that children's educational opportunities are increased, decent housing is developed and spiritual, physical and medical needs are addressed.
-                    </p>
-                </a>
-            </div>
-            <div class='col col-md-4'>
-                <a [routerLink]="['/projects']">
-                    <h3>Activities</h3>
-                    <p>
-                        The Hands of Hope Child Sponsorship Program is comprehensive and holistic. It's dedicated to helping children find a path out of poverty through the love of Jesus Christ.
-                    </p>
-                </a>
-            </div>
-            <div class='col col-md-4'>
-                <a [routerLink]="['/projects']">
-                    <h3>Our Projects</h3>
-                    <p>
-                        Hands of Hope staff work with the community and church leaders on an ongoing basis, providing consultation and assessment of progress, coordinating training for leaders and pastors, monitoring sponsored children and their families, etc.
-                    </p>
-                </a>
+<section id='donate'>
+        <div class='container'>
+            <div class='row' style='padding-bottom:0;'>
+                <div class='col col-md-6 col-md-push-6'>
+                    <img src="/assets/images/a.jpg">
+                </div>
+                <div class='col col-md-6 col-md-pull-6' style='margin-top:5%;'>
+                    <h2>Make a Donation</h2>
+                    <p>Hands of Hope partners with communities, developing organizations, churches and leaders so that children's
+                        educational opportunities are increased, decent housing is developed and spiritual, physical and medical
+                        needs are addressed.</p>
+                    <button type='button' [routerLink]="['/about']" class='customButton'>DONATE</button>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 <section id='sponsorship'  *ngIf='children?.length > 0'>
     <div class='container'>
         <div class='row'>
@@ -64,11 +58,11 @@
                 <img src="/assets/images/a.jpg">
             </div>
             <div class='col col-md-6 col-md-pull-6' style='margin-top:5%;'>
-                <h2>Make a Donation</h2>
+                <h2>Latest News</h2>
                 <p>Hands of Hope partners with communities, developing organizations, churches and leaders so that children's
                     educational opportunities are increased, decent housing is developed and spiritual, physical and medical
                     needs are addressed.</p>
-                <button type='button' [routerLink]="['/about']" class='customButton'>DONATE</button>
+                <button type='button' [routerLink]="['/about']" class='customButton'>BLOG</button>
             </div>
         </div>
     </div>

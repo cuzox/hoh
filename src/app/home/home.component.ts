@@ -14,10 +14,16 @@ declare var $ :any;
 
 export class HomeComponent implements OnInit {
   children: Child[]
+  images=[];
 
   constructor(
     private _cs: ChildService
   ) {
+    this.images= [
+      {src: '/assets/images/bg1.jpg'},
+      {src: '/assets/images/bg1.jpg'},
+      {src: '/assets/images/bg1.jpg'},
+  ];
 
   }
 

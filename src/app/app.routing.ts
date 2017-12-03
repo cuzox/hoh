@@ -14,6 +14,8 @@ import { UserListComponent } from './user/user-list.component'
 import { AuthGuard } from './_guards/auth.guards'
 import { appConfig } from './app.config'
 import { CartComponent } from 'app/cart/cart.component';
+import { BlogComponent } from 'app/blog/blog.component';
+
 
 const appRoutes: Routes = [
     {
@@ -83,6 +85,10 @@ const appRoutes: Routes = [
     {
         path: 'cart',
         component: CartComponent
+    },
+    {
+        path: 'blog',
+        component: BlogComponent
     },
     // Otherwise redirect to home
     {

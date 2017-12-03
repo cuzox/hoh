@@ -1,6 +1,5 @@
 #user-list {
     margin-top: 1em;
-    min-height: calc(100vh - 230px);
     padding:0;
     ul{
         margin: 0;
@@ -27,19 +26,23 @@
             }
         }
     }
-    .mat-icon{
+    .mat-icon-button{
         border-radius: 100%;
         width: 30px;
         height: 30px;
         font-size: 1.3em;
-        display: flex;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
+        .mat-icon{
+            line-height: 15px;
+        }
     }
-    .hoh-green-font{
-        background-color: #7ea435;
-        color: white!important;
-    }
+
+    // .hoh-green-font{
+    //     background-color: #7ea435;
+    //     color: white!important;
+    // }
     // div, span {
     //     overflow: hidden;
     //     white-space: nowrap;

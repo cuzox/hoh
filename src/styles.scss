@@ -56,17 +56,19 @@ p{
         font-size:4vw
     }
 }
-
-img{width:100%;}
-app-root{
+img{
+    width:100%;
     display:block;
-    min-height: 100vh;
-    padding-top:94px;
-    padding-bottom:62px;
-    @media (max-width: 1000px) {
-        padding-top:50px;
-    }
 }
+// app-root{
+//     display:block;
+//     min-height: 100vh;
+//     padding-top:94px;
+//     padding-bottom:62px;
+//     @media (max-width: 1000px) {
+//         padding-top:50px;
+//     }
+// }
 
 input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     background-color: white;

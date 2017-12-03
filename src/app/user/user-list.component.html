@@ -1,18 +1,18 @@
 <section id='user-list' class='container'>
             <ul>
                 <li *ngFor="let user of users">
-                        <p>{{user.email}} ({{user.firstName}} {{user.lastName}})</p>
-                        <div>
-                            <button *ngIf="currentUser.role === appConfig.accessTypes.super_admin" (click)="deleteUser(user, 'Delete ' + user.firstName + ' ' + user.lastName)"  mat-icon-button>
-                                <mat-icon pTooltip="Remove User" tooltipPosition="top" showDelay="600">remove_circle</mat-icon>
-                            </button>
-                            <button *ngIf="currentUser.role === appConfig.accessTypes.super_admin" (click)="manageSuperAdmin(user)" mat-icon-button>
-                                <mat-icon [ngClass]="{'hoh-green-font': user.role == 4 }" pTooltip="Make Super Admin" tooltipPosition="top" showDelay="600">vpn_key</mat-icon>
-                            </button>
-                            <button (click)="manageAdmin(user)" mat-icon-button>
-                                <mat-icon [ngClass]="{'hoh-green-font': user.role == 2 }" pTooltip="Make Admin" tooltipPosition="top" showDelay="600">child_care</mat-icon>
-                            </button>
-                        </div>
+                    <p>{{user.email}} ({{user.firstName}} {{user.lastName}})</p>
+                    <div>
+                        <button (click)="manageAdmin(user)" mat-icon-button>
+                            <mat-icon [ngClass]="{'hoh-green-font': user.role == 2 }" pTooltip="Make Admin" tooltipPosition="top" showDelay="600">child_care</mat-icon>
+                        </button>
+                        <button *ngIf="currentUser.role === appConfig.accessTypes.super_admin" (click)="manageSuperAdmin(user)" mat-icon-button>
+                            <mat-icon [ngClass]="{'hoh-green-font': user.role == 4 }" pTooltip="Make Super Admin" tooltipPosition="top" showDelay="600">vpn_key</mat-icon>
+                        </button>
+                        <button *ngIf="currentUser.role === appConfig.accessTypes.super_admin" (click)="deleteUser(user, 'Delete ' + user.firstName + ' ' + user.lastName)"  style='color:red;' mat-icon-button>
+                            <mat-icon pTooltip="Remove User" tooltipPosition="top" showDelay="600">remove_circle</mat-icon>
+                        </button>
+                    </div>
                 </li>
             </ul>
         <!-- <span id="user-list-title" class="col-xs-6 col-sm-8">{{user.email}} ({{user.firstName}} {{user.lastName}})</span>

@@ -1,3 +1,4 @@
+import { ChildDetailsComponent } from './../child-details/child-details.component';
 import { ChildCrudComponent } from './../child-crud/child-crud.component';
 import { Component, OnInit, Input, ViewChild } from '@angular/core'
 import { Child, Zone } from '../../_models/index'
@@ -26,6 +27,7 @@ export class ChildListComponent implements OnInit {
   children: Child[]
   bsModalRef: BsModalRef
   childSearch: string;
+  asAdmin: Boolean = false;
 
   @ViewChild('dropdown') dropdown: Dropdown
 
@@ -42,10 +44,19 @@ export class ChildListComponent implements OnInit {
     this.allZone.value = "all"
     this.loadZones().subscribe()
     this.loadChildren()
+    if (this._router.url.includes("admin")) this.asAdmin = true
   }
 
-  goToChild(id: number) {
-    this._router.navigate(['/child-crud', id]);
+  goToChild(child) {
+    let which = this.asAdmin ? ChildCrudComponent : ChildDetailsComponent;
+    child.dob = new Date(child.dob)
+    child.registered = new Date(child.registered)
+    this.bsModalRef = this._modalService.show(which, { animated: false, class: 'modal-lg' });
+    this.bsModalRef.content.model = child
+    let sub = this._modalService.onHide.subscribe((reason: string) => {
+      if (!reason) this.loadChildren()
+      sub.unsubscribe()
+    })
   }
 
   loadZones(){
@@ -136,16 +147,4 @@ export class ChildListComponent implements OnInit {
     this.showDelete = this.findZone().value !== "all"
     this.dropdown.resetFilter()
   }
-
-  openChildCrudModal(child){
-    child.dob = new Date(child.dob)
-    child.registered = new Date(child.registered)
-    this.bsModalRef = this._modalService.show(ChildCrudComponent, { animated: false, class: 'modal-lg' });
-    this.bsModalRef.content.model = child
-    let sub = this._modalService.onHide.subscribe((reason: string) => {
-      if (!reason) this.loadChildren()
-      sub.unsubscribe()
-    })
-  }
-
 }

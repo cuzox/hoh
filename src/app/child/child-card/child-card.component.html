@@ -9,5 +9,5 @@
     <li *ngIf="child.misc?.favActivities"><b>Enjoys - </b> {{ child.misc?.favActivities }}</li>
     <li *ngIf="child.household?.livesWith"><b>Favorite subject - </b> {{ child.school?.favSubject.trim() }}</li>
   </ul>
-  <button type='button'class='customButton'>I choose {{child.firstName.split(" ")[0]}}!</button>
+  <button *ngIf="!asAdmin" type='button'class='customButton'>I choose {{child.firstName.split(" ")[0]}}!</button>
 </div>

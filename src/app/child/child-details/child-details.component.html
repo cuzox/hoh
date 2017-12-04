@@ -1,3 +1,59 @@
-<p>
-  child-details works!
-</p>
+<div id="child-details">
+  <div class="row">
+    <img id="details-preview" [src]="childPhotoSrc">
+  </div>
+  <div class="row">
+    <span class ="col-xs-12">About {{model?.gender == "male" ? "him" : "her"}}:</span>
+  </div>
+  <div div class="row">
+    <span class= "col-xs-6 text-right"><b>Name: </b></span>
+    <span class= "col-xs-6">{{model?.firstName + " " + model?.lastName}}</span>
+  </div>
+  <div div class="row">
+    <span class= "col-xs-6 text-right"><b>Age: </b></span>
+    <span class= "col-xs-6">{{model?.age}}</span>
+  </div>
+  <div div class="row">
+    <span class= "col-xs-6 text-right"><b>Birthday: </b></span>
+    <span class= "col-xs-6">{{model?.dob | date:"shortDate"}}</span>
+  </div>
+  <div div class="row">
+    <span class= "col-xs-6 text-right"><b>From: </b></span>
+    <span class= "col-xs-6">{{zoneLabel}}</span>
+  </div>
+  <div div class="row">
+    <span class= "col-xs-6 text-right"><b>Health: </b></span>
+    <span class= "col-xs-6">{{model?.misc?.health}}</span>
+  </div>
+  <div div class="row">
+    <span class= "col-xs-6 text-right"><b>Grade: </b></span>
+    <span class= "col-xs-6">{{model?.school?.grade}}</span>
+  </div>
+  <div div class="row">
+    <span class= "col-xs-6 text-right"><b>Favorite subject: </b></span>
+    <span class= "col-xs-6">{{model?.school?.favSubject}}</span>
+  </div>
+  <div div class="row">
+    <span class= "col-xs-6 text-right"><b>Favorite activities: </b></span>
+    <span class= "col-xs-6">{{model?.misc?.favActivities}}</span>
+  </div>
+  <div class="row">
+    <span class ="col-xs-12">About {{model?.gender == "male" ? "his" : "her"}} parents:</span>
+  </div>
+  <div div class="row">
+    <span class= "col-xs-6 text-right"><b>Father's name: </b></span>
+    <span class= "col-xs-6">{{model?.household?.father?.name}}</span>
+  </div>
+  <div div class="row">
+    <span class= "col-xs-6 text-right"><b>Father's occupation: </b></span>
+    <span class= "col-xs-6">{{model?.household?.father?.occupation}}</span>
+  </div>
+  <div div class="row">
+    <span class= "col-xs-6 text-right"><b>Mother's name: </b></span>
+    <span class= "col-xs-6">{{model?.household?.mother?.name}}</span>
+  </div>
+  <div div class="row">
+    <span class= "col-xs-6 text-right"><b>Mother's occupation: </b></span>
+    <span class= "col-xs-6">{{model?.household?.mother?.occupation}}</span>
+  </div>
+</div>

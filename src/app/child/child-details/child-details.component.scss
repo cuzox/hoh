@@ -1,0 +1,21 @@
+#child-details{
+    img#details-preview {
+        width: 150px;
+        height: 150px;
+        border-radius: 100%;
+        object-fit: cover;
+        cursor:pointer;
+        margin: auto;
+    }
+    .row{
+        &:first-child{
+            padding-top: 30px;
+            padding-bottom: 20px;
+        }
+        padding-bottom: 0;
+        padding-top: 0;
+        span{
+            margin-bottom: 5px;
+        }
+    }
+}

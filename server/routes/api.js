@@ -9,9 +9,12 @@ var upload = multer({fileFilter: utils.imageFilter})
 var usersController = require('../controllers/users.controller')
 var childrenController = require('../controllers/children.controller')
 var zonesController = require('../controllers/zones.controller')
+var articlesController = require('../controllers/articles.controller')
+var cartsController = require('../controllers/carts.controller')
 var imagesController = require('../controllers/images.controller')
 
 var allowOnly = require('../services/routes-helper.service').allowOnly
+var resourceOwner = require('../services/resource-owner.service').resourceOwner
 
 
 var APIRoutes = (passport) => {
@@ -37,6 +40,20 @@ var APIRoutes = (passport) => {
     router.post('/zones', auth(config.accessLevels.admin, zonesController.create))
     router.put('/zones/:_id', auth(config.accessLevels.admin, zonesController.update))
     router.delete('/zones/:_id', auth(config.accessLevels.super_admin, zonesController.delete))
+
+    // ARTICLES
+    router.get('/articles', articlesController.getAll)
+    router.get('/articles/:_id', articlesController.getById)
+    router.post('/articles', auth(config.accessLevels.admin, articlesController.create))
+    router.put('/articles/:_id', auth(config.accessLevels.admin, articlesController.update))
+    router.delete('/articles/:_id', auth(config.accessLevels.super_admin, articlesController.delete))
+    
+    // CARTS
+    router.get('/carts', auth(config.accessLevels.admin, cartsController.getAll))
+    router.get('/carts/:_id', resourceOwner("carts"), auth(config.accessLevels.user, cartsController.getById))
+    router.post('/carts', auth(config.accessLevels.user, cartsController.create))
+    router.put('/carts/:_id', auth(config.accessLevels.admin, cartsController.update))
+    router.delete('/carts/:_id', auth(config.accessLevels.super_admin, cartsController.delete))
 
     // IMAGES
     router.get('/images/:_id', imagesController.getById)

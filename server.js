@@ -1,6 +1,5 @@
 // Get dependencies
 const express = require('express')
-var expressJwt = require('express-jwt')
 const path = require('path')
 const http = require('http')
 var cors = require('cors')

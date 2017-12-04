@@ -29,7 +29,7 @@ function getAll() {
 function getById(_id) {
     var deferred = Q.defer()
  
-    db.children.finOne({ _id: _id }, (err, child) => {
+    db.children.findOne({ _id: _id }, (err, child) => {
         if (err) deferred.reject(err.name + ': ' + err.message)
         else if (child) deferred.resolve(child)
         else deferred.reject(`Child with id ${_id} not in database`)

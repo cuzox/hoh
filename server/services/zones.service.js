@@ -29,7 +29,7 @@ function getAll() {
 function getById(_id) {
     var deferred = Q.defer()
  
-    db.zones.finOne({ _id: _id}, (err, zone) => {
+    db.zones.findOne({ _id: _id}, (err, zone) => {
         if (err) deferred.reject(err.name + ': ' + err.message)
         else if (zone) deferred.resolve(zone)
         else deferred.reject(`Zone of id ${_id} not in database`)
@@ -40,7 +40,7 @@ function getById(_id) {
 
 function create(zoneParams) {
     var deferred = Q.defer()
- 
+    
     db.zones.findOne({ value: zoneParams.value }, (err, zone) => {
         if (err) deferred.reject(err.name + ': ' + err.message)
         else if (zone) deferred.reject('Zone already in database')

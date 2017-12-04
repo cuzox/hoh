@@ -14,7 +14,6 @@ function hookJWTStrategy(passport) {
     
     options.secretOrKey = config.secret
     options.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('Bearer')
-
     passport.use(new JWTStrategy(options, function(JWTPayload, callback) {
         db.users.findOne({ _id: JWTPayload._id }, function(err, user) {
             if (err) return callback(err, false)

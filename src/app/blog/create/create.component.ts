@@ -8,7 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser'
 })
 export class CreateComponent implements OnInit {
   text: string
-  previewSrc = 'assets/images/no-image.jpg'
+  previewSrc = 'assets/images/no-image.svg'
   fileTypes = [
     'image/jpeg',
     'image/pjpeg',

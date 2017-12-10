@@ -10,8 +10,8 @@
                 <input style="opacity: 0; display: none;" id="photo" type="file" name="photo" #photo (change)="updateImageDisplay()" Placeholder="Upload file..." accept=".jpg, .jpeg, .png" />
               </div>
               <input placeholder="Post Title" type="text" class="ui-inputtext ui-corner-all ui-state-default ui-widget">
-              <textarea></textarea>
-              <button type='button' class='customButton photoBtn'> <i class="fa fa-file-image-o" aria-hidden="true"></i> Add Photo</button>
+              <p-editor [style]="{'height':'320px'}" id='textarea'></p-editor>
+              
               <button type='submit' class='customButton'>PUBLISH</button>
           </form>
       </div>

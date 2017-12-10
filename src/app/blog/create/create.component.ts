@@ -7,6 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser'
   styleUrls: ['./create.component.scss']
 })
 export class CreateComponent implements OnInit {
+  text: string
   previewSrc = 'assets/images/no-image.jpg'
   fileTypes = [
     'image/jpeg',
@@ -15,6 +16,7 @@ export class CreateComponent implements OnInit {
   ]
 
   @ViewChild('photo') photo
+  @ViewChild('textarea') textarea
   constructor(
     private _sanitizer: DomSanitizer,
   ) { }
@@ -23,5 +25,8 @@ export class CreateComponent implements OnInit {
   }
   updateImageDisplay() {
     this.previewSrc = <string>this._sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(this.photo.nativeElement.files[0]))
+  }
+  save() {
+    let body = this.textarea.innerHTML
   }
 }

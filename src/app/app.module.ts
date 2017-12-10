@@ -7,7 +7,7 @@ import { AppComponent } from './app.component'
 import { HttpClientModule } from '@angular/common/http'
 import { HTTP_INTERCEPTORS } from '@angular/common/http'
 import { FlexLayoutModule } from '@angular/flex-layout'
-import {CarouselModule} from 'primeng/primeng'
+import {EditorModule} from 'primeng/primeng'
 
 import { UIModule } from './_ui/ui.module'
 
@@ -75,7 +75,7 @@ import { CreateComponent } from './blog/create/create.component'
     BsDropdownModule.forRoot(),
     SpinnerModule,
     ModalModule.forRoot(),
-    CarouselModule
+    EditorModule
   ],
   providers: [
     AuthGuard,

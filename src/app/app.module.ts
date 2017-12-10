@@ -7,16 +7,15 @@ import { AppComponent } from './app.component'
 import { HttpClientModule } from '@angular/common/http'
 import { HTTP_INTERCEPTORS } from '@angular/common/http'
 import { FlexLayoutModule } from '@angular/flex-layout'
-import {CarouselModule} from 'primeng/primeng';
+import {CarouselModule} from 'primeng/primeng'
 
-import { UIModule } from './_ui/ui.module';
+import { UIModule } from './_ui/ui.module'
 
-import { ModalModule } from 'ngx-bootstrap/modal';
+import { ModalModule } from 'ngx-bootstrap/modal'
 
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { SpinnerModule } from 'angular-spinners';
-
-import { ImageService } from './_services/image.service';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown'
+import { SpinnerModule } from 'angular-spinners'
+import { ImageService } from './_services/image.service'
 
 import { Routing } from './app.routing'
 import { AlertComponent } from './_directives/alert.component'
@@ -31,15 +30,15 @@ import { ChildCrudComponent } from './child/child-crud/child-crud.component'
 import { ChildCardComponent } from './child/child-card/child-card.component'
 import { UserListComponent } from './user/user-list.component'
 import { ConfirmDialogComponent } from './dialog/confirm-dialog.component'
-import { JWTInterceptor } from './_interceptors/http-interceptor';
-import { ChildDetailsComponent } from './child/child-details/child-details.component';
-import { AboutComponent } from './about/about.component';
+import { JWTInterceptor } from './_interceptors/http-interceptor'
+import { ChildDetailsComponent } from './child/child-details/child-details.component'
+import { AboutComponent } from './about/about.component'
 import { ContactComponent } from './contact/contact.component'
-import { ProjectsComponent } from 'app/projects/projects.component';
-import { CartComponent } from './cart/cart.component';
-import { BlogComponent } from './blog/blog/blog.component';
-import { ArticleComponent } from './blog/article/article.component';
-import { CreateComponent } from './blog/create/create.component';
+import { ProjectsComponent } from 'app/projects/projects.component'
+import { CartComponent } from './cart/cart.component'
+import { BlogComponent } from './blog/blog/blog.component'
+import { ArticleComponent } from './blog/article/article.component'
+import { CreateComponent } from './blog/create/create.component'
 
 
 @NgModule({

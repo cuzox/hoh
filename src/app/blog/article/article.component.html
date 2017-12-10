@@ -5,9 +5,18 @@
           <img src='{{item.display}}'>
           <h2>{{item.title}}</h2>
           <div class='date'><i class="fa fa-clock-o" aria-hidden="true"></i> 26 FEBRERO, 2018</div>
-          <p>
+          <p class='bd'>
               {{item.body}}
           </p>
+            <!-- like and share on facebook-->
+            <div class="fb-like"
+              data-href="['/blog/article/' + item.id]"
+              data-layout="button_count"
+              data-action="like"
+              data-size="large"
+              data-show-faces="false"
+              data-share="true">
+            </div>
         </div>
       </div>
       <div class='col-md-4 rait'>

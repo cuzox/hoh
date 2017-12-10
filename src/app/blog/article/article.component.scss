@@ -1,12 +1,14 @@
 .article{
-    border-bottom: 1px solid rgba(0, 0, 0, 0.071);
-    padding-bottom: 15px;
     img{
         height: 250px;
         object-fit: cover;
     }
     p{
         white-space: pre-line;
+    }
+    .bd{
+        border-bottom: 1px solid rgba(0, 0, 0, 0.071);
+        padding-bottom: 15px;
     }
 }
 .date{

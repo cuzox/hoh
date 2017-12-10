@@ -14,7 +14,7 @@
     </div>
     <div class='col-md-4 rait'>
         <h3 class='title'>ENTRADAS DESTACADAS</h3>
-        <a [routerLink]="['/blog/article/' + item.id]" *ngFor='let item of articles'>
+        <a [routerLink]="['/blog/create/' + item.id]" *ngFor='let item of articles'>
           <img src='{{item.display}}'>
         <div class='text'>
             <h3>{{item.title}}</h3>

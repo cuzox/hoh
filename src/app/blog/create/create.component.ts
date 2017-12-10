@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core'
+import { DomSanitizer } from '@angular/platform-browser'
 
 @Component({
   selector: 'app-create',
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create.component.scss']
 })
 export class CreateComponent implements OnInit {
+  previewSrc = 'assets/images/no-image.jpg'
+  fileTypes = [
+    'image/jpeg',
+    'image/pjpeg',
+    'image/png'
+  ]
 
-  constructor() { }
+  @ViewChild('photo') photo
+  constructor(
+    private _sanitizer: DomSanitizer,
+  ) { }
 
   ngOnInit() {
   }
-
+  updateImageDisplay() {
+    this.previewSrc = <string>this._sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(this.photo.nativeElement.files[0]))
+  }
 }

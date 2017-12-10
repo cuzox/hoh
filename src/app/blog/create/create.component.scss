@@ -9,11 +9,19 @@ textarea{
     margin-top: 1em;
 }
 #preview {
+    display: block;
+    margin-bottom:1em;
     img {
       width: 100%;
       height: 250px;
       object-fit: cover;
       cursor:pointer;
       background-color: #f6f6f6;
+      object-position: center;
     }
   }
+.photobtn{
+    background-color: #eeeeee!important;
+    box-shadow: none!important;
+    color: rgba(0, 0, 0, 0.302)!important;
+}

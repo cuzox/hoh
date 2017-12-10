@@ -4,16 +4,14 @@
         <h2>Add New Post</h2>
           <form novalidate >
               <div id="file-input">
-                <!-- <label for="postPhoto" id="preview">
-                  <img [src]="previewSrc">
+                <label for="photo" id="preview">
+                  <img [src]="previewSrc" >
                 </label>
-                <input style="opacity: 0; display: none;" id="postPhoto" type="file" name="postPhoto" #postPhoto (change)="updateImageDisplay()" Placeholder="Upload file..." accept=".jpg, .jpeg, .png" /> -->
+                <input style="opacity: 0; display: none;" id="photo" type="file" name="photo" #photo (change)="updateImageDisplay()" Placeholder="Upload file..." accept=".jpg, .jpeg, .png" />
               </div>
-              <input  pinputtext="" placeholder="Post Title" type="text" class="ui-inputtext ui-corner-all ui-state-default ui-widget">
-              <textarea pinputtext="" >
-
-              </textarea>
-
+              <input placeholder="Post Title" type="text" class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+              <textarea></textarea>
+              <button type='button' class='customButton photoBtn'> <i class="fa fa-file-image-o" aria-hidden="true"></i> Add Photo</button>
               <button type='submit' class='customButton'>PUBLISH</button>
           </form>
       </div>

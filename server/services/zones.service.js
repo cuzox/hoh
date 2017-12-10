@@ -59,7 +59,7 @@ function create(zoneParams) {
 function update(_id, zoneParams) {
     var deferred = Q.defer()
  
-    db.zones.findById({ _id: _id }, (err, zone) => {
+    db.zones.findOne({ _id: _id }, (err, zone) => {
         if (err) deferred.reject(err.name + ': ' + err.message)
         else if (zone) updatezone()
         else deferred.reject('Zone not in database')

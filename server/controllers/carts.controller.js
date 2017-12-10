@@ -8,7 +8,8 @@ var controller = {}
 controller.getAll = getAll
 controller.getById = getById
 controller.create = create
-controller.update = update
+controller.updateAdd = updateAdd
+controller.updateRm = updateRm
 controller.delete = _delete
 
 module.exports = controller
@@ -37,8 +38,16 @@ function create(req, res) {
     })
 }
  
-function update(req, res) {
-    cartsService.update(req.params._id, req.body).then( msg => {
+function updateAdd(req, res) {
+    cartsService.updateAdd(req.params._id, req.params.childId).then( msg => {
+        res.send(msg)
+    }).catch( err => {
+        res.status(400).send(err)
+    })
+}
+
+function updateRm(req, res) {
+    cartsService.updateRm(req.params._id, req.params.childId).then( msg => {
         res.send(msg)
     }).catch( err => {
         res.status(400).send(err)

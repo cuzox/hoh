@@ -11,31 +11,29 @@ import { DOCUMENT } from '@angular/common'
   animations: [
     trigger('slide', [
       state('slideUp', style({
-        transform: 'translateY(-100%)',
-        display: 'none'
+        transform: 'translateX(100%)'
       })),
       state('slideDown', style({
-        transform: 'translateY(0)',
-        display: 'flex'
+        transform: 'translateX(0)',
       })),
       transition('* => *', animate('300ms cubic-bezier(0.4, 0.0, 0.2, 1)'))
     ])
-  ]
+  ],
 })
 
 export class AppComponent {
-  sliding = 'slideUp';
-  menu = false;
-  loggedIn: boolean = false
+  sliding = 'slideUp'
+  menu = false
+  loggedIn = false
   currentUser: User
-  isAdmin: boolean = false
+  isAdmin = false
 
   sub = new Array()
 
   constructor (
     private _as: AuthenticationService,
-  ){
-    document.addEventListener('click', () => this.closeMenu(),false);
+  ) {
+    document.addEventListener('click', () => this.closeMenu(), false)
   }
   ngOnInit() {
     let user = JSON.parse(localStorage.getItem('currentUser'))
@@ -59,27 +57,27 @@ export class AppComponent {
     this.sub.push(sub2)
   }
 
-  toggleSlide(){
-    if(this.sliding == 'slideUp'){
-      this.sliding = 'slideDown';
-    }else{
+  toggleSlide() {
+    if (this.sliding === 'slideUp') {
+      this.sliding = 'slideDown'
+    } else {
       this.sliding = 'slideUp'
     }
   }
 
-  closeMenu(){
-    if(this.menu == true){
-      this.sliding = 'slideUp';
-      this.menu = false;
+  closeMenu() {
+    if ( this.menu === true) {
+      this.sliding = 'slideUp'
+      this.menu = false
     }
   }
-  menuOpen(event){
-    if(event.toState=="slideDown"){
-      this.menu = true;
+  menuOpen(event) {
+    if ( event.toState === 'slideDown' ) {
+      this.menu = true
     }
   }
-  ngOnDestroy(){
-    this.sub.forEach((sub: any)=>{
+  ngOnDestroy() {
+    this.sub.forEach((sub: any) => {
       sub.unsubscribe()
     })
   }

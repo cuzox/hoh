@@ -208,11 +208,12 @@ p-selectbutton {
         background-color: #383838;
         ul{
             list-style: none;
-            margin: 0;
+            margin: 0 auto;
             padding: 0;
             display: flex;
             width: 100%;
             justify-content: space-around;
+            max-width: 900px;
             a{
                 display:block;
                 padding: 0.7em 1em;
@@ -302,10 +303,10 @@ p-selectbutton {
       @media (max-width: 1000px) {
         flex-direction: column;
         position: fixed;
-        left: 0;
         top:50px;
         right:0;
-        height:auto;
+        height:100%;
+        width:90%;
         z-index: -1;
         background-color: #383838;
       }
@@ -332,7 +333,7 @@ p-selectbutton {
             background-color: rgba(255, 255, 255, 0.08);
           }
           @media (max-width: 1000px) {
-            padding: 0.5em 1.5em;
+            padding: 1em 1.5em;
             justify-content: flex-start;
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             &:nth-last-child(){

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild} from '@angular/core'
 import { DomSanitizer } from '@angular/platform-browser'
+import { SpinnerService } from 'angular-spinners'
 
 @Component({
   selector: 'app-create',
@@ -19,6 +20,7 @@ export class CreateComponent implements OnInit {
   @ViewChild('textarea') textarea
   constructor(
     private _sanitizer: DomSanitizer,
+    private _ss: SpinnerService,
   ) { }
 
   ngOnInit() {

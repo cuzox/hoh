@@ -9,14 +9,15 @@ import { ProjectsComponent } from './projects/projects.component'
 import { AdminComponent } from './admin/admin.component'
 import { ChildListComponent } from './child/child-list/child-list.component'
 import { ChildCrudComponent } from './child/child-crud/child-crud.component'
-import { ChildDetailsComponent } from './child/child-details/child-details.component';
+import { ChildDetailsComponent } from './child/child-details/child-details.component'
 import { UserListComponent } from './user/user-list.component'
 import { AuthGuard } from './_guards/auth.guards'
 import { appConfig } from './app.config'
-import { CartComponent } from 'app/cart/cart.component';
-import { BlogComponent } from './blog/blog/blog.component';
-import { ArticleComponent } from './blog/article/article.component';
-import { CreateComponent } from './blog/create/create.component';
+import { CartComponent } from 'app/cart/cart.component'
+import { BlogComponent } from './blog/blog/blog.component'
+import { ArticleComponent } from './blog/article/article.component'
+import { CreateComponent } from './blog/create/create.component'
+import { BlogListComponent} from './blog/blog-list/blog-list.component'
 
 
 const appRoutes: Routes = [
@@ -100,6 +101,10 @@ const appRoutes: Routes = [
     {
         path: 'blog/create/:id',
         component: CreateComponent
+    }, {
+        path: 'blog-list',
+        component: BlogListComponent
+
     },
     // Otherwise redirect to home
     {

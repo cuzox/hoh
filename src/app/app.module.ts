@@ -7,7 +7,6 @@ import { AppComponent } from './app.component'
 import { HttpClientModule } from '@angular/common/http'
 import { HTTP_INTERCEPTORS } from '@angular/common/http'
 import { FlexLayoutModule } from '@angular/flex-layout'
-import {CarouselModule} from 'primeng/primeng'
 
 import { UIModule } from './_ui/ui.module'
 
@@ -38,7 +37,8 @@ import { ProjectsComponent } from 'app/projects/projects.component'
 import { CartComponent } from './cart/cart.component'
 import { BlogComponent } from './blog/blog/blog.component'
 import { ArticleComponent } from './blog/article/article.component'
-import { CreateComponent } from './blog/create/create.component'
+import { CreateComponent } from './blog/create/create.component';
+import { BlogListComponent } from './blog/blog-list/blog-list.component'
 
 
 @NgModule({
@@ -62,6 +62,7 @@ import { CreateComponent } from './blog/create/create.component'
     BlogComponent,
     ArticleComponent,
     CreateComponent,
+    BlogListComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,7 +76,6 @@ import { CreateComponent } from './blog/create/create.component'
     BsDropdownModule.forRoot(),
     SpinnerModule,
     ModalModule.forRoot(),
-    CarouselModule
   ],
   providers: [
     AuthGuard,

@@ -15,6 +15,7 @@ var imagesController = require('../controllers/images.controller')
 
 var allow = require('../services/routes-helper.service').allow
 var owner = require('../services/resource-owner.service').resourceOwner
+var imgType = require('../services/images-helper.service').imgType
 
 
 var APIRoutes = (passport) => {
@@ -49,19 +50,27 @@ var APIRoutes = (passport) => {
   router.delete('/articles/:_id', auth(), allow(config.accessLevels.super_admin), articlesController.delete)
 
   /** CARTS */
-  router.use('/carts', auth()); /** Auth all requests to carts */
+  router.use('/carts', auth()); /** Auth all cart requests */
   router.get('/carts', allow(config.accessLevels.admin), cartsController.getAll)
   router.get('/carts/:_id', allow(config.accessLevels.user), owner("carts"), cartsController.getById)
-  router.post('/carts/:_id/add/:childId', allow(config.accessLevels.user), owner("carts"), cartsController.updateAdd)
-  router.post('/carts/:_id/remove/:childId', allow(config.accessLevels.user), owner("carts"), cartsController.updateRm)
   router.post('/carts', allow(config.accessLevels.user), cartsController.create)
+  router.put('/carts/:_id/add/:childId', allow(config.accessLevels.user), owner("carts"), cartsController.updateAdd)
+  router.put('/carts/:_id/remove/:childId', allow(config.accessLevels.user), owner("carts"), cartsController.updateRm)
   router.delete('/carts/:_id', allow(config.accessLevels.szuper_admin), cartsController.delete)
 
-  /** IMAGES */
-  router.get('/images/:_id', imagesController.getById)
-  router.post('/images', auth(), allow(config.accessLevels.admin), upload.single('childPhoto'), imagesController.create)
-  router.put('/images/:_id', auth(), allow(config.accessLevels.admin), upload.single('childPhoto'), imagesController.update)
-  router.delete('/images/:_id', auth(), allow(config.accessLevels.super_admin), upload.single('childPhoto'), imagesController.delete)
+  /** CHILD IMAGES */
+  router.use('/images/child', imgType('child'));
+  router.get('/images/child:_id', imagesController.getById)
+  router.post('/images/child', auth(), allow(config.accessLevels.admin), upload.single('childPhoto'), imagesController.create)
+  router.put('/images/child/:_id', auth(), allow(config.accessLevels.admin), upload.single('childPhoto'), imagesController.update)
+  router.delete('/images/child/:_id', auth(), allow(config.accessLevels.super_admin), upload.single('childPhoto'), imagesController.delete)
+
+  /** ARTICLE IMAGES */
+  router.use('/images/article', imgType('article'));
+  router.get('/images/article:_id', imagesController.getById)
+  router.post('/images/article', auth(), allow(config.accessLevels.admin), upload.single('articlePhoto'), imagesController.create)
+  router.put('/images/article/:_id', auth(), allow(config.accessLevels.admin), upload.single('articlePhoto'), imagesController.update)
+  router.delete('/images/article/:_id', auth(), allow(config.accessLevels.super_admin), upload.single('articlePhoto'), imagesController.delete)
 
   /** AUTH HELPER FUNCTION */
   function auth() {

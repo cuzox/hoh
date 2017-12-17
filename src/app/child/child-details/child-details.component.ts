@@ -2,7 +2,7 @@ import { SpinnerService } from 'angular-spinners';
 import { Observable } from 'rxjs/Observable';
 import { Child } from './../../_models/child';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ChildService, ImageService } from 'app/_services';
+import { ChildService, ChildImageService } from 'app/_services';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router'
 
 @Component({
@@ -23,7 +23,7 @@ export class ChildDetailsComponent implements OnInit {
     private _router: Router,
     private _route: ActivatedRoute,
     private _ss: SpinnerService,
-    private _is: ImageService
+    private _cis: ChildImageService
   ) { }
 
   ngOnInit() {
@@ -38,7 +38,7 @@ export class ChildDetailsComponent implements OnInit {
       console.log(this.model)
       if (this.model.imageId) {
         this._ss.show('realSpinner');
-        this._is.getById(this.model.imageId).subscribe(src => {
+        this._cis.getById(this.model.imageId).subscribe(src => {
           this.childPhotoSrc = <string>src
           this._ss.hide('realSpinner');
         })

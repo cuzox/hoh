@@ -14,7 +14,7 @@ import { ModalModule } from 'ngx-bootstrap/modal'
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown'
 import { SpinnerModule } from 'angular-spinners'
-import { ImageService } from './_services/image.service'
+import { ChildImageService, ArticleImageService } from './_services/image.service'
 
 import { Routing } from './app.routing'
 import { AlertComponent } from './_directives/alert.component'
@@ -90,7 +90,8 @@ import { BlogListComponent } from './blog/blog-list/blog-list.component'
       useClass: JWTInterceptor,
       multi: true,
     },
-    ImageService
+    ArticleImageService,
+    ChildImageService
   ],
   entryComponents: [ConfirmDialogComponent],
   bootstrap: [AppComponent]

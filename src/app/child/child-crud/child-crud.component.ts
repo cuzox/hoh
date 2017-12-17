@@ -13,7 +13,7 @@ import { ChildService } from '../../_services/index'
 import { User } from './../../_models/user';
 import { UserService } from './../../_services/user.service';
 import { Image } from './../../_models/index';
-import { ImageService } from './../../_services/image.service';
+import { ChildImageService } from './../../_services/image.service';
 import { DialogService } from './../../_services/dialog.service';
 
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
@@ -78,7 +78,7 @@ export class ChildCrudComponent implements OnInit {
     private _zs: ZoneService,
     private _us: UserService,
     private _ss: SpinnerService,
-    private _is: ImageService,
+    private _cis: ChildImageService,
     private _router: Router,
     private _ds: DialogService,
     private _sanitizer: DomSanitizer,
@@ -129,7 +129,7 @@ export class ChildCrudComponent implements OnInit {
     this._ss.show('realSpinner');
     setTimeout(() => {
       if (this.model.imageId) {
-        this._is.getById(this.model.imageId).subscribe(src => {
+        this._cis.getById(this.model.imageId).subscribe(src => {
           this.updateImageDisplay(src)
           this._ss.hide('realSpinner');
         })

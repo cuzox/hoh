@@ -1,6 +1,6 @@
 import { Image } from './../_models/image';
 import { SpinnerService } from 'angular-spinners';
-import { ImageService } from './image.service';
+import { ArticleImageService } from './image.service';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core'
@@ -12,7 +12,7 @@ import 'rxjs/add/operator/forkJoin'
 export class ArticleService {
   constructor(
     private _http: HttpClient,
-    private _is: ImageService,
+    private _ais: ArticleImageService,
     private _ss: SpinnerService
   ) { }
 
@@ -28,20 +28,20 @@ export class ArticleService {
     return this._http.post('/api/articles', article)
   }
 
-  createWithPic(article: Article, images: File[]) {
-    let imgObservableArray = []
-    images.forEach(image => {
-      let formData = new FormData();
-      formData.append('articlePhoto', image, image.name)
-      imgObservableArray.push( this._is.create(formData).map(img => img._id))
-    })
-    return Observable.forkJoin(imgObservableArray).switchMap((imgIdArray: string[]) => {
-      article.images = imgIdArray
-      return this.create(article)
-    }, err => {
-      console.log('Error uploading image', err)
-    })
-  }
+  // createWithPic(article: Article, images: File[]) {
+  //   let imgObservableArray = []
+  //   images.forEach(image => {
+  //     let formData = new FormData();
+  //     formData.append('articlePhoto', image, image.name)
+  //     imgObservableArray.push( this._is.create(formData).map(img => img._id))
+  //   })
+  //   return Observable.forkJoin(imgObservableArray).switchMap((imgIdArray: string[]) => {
+  //     article.images = imgIdArray
+  //     return this.create(article)
+  //   }, err => {
+  //     console.log('Error uploading image', err)
+  //   })
+  // }
 
   update(article: Article): Observable<String> {
     return this._http.put('/api/articles/' + article._id, article, { responseType: 'text' })

@@ -1,4 +1,4 @@
-import { ImageService } from './../../_services/image.service';
+import { ChildImageService } from './../../_services/image.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Child } from '../../_models'
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -17,7 +17,7 @@ export class ChildCardComponent implements OnInit {
   asAdmin: Boolean = false;
 
   constructor(
-    private _is: ImageService,
+    private _cis: ChildImageService,
     private _router: Router
   ) { }
 
@@ -28,7 +28,7 @@ export class ChildCardComponent implements OnInit {
       this.zoneLabel += el.charAt(0).toUpperCase() + el.slice(1) + " "
     })
     if (this.child.imageId){
-      this._is.getById(this.child.imageId).subscribe(image => {
+      this._cis.getById(this.child.imageId).subscribe(image => {
         this.src = image
       })
     }

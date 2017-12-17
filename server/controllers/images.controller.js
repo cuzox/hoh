@@ -14,7 +14,7 @@ controller.delete = _delete
 module.exports = controller
  
 function getById(req, res) {
-    imagesService.getById(req.params._id).then( data => {
+    imagesService.getById(req.params._id, req.imgPath).then( data => {
         res.setHeader('Content-Type', data.mimetype)
         fs.createReadStream(data.path).pipe(res);
     }).catch( (err) => {
@@ -23,7 +23,7 @@ function getById(req, res) {
 }
 
 function create(req, res) {
-    imagesService.create(req.file).then( data => {
+    imagesService.create(req.file, req.imgPath).then( data => {
         res.send(data)
     }).catch( (err) => {
         res.status(400).send(err)
@@ -31,7 +31,7 @@ function create(req, res) {
 }
  
 function update(req, res) {
-    imagesService.update(req.params._id, req.file).then( msg => {
+    imagesService.update(req.params._id, req.file, req.imgPath).then( msg => {
         res.send(msg)
     }).catch( (err) => {
         res.status(400).send(err)
@@ -39,7 +39,7 @@ function update(req, res) {
 }
  
 function _delete(req, res) {
-    imagesService.delete(req.params._id).then( msg => {
+    imagesService.delete(req.params._id, req.imgPath).then( msg => {
         res.send(msg)
     }).catch(function (err) {
         res.status(400).send(err)

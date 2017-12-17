@@ -17,7 +17,7 @@ service.delete = _delete
 module.exports = service
 
 
-function getById(_id) {
+function getById(_id, subpath) {
     let deferred = Q.defer()
  
     db.images.findOne({_id: _id}, (err, image) => {
@@ -27,7 +27,7 @@ function getById(_id) {
     })
 
     function getImageFile(image){
-        glob(`${config.imagePath}/${_id}.*`, function (err, files) {
+        glob(`${config.imagePath}/${subpath}/${_id}.*`, function (err, files) {
             if (err) deferred.reject(err.name + ': ' + err.message)
             else if (files) fs.exists(files[0], exists => {
                 if (exists){
@@ -44,10 +44,11 @@ function getById(_id) {
     return deferred.promise
 }
 
-function create(image) {
+function create(image, subpath) {
     let deferred = Q.defer()
     let _id = shortId.generate()
     let ext = image.originalname.split('.').pop()
+
     // Check size somewhere here
     let processed = {
         _id: _id,
@@ -59,7 +60,7 @@ function create(image) {
 
     db.images.insert(processed, (err, doc)=>{
         if (err) deferred.reject(err.name + ': ' + err.message)
-        else fs.writeFile(`${config.imagePath}/${_id}.${ext}`, image.buffer, err =>{
+        else fs.writeFile(`${config.imagePath}/${subpath}/${_id}.${ext}`, image.buffer, err =>{
             if (err) deferred.reject(err.name + ': ' + err.message)
             else deferred.resolve(doc)
         })
@@ -68,7 +69,7 @@ function create(image) {
     return deferred.promise
 }
 
-function update(_id, image) {
+function update(_id, image, subpath) {
     let deferred = Q.defer()
     let ext = image.originalname.split('.').pop()
  
@@ -88,9 +89,9 @@ function update(_id, image) {
 
         db.images.update({ _id: _id }, { $set: processed }, (err, doc) => {
             if (err) deferred.reject(err.name + ': ' + err.message)
-            else fs.unlink(`${config.imagePath}/${_id}.${originalExt}`, err => {
+            else fs.unlink(`${config.imagePath}/${subpath}/${_id}.${originalExt}`, err => {
                 if (err) deferred.reject(err.name + ': ' + err.message)
-                else fs.writeFile(`${config.imagePath}/${_id}.${ext}`, image.buffer, err =>{
+                else fs.writeFile(`${config.imagePath}/${subpath}/${_id}.${ext}`, image.buffer, err =>{
                     if (err) deferred.reject(err.name + ': ' + err.message)
                     else deferred.resolve('Image updated successfully')
                 })    
@@ -101,12 +102,12 @@ function update(_id, image) {
     return deferred.promise
 }
 
-function _delete(_id) {
+function _delete(_id, subpath) {
     let deferred = Q.defer()
     
     db.images.remove({ _id: _id }, (err) => {
         if (err) deferred.reject(err.name + ': ' + err.message)
-        else glob(`${config.imagePath}/${_id}.*`, function (err, files) {
+        else glob(`${config.imagePath}/${subpath}/${_id}.*`, function (err, files) {
             if (err) deferred.reject(err.name + ': ' + err.message)
             else fs.unlink(files[0], err => {
                 if (err) deferred.reject(err.name + ': ' + err.message)

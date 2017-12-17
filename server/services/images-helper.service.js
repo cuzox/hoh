@@ -1,8 +1,8 @@
 'use strict'
 
-exports.imgType = function (type) {
-  return (req) => {
-    req.imgType = type
+exports.imgPath = function (path) {
+  return (req, res, next) => {
+    req.imgPath = path
     next()
   }
 }

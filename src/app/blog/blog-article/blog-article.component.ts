@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-article',
-  templateUrl: './article.component.html',
-  styleUrls: ['./article.component.scss']
+  selector: 'app-blog-article',
+  templateUrl: './blog-article.component.html',
+  styleUrls: ['./blog-article.component.scss']
 })
-export class ArticleComponent implements OnInit {
+export class BlogArticleComponent implements OnInit {
   articles=[]
   article;
   paragraph = `The sponsored children in Capulin had a New Year’s Eve party. They were transferred from their community on a bus to a camp, where they attended Bible study, played on playground equipment, ate lots of food, made different crafts and received gifts.

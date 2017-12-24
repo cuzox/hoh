@@ -12,7 +12,7 @@ export class ChildImageService {
   ) { }
 
   getById(_id: string) {
-    return this._http.get('/api/images/children' + _id, {responseType: 'blob'}).map(blob => {
+    return this._http.get('/api/images/children/' + _id, {responseType: 'blob'}).map(blob => {
       var urlCreator = window.URL;
       return this._sanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(blob));
     })

@@ -35,11 +35,9 @@ import { AboutComponent } from './about/about.component'
 import { ContactComponent } from './contact/contact.component'
 import { ProjectsComponent } from 'app/projects/projects.component'
 import { CartComponent } from './cart/cart.component'
-import { BlogComponent } from './blog/blog/blog.component'
-import { ArticleComponent } from './blog/article/article.component'
-import { CreateComponent } from './blog/create/create.component';
-import { BlogListComponent } from './blog/blog-list/blog-list.component'
-
+import { BlogHomeComponent } from './blog/blog-home/blog-home.component'
+import { BlogArticleComponent } from './blog/blog-article/blog-article.component'
+import { BlogCrudComponent } from './blog/blog-crud/blog-crud.component';
 
 @NgModule({
   declarations: [
@@ -59,10 +57,9 @@ import { BlogListComponent } from './blog/blog-list/blog-list.component'
     ContactComponent,
     ProjectsComponent,
     CartComponent,
-    BlogComponent,
-    ArticleComponent,
-    CreateComponent,
-    BlogListComponent,
+    BlogHomeComponent,
+    BlogArticleComponent,
+    BlogCrudComponent,
   ],
   imports: [
     BrowserModule,

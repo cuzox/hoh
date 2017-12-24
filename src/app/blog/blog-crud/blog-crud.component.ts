@@ -3,11 +3,11 @@ import { DomSanitizer } from '@angular/platform-browser'
 import { SpinnerService } from 'angular-spinners'
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+  selector: 'app-blog-crud',
+  templateUrl: './blog-crud.component.html',
+  styleUrls: ['./blog-crud.component.scss']
 })
-export class CreateComponent implements OnInit {
+export class BlogCrudComponent implements OnInit {
   text: string
   previewSrc = 'assets/images/no-image.svg'
   fileTypes = [

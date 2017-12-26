@@ -3,16 +3,15 @@
       <div class='col-md-8'>
         <h2>Add New Post</h2>
           <form novalidate >
-              <div id="file-input">
-                <label for="photo" id="preview">
-                  <img [src]="previewSrc" >
-                </label>
-                <input style="opacity: 0; display: none;" id="photo" type="file" name="photo" #photo (change)="updateImageDisplay()" Placeholder="Upload file..." accept=".jpg, .jpeg, .png" />
-              </div>
-              <input placeholder="Post Title" type="text" class="ui-inputtext ui-corner-all ui-state-default ui-widget">
-              <p-editor [style]="{'height':'320px'}" id='textarea'></p-editor>
-              
-              <button type='submit' class='customButton'>PUBLISH</button>
+            <div id="file-input">
+              <label for="photo" id="preview">
+                <img [src]="previewSrc" >
+              </label>
+              <input style="opacity: 0; display: none;" id="photo" type="file" name="photo" #photo (change)="updateImageDisplay()" Placeholder="Upload file..." accept=".jpg, .jpeg, .png" />
+            </div>
+            <input placeholder="Post Title" type="text" class="ui-inputtext ui-corner-all ui-state-default ui-widget">
+            <p-editor #editor [(ngModel)]="body" [style]="{'height':'320px'}" name="article-body"></p-editor>
+            <button (click)="save()" class='customButton'>PUBLISH</button>
           </form>
       </div>
 

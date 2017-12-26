@@ -5,15 +5,16 @@
         </div>
         <div class='right'>
           <ul id="nav-menu" [@slide]="sliding" (@slide.done)=menuOpen($event)>
-              <li><a [routerLink]="['/contact']"  style='color: #88b236;text-shadow: 0 0 5px rgba(163, 212, 68, 0.35);'><i class="material-icons">monetization_on</i>DONATE</a></li>
-              <li><a [routerLink]="['/children']" style='color: #88b236;text-shadow: 0 0 5px rgba(163, 212, 68, 0.35);'><i class="fa fa-heart" aria-hidden="true"></i>SPONSOR A CHILD</a></li>
+            <li><a [routerLink]="['/children']" style='color: #88b236;text-shadow: 0 0 5px rgba(163, 212, 68, 0.35);'><i class="fa fa-heart" aria-hidden="true"></i>SPONSOR A CHILD</a></li>
             <span class='mobile'>
-                <li><a [routerLink]="['/contact']" >CONTACT US</a></li>
-                <li><a [routerLink]="['/projects']" >Our Projects</a></li>
-                <li><a [routerLink]="['/about']" >About Us</a></li>
-                <li><a [routerLink]="['/contact']" >Get involved</a></li>
-                <li><a [routerLink]="['/contact']" >For Sponsors</a></li>
-                <li><a [routerLink]="['/blog']" >Blog</a></li>
+              <li><a [routerLink]="['/']"  style='color: #88b236;text-shadow: 0 0 5px rgba(163, 212, 68, 0.35);'><i class="fa fa-usd"></i>DONATE</a></li>
+              <li><a [routerLink]="['/']" >Home</a></li>
+              <li><a [routerLink]="['/blog']" >Blog</a></li>
+              <li><a [routerLink]="['/projects']" >Our Projects</a></li>
+              <li><a [routerLink]="['/']" >Get involved</a></li>
+              <li><a [routerLink]="['/']" >For Sponsors</a></li>
+              <li><a [routerLink]="['/about']" >About Us</a></li>
+              <li><a [routerLink]="['/contact']" >Contact Us</a></li>
             </span>
           </ul>
 
@@ -29,7 +30,7 @@
             </button>
             <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
               <li role="menuitem">
-                <a style="padding-left: 10px; height: 30px; vertical-align:middle;" class="dropdown-item" [routerLink]="['/']">
+                <a style="padding-left: 10px; height: 30px; vertical-align:middle;" class="dropdown-item" [routerLink]="['/my-children']">
                   <mat-icon>child_care</mat-icon>
                   <span style="margin-left: 10px; top: -7px; position: relative;">My Children</span>
                 </a>
@@ -54,14 +55,15 @@
   <div class='submenu desktop'>
       <div class='container'>
           <ul>
-              <li><a [routerLink]="['/contact']" >CONTACT US</a></li>
-              <li><a [routerLink]="['/projects']" >Our Projects</a></li>
-              <li><a [routerLink]="['/about']" >About Us</a></li>
-              <li><a [routerLink]="['/contact']" >Get involved</a></li>
-              <li><a [routerLink]="['/contact']" >For Sponsors</a></li>
+              <li><a [routerLink]="['/']" >Home</a></li>
               <li><a [routerLink]="['/blog']" >Blog</a></li>
-              <!-- <li><a [routerLink]="['/contact']"  class='green'> <i class="fa fa-usd" aria-hidden="true"></i> DONATE</a></li>
-              <li><a [routerLink]="['/children']" class='gr'><i class="fa fa-heart" aria-hidden="true"></i> SPONSOR A CHILD</a></li> -->
+              <li><a [routerLink]="['/projects']" >Our Projects</a></li>
+              <li><a [routerLink]="['/']" >Get involved</a></li>
+              <li><a [routerLink]="['/']" >For Sponsors</a></li>
+              <li><a [routerLink]="['/about']" >About Us</a></li>
+              <li><a [routerLink]="['/contact']" >Contact Us</a></li>
+              <li><a [routerLink]="['/contact']"  class='gr'> <i class="fa fa-usd" aria-hidden="true"></i> DONATE</a></li>
+              <!--<li><a [routerLink]="['/children']" class='gr'><i class="fa fa-heart" aria-hidden="true"></i> SPONSOR A CHILD</a></li> -->
             </ul>
       </div>
   </div>

@@ -38,6 +38,8 @@ import { CartComponent } from './cart/cart.component'
 import { BlogHomeComponent } from './blog/blog-home/blog-home.component'
 import { BlogArticleComponent } from './blog/blog-article/blog-article.component'
 import { BlogCrudComponent } from './blog/blog-crud/blog-crud.component';
+import { BlogListComponent } from './blog/blog-list/blog-list.component';
+import { MyChildrenComponent } from './my-children/my-children.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,8 @@ import { BlogCrudComponent } from './blog/blog-crud/blog-crud.component';
     BlogHomeComponent,
     BlogArticleComponent,
     BlogCrudComponent,
+    BlogListComponent,
+    MyChildrenComponent,
   ],
   imports: [
     BrowserModule,

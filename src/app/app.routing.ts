@@ -17,95 +17,109 @@ import { CartComponent } from 'app/cart/cart.component'
 import { BlogHomeComponent } from './blog/blog-home/blog-home.component'
 import { BlogArticleComponent } from './blog/blog-article/blog-article.component'
 import { BlogCrudComponent } from './blog/blog-crud/blog-crud.component'
+import { MyChildrenComponent } from './my-children/my-children.component';
+import { BlogListComponent } from './blog/blog-list/blog-list.component';
 
 
 const appRoutes: Routes = [
-    {
+  {
+    path: '',
+    component: HomeComponent
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: appConfig.accessLevels.admin
+    },
+    children: [
+      {
         path: '',
-        component: HomeComponent
-    },
-    {
-        path: 'admin',
-        component: AdminComponent,
-        canActivate: [AuthGuard],
-        data: {
-            role: appConfig.accessLevels.admin
-        },
-        children: [
-            {
-                path: '',
-                redirectTo: 'children',
-                pathMatch: 'full'
-            },
-            {
-                path: 'children',
-                component: ChildListComponent
-            },
-            {
-                path: 'create-child',
-                component: ChildCrudComponent
-            },
-            {
-                path: 'users',
-                component: UserListComponent
-            }
-        ]
-    },
-    {
+        redirectTo: 'children',
+        pathMatch: 'full'
+      },
+      {
         path: 'children',
         component: ChildListComponent
-    }, 
-    {
-        path: 'children/:id',
-        component: ChildDetailsComponent
-
-    },
-    {
+      },
+      {
         path: 'create-child',
         component: ChildCrudComponent
-    },
-    {
-        path: 'login',
-        component: LoginComponent
-    },
-    {
-        path: 'register',
-        component: RegisterComponent
-    },
-    {
-        path: 'about',
-        component: AboutComponent
-    },
-    {
-        path: 'contact',
-        component: ContactComponent
-    },
-    {
-        path: 'projects',
-        component: ProjectsComponent
-    },
-    {
-        path: 'cart',
-        component: CartComponent
-    },
-    {
-        path: 'blog',
-        component: BlogHomeComponent
-    },
-    {
-        path: 'blog/article/:id',
-        component: BlogArticleComponent
-
-    },
-    {
-        path: 'blog/crud/:id',
+      },
+      {
+        path: 'users',
+        component: UserListComponent
+      },
+      {
+        path: 'blogs',
+        component: BlogListComponent
+      },
+      {
+        path: 'create-blog',
         component: BlogCrudComponent
+      }
+    ]
+  },
+  {
+    path: 'children',
+    component: ChildListComponent
+  },
+  {
+    path: 'children/:id',
+    component: ChildDetailsComponent
+
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
+    path: 'about',
+    component: AboutComponent
+  },
+  {
+    path: 'contact',
+    component: ContactComponent
+  },
+  {
+    path: 'projects',
+    component: ProjectsComponent
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: appConfig.accessLevels.user
     },
-    // Otherwise redirect to home
-    {
-        path: '**',
-        redirectTo: ''
-    }
+  },
+  {
+    path: 'my-children',
+    component: MyChildrenComponent,
+    canActivate: [AuthGuard],
+    data: {
+      role: appConfig.accessLevels.user
+    },
+  },
+  {
+    path: 'blog',
+    component: BlogHomeComponent
+  },
+  {
+    path: 'blog/article/:id',
+    component: BlogArticleComponent
+
+  },
+  // Otherwise redirect to home
+  {
+    path: '**',
+    redirectTo: ''
+  }
 ]
 
 export const Routing = RouterModule.forRoot(appRoutes)

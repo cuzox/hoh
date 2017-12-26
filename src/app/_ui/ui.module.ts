@@ -2,18 +2,15 @@ import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { PrimeModule } from './prime/prime.module'
 import { MaterialModule } from './material/material.module'
-import {EditorModule} from 'primeng/primeng'
 
 @NgModule({
   imports: [
     PrimeModule,
-    MaterialModule,
-    EditorModule
+    MaterialModule
   ],
   exports: [
     PrimeModule,
-    MaterialModule,
-    EditorModule
+    MaterialModule
   ],
 })
 export class UIModule { }

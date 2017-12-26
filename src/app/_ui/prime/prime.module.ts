@@ -7,6 +7,8 @@ import { SelectButtonModule } from 'primeng/components/selectbutton/selectbutton
 import { CalendarModule } from 'primeng/components/calendar/calendar'
 import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtextarea'
 import { SpinnerModule } from 'primeng/components/spinner/spinner'
+import {EditorModule} from 'primeng/primeng'
+
 
 @NgModule({
   imports: [
@@ -17,7 +19,8 @@ import { SpinnerModule } from 'primeng/components/spinner/spinner'
     SelectButtonModule,
     CalendarModule,
     InputTextareaModule,
-    SpinnerModule
+    SpinnerModule,
+    EditorModule
   ],
   exports:[
     DropdownModule,
@@ -27,7 +30,8 @@ import { SpinnerModule } from 'primeng/components/spinner/spinner'
     SelectButtonModule,
     CalendarModule,
     InputTextareaModule,
-    SpinnerModule
+    SpinnerModule,
+    EditorModule
   ]
 })
 export class PrimeModule { }

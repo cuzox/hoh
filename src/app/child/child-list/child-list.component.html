@@ -1,44 +1,42 @@
-<div class='bd'>
-    <div class='container'>
-        <div class='row'>
-            <div class='col-sm-12'>
-                    <div class="ui-g ui-fluid">
-                            <div id="children-inputs" class="ui-xs-4">
-                                <h4> Community </h4>
-                                <p-dropdown #dropdown id="zoneList" [options]="zones" [(ngModel)]="currentZone" [filter]="true" [style]="{'width': '200px'}"
-                                    (onChange)='resetFilter()'></p-dropdown>
-                                <ng-container *ngIf="asAdmin">
-                                    <button *ngIf="showDelete" (click)="deleteZone()" class="remove-zone red" mat-icon-button id="zone-icons">
-                                        <mat-icon pTooltip="Delete Community" tooltopposition="top" showDelay="600">remove_circle_outline</mat-icon>
-                                    </button>
-                                    <button (click)="createZone()" mat-icon-button id="zone-icons">
-                                        <mat-icon class="hoh-green-font" pTooltip="Create Community" tooltipPosition="top" showDelay="600">add_circle_outline</mat-icon>
-                                    </button>
-                                </ng-container>
-                            </div>
-                            <div *ngIf="asAdmin" id="child-search" class="ui-xs-4">
-                                <h4> Child Search </h4>
-                                <div class="ui-inputgroup">
-                                    <input style="width: 178px;" pInputText type="text" [(ngModel)]="childSearch" placeholder="Search Children...">
-                                    <span class="ui-inputgroup-addon">
-                                        <i class="fa fa-search"></i>
-                                    </span>
-                                    <button style="top: -5px" [routerLink]="['/admin/create-child']" mat-icon-button id="zone-icons">
-                                        <mat-icon class="hoh-green-font" Tooltip="Create Child" tooltipPosition="top" showDelay="600">add_circle_outline</mat-icon>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-            </div>
-            <div class='col-sm-12'>
-                <div class='scroll-X' id='scroll-X' style='flex-wrap:wrap;'>
-                    <ng-container *ngFor="let child of children">
-                        <child-card *ngIf="!childSearch || (child.firstName + ' ' + child.lastName).toLowerCase().indexOf(childSearch) > -1" [child]="child"
-                            (click)="goToChild(child)">
-                        </child-card>
-                    </ng-container>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+  <div class='container bd'>
+      <div class='row'>
+          <div class='col-sm-12'>
+                  <div class="ui-g ui-fluid">
+                          <div id="children-inputs" class="ui-xs-4">
+                              <h4> Community </h4>
+                              <p-dropdown #dropdown id="zoneList" [options]="zones" [(ngModel)]="currentZone" [filter]="true" [style]="{'width': '200px'}"
+                                  (onChange)='resetFilter()'></p-dropdown>
+                              <ng-container *ngIf="asAdmin">
+                                  <button *ngIf="showDelete" (click)="deleteZone()" class="remove-zone red" mat-icon-button id="zone-icons">
+                                      <mat-icon pTooltip="Delete Community" tooltopposition="top" showDelay="600">remove_circle_outline</mat-icon>
+                                  </button>
+                                  <button (click)="createZone()" mat-icon-button id="zone-icons">
+                                      <mat-icon class="hoh-green-font" pTooltip="Create Community" tooltipPosition="top" showDelay="600">add_circle_outline</mat-icon>
+                                  </button>
+                              </ng-container>
+                          </div>
+                          <div *ngIf="asAdmin" id="child-search" class="ui-xs-4">
+                              <h4> Child Search </h4>
+                              <div class="ui-inputgroup">
+                                  <input style="width: 178px;" pInputText type="text" [(ngModel)]="childSearch" placeholder="Search Children...">
+                                  <span class="ui-inputgroup-addon">
+                                      <i class="fa fa-search"></i>
+                                  </span>
+                                  <button style="top: -5px" [routerLink]="['/admin/create-child']" mat-icon-button id="zone-icons">
+                                      <mat-icon class="hoh-green-font" Tooltip="Create Child" tooltipPosition="top" showDelay="600">add_circle_outline</mat-icon>
+                                  </button>
+                              </div>
+                          </div>
+                      </div>
+          </div>
+          <div class='col-sm-12'>
+              <div class='scroll-X' id='scroll-X' style='flex-wrap:wrap;'>
+                  <ng-container *ngFor="let child of children">
+                      <child-card *ngIf="!childSearch || (child.firstName + ' ' + child.lastName).toLowerCase().indexOf(childSearch) > -1" [child]="child"
+                          (click)="goToChild(child)">
+                      </child-card>
+                  </ng-container>
+              </div>
+          </div>
+      </div>
+  </div>

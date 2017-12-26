@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild} from '@angular/core'
+import { Component, OnInit, ViewChild, AfterViewInit} from '@angular/core'
 import { DomSanitizer } from '@angular/platform-browser'
 import { SpinnerService } from 'angular-spinners'
 
@@ -7,8 +7,7 @@ import { SpinnerService } from 'angular-spinners'
   templateUrl: './blog-crud.component.html',
   styleUrls: ['./blog-crud.component.scss']
 })
-export class BlogCrudComponent implements OnInit {
-  text: string
+export class BlogCrudComponent implements OnInit, AfterViewInit {
   previewSrc = 'assets/images/no-image.svg'
   fileTypes = [
     'image/jpeg',
@@ -16,8 +15,11 @@ export class BlogCrudComponent implements OnInit {
     'image/png'
   ]
 
+  body: string
+
   @ViewChild('photo') photo
-  @ViewChild('textarea') textarea
+  @ViewChild('editor') editor
+
   constructor(
     private _sanitizer: DomSanitizer,
     private _ss: SpinnerService,
@@ -25,10 +27,20 @@ export class BlogCrudComponent implements OnInit {
 
   ngOnInit() {
   }
+  
+  ngAfterViewInit(){
+    // this.editor.quill.getModule("toolbar").addHandler("image", this.imageHandler);
+  }
+
   updateImageDisplay() {
     this.previewSrc = <string>this._sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(this.photo.nativeElement.files[0]))
   }
+
   save() {
-    let body = this.textarea.innerHTML
+    console.log(this.body)
+  }
+
+  imageHandler(){
+    
   }
 }

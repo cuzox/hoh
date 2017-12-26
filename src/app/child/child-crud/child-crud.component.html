@@ -11,11 +11,11 @@
           <div  class="ui-g ui-fluid">
               <div  class="ui-g-12">
                   <div class='cntainr'>
-                      <label class="required">Name</label>
+                      <label class="required">First Name(s)</label>
                       <input  pinputtext="" placeholder="Name" type="text" class="ui-inputtext ui-corner-all ui-state-default ui-widget">
                   </div>
                   <div class='cntainr'>
-                      <label class="required">Last Name</label>
+                      <label class="required">Last Name(s)</label>
                       <input  pinputtext="" placeholder="Last Name" type="text" class="ui-inputtext ui-corner-all ui-state-default ui-widget">
                   </div>
                   <div class='cntainr'>
@@ -39,15 +39,15 @@
                       name="zone" required></p-dropdown>
                   </div>
                   <div class='cntainr'>
-                      <label class="required">Lives with</label><br>
+                      <label>Lives with</label><br>
                       <input type="text" [(ngModel)]="model.household.livesWith" name="livesWith" pInputText>
                   </div>
                   <div class='cntainr'>
-                      <label class="required">People in household</label><br>
+                      <label>People in household</label><br>
                       <p-spinner placeholder="Enter number" size="20" [min]="0" [max]="20" [(ngModel)]="model.household.howMany" name="household.howMany"></p-spinner>
                   </div>
                   <div class='cntainr'>
-                      <label class="required">Favorite subject</label><br>
+                      <label>Favorite subject</label><br>
                       <input type="text" [(ngModel)]="model.school.favSubject" name="school.favSubject" pInputText>
                   </div>
                   <div class='cntainr'>
@@ -72,19 +72,19 @@
           <div  class="ui-g ui-fluid">
               <div  class="ui-g-12">
                   <div class='cntainr'>
-                      <label class="required">Father's name</label>
+                      <label>Father's name</label>
                       <input type="text" [(ngModel)]="model.household.father.name" name="father.name" pInputText>
                   </div>
                   <div class='cntainr'>
-                      <label class="required">Father's ocupation</label>
+                      <label>Father's ocupation</label>
                       <input type="text" [(ngModel)]="model.household.father.occupation" name="father.occupation" pInputText>
                   </div>
                   <div class='cntainr'>
-                      <label class="required">Mother's name</label>
+                      <label>Mother's name</label>
                       <input type="text" [(ngModel)]="model.household.mother.name" name="mother.name" pInputText>
                   </div>
                   <div class='cntainr'>
-                      <label class="required">Mother's ocupation</label><br>
+                      <label>Mother's ocupation</label><br>
                       <input type="text" [(ngModel)]="model.household.mother.occupation" name="mother.occupation" pInputText>
                   </div>
               </div>
@@ -94,20 +94,20 @@
           <div  class="ui-g ui-fluid">
               <div  class="ui-g-12">
                   <div class='cntainr'>
-                      <label class="required">Favorite chores</label>
+                      <label>Favorite chores</label>
                       <input type="text" [(ngModel)]="model.household.favChores" name="favChores" pInputText>
                   </div>
                   <div class='cntainr'>
-                      <label class="required">Siblings</label><br>
+                      <label>Siblings</label><br>
                       <p-spinner placeholder="Enter number" size="20" [min]="0" [max]="20" [(ngModel)]="model.household.siblings" name="household.siblings"></p-spinner>
                   </div>
                   <div class='cntainr'>
-                      <label class="required">Favorite activities</label>
+                      <label>Favorite activities</label>
                       <textarea type="text" [rows]="1" [cols]="20" autoResize="true" [(ngModel)]="model.misc.favActivities" name="favActivities"
                       pInputTextarea></textarea>
                   </div>
                   <div class='cntainr'>
-                      <label class="required">Health</label><br>
+                      <label>Health</label><br>
                       <p-selectButton [style]="{'width': '168px'}" id="health-select" name="health" [options]="progressTypes" [(ngModel)]="model.misc.health"
                       name="health"></p-selectButton>
                   </div>
@@ -134,7 +134,7 @@
           <div  class="ui-g-12">
 
             <div class='cntainr'>
-                <label class="required">Staff in charge</label><br>
+                <label>Staff in charge</label><br>
                 <p-dropdown id="zoneList" [style]="{'width': '100%'}" id="staffList" name="staffList" [filter]="true" [options]="staff"
                 [(ngModel)]="model.staffId"></p-dropdown>
             </div>
@@ -150,11 +150,11 @@
           <div  class="ui-g ui-fluid">
               <div  class="ui-g-12">
             <div class='cntainr'>
-                <label class="required">Observations</label>
+                <label>Observations</label>
                 <textarea type="text" [rows]="1" [cols]="20" autoResize="true" [(ngModel)]="model.observations" name="observations" pInputTextarea></textarea>
             </div>
                 <div class='cntainr'>
-                    <label class="required">Sponsor Email</label><br>
+                    <label>Sponsor Email</label><br>
                     <input type="text" [(ngModel)]="model.sponsorEmail" name="sponsorEmail" pInputText>
                 </div>
               </div>

@@ -40,17 +40,10 @@ function getById(_id) {
 
 function create(articleParams) {
   var deferred = Q.defer()
-
-  db.articles.findOne({ title: articleParams.title }, (err, article) => {
+  articleParams._id = shortId.generate()
+  db.articles.insert(articleParams, (err, article) => {
     if (err) deferred.reject(err.name + ': ' + err.message)
-    else if (article) deferred.reject('Article already in database')
-    else {
-      articleParams._id = shortId.generate()
-      db.articles.insert(articleParams, (err, article) => {
-        if (err) deferred.reject(err.name + ': ' + err.message)
-        else deferred.resolve(article)
-      })
-    }
+    else deferred.resolve(article)
   })
 
   return deferred.promise

@@ -2,5 +2,6 @@ export class Article {
   _id?: string
   title: string
   body: string
-  images?: string[]
+  contents: any
+  status: string
 }

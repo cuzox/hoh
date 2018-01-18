@@ -54,6 +54,6 @@ export class ArticleImageService {
   }
 
   delete(_id: string) {
-    return this._http.delete('/api/images/articles/' + _id)
+    return this._http.delete('/api/images/articles/' + _id, { responseType: 'text' })
   }
 }

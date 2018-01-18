@@ -5,7 +5,7 @@ const accessTypes = {
 }
 
 export const appConfig = {
-    apiUrl: 'http://localhost:3000',
+    apiUrl: 'http://198.211.108.206/api',
 
     accessTypes: accessTypes,
 

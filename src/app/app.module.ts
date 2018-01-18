@@ -14,12 +14,22 @@ import { ModalModule } from 'ngx-bootstrap/modal'
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown'
 import { SpinnerModule } from 'angular-spinners'
-import { ChildImageService, ArticleImageService } from './_services/image.service'
 
 import { Routing } from './app.routing'
 import { AlertComponent } from './_directives/alert.component'
 import { AuthGuard } from './_guards/auth.guards'
-import { AlertService, AuthenticationService, UserService, ChildService, DialogService, ZoneService } from './_services'
+import { 
+  AlertService, 
+  AuthenticationService, 
+  UserService, 
+  ChildService, 
+  DialogService, 
+  ZoneService, 
+  Base64ToBlobService,
+  ChildImageService,
+  ArticleImageService,
+  ArticleService
+} from './_services'
 import { HomeComponent } from './home/home.component'
 import { LoginComponent } from './login/login.component'
 import { RegisterComponent } from './register/register.component'
@@ -92,7 +102,9 @@ import { MyChildrenComponent } from './my-children/my-children.component';
       multi: true,
     },
     ArticleImageService,
-    ChildImageService
+    ChildImageService,
+    Base64ToBlobService,
+    ArticleService
   ],
   entryComponents: [ConfirmDialogComponent],
   bootstrap: [AppComponent]

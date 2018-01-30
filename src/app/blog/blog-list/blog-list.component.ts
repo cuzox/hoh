@@ -1,3 +1,5 @@
+import { Article } from './../../_models/article';
+import { ArticleService } from './../../_services/article.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./blog-list.component.scss']
 })
 export class BlogListComponent implements OnInit {
+  articles: Article[] = []
 
-  constructor() { }
+  constructor(
+    private _articleService: ArticleService
+  ) { }
 
   ngOnInit() {
+    this._articleService.getAll().subscribe(articles => {
+      this.articles = articles
+    })
   }
 
 }

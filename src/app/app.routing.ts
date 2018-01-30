@@ -52,7 +52,7 @@ const appRoutes: Routes = [
         component: UserListComponent
       },
       {
-        path: 'blogs',
+        path: 'blog',
         component: BlogListComponent
       },
       {

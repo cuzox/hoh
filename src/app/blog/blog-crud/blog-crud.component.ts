@@ -6,10 +6,10 @@ import { Base64ToBlobService as GetBlob } from 'app/_services';
 import { DialogService } from './../../_services/dialog.service';
 import { Observable } from 'rxjs/Rx';
 import { Subject } from 'rxjs/Subject';
+import { Article } from './../../_models/article';
 import { ArticleService } from './../../_services/article.service';
 import { ArticleImageService } from './../../_services/image.service';
 import { Router } from '@angular/router';
-import 'rxjs/add/observable/forkJoin'
 
 @Component({
   selector: 'app-blog-crud',
@@ -17,13 +17,13 @@ import 'rxjs/add/observable/forkJoin'
   styleUrls: ['./blog-crud.component.scss']
 })
 export class BlogCrudComponent implements OnInit, AfterViewInit {
-  previewSrc = 'assets/images/no-image.svg'
 
-  title: string
-  body: string
-  status: string
+  previewSrc: string = '';
+  noImage: string = 'assets/images/no-image.svg'
 
-  @ViewChild('photo') photo
+  model: Article = new Article()
+
+  @ViewChild('articlePhoto') articlePhoto
   @ViewChild('editor') editor
 
   constructor(
@@ -40,33 +40,50 @@ export class BlogCrudComponent implements OnInit, AfterViewInit {
   }
   
   ngAfterViewInit(){
-
+    setTimeout(() => {
+      if (this.model.imageId) {
+        this._ss.show('realSpinner');
+        this._articleImg.getById(this.model.imageId).subscribe(src => {
+          this.updateImageDisplay(src)
+          this._ss.hide('realSpinner');
+        })
+      } else {
+        this.updateImageDisplay()
+        this._ss.hide('realSpinner');
+      }
+    }, 200);
   }
 
-  updateImageDisplay() {
-    this.previewSrc = <string>this._sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(this.photo.nativeElement.files[0]))
+  updateImageDisplay(existing = null) {
+    if (this.articlePhoto.nativeElement.files.length !== 0) {
+      this.previewSrc = <string>this._sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(this.articlePhoto.nativeElement.files[0]));
+    } else {
+      this.previewSrc = existing || this.previewSrc || this.noImage;
+    }
   }
 
   save(draft: boolean = false) {
     this._ss.show('realSpinner')
-    this.processImages().subscribe(images =>{
-      let article = {
-        title: this.title, 
-        body: this.body,
-        contents: this.editor.quill.getContents(),
-        status: status
-      }
-      this._article.create(article).subscribe(article =>{
-        this._dialog.confirm("Create another blog?").subscribe(anotherOne =>{
-          if(anotherOne){
-            this.editor.quill.setContents([])
-          } else {
-            this._router.navigate(['/admin/blogs'])
-          }
+    this.processImages().subscribe(() =>{
+      let image: File = this.articlePhoto.nativeElement.files[0]
+      this.model.contents = this.editor.quill.getContents()
+      this.model.status = draft ? "draft" : "published"
+
+      this._article.create(this.model, image).subscribe(article =>{
+        this._dialog.confirm("Would you like to create another article?").subscribe(anotherOne =>{
+          if(anotherOne) this.emptyArticle()
+          else this._router.navigate(['/admin/blogs'])
         })
         this._ss.hideAll()
       })
     })
+  }
+
+  emptyArticle(){
+    this.model = new Article
+    this.articlePhoto.nativeElement.values = ""
+    this.previewSrc = this.noImage;   
+    this.editor.quill.setContents([])
   }
 
   
@@ -94,7 +111,7 @@ export class BlogCrudComponent implements OnInit, AfterViewInit {
         })
       )
     })
-    return Observable.forkJoin(observables).map( images =>{
+    return !observables.length ? Observable.of({}) : Observable.forkJoin(observables).map( images =>{
       if(contentsChanged) this.editor.quill.setContents(contents)
       return images
     })

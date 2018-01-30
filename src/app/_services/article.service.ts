@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core'
 import { Article } from '../_models/article'
 import { Base64ToBlobService as GetBlob } from 'app/_services';
 import { Observable } from 'rxjs';
+import 'rxjs/add/operator/switchMap';
 
 @Injectable()
 export class ArticleService {
@@ -24,8 +25,17 @@ export class ArticleService {
     return this._http.get<Article>('/api/articles/' + _id)
   }
 
-  create(article: Article): Observable<Article> {
-    return this._http.post<Article>('/api/articles', article)
+  create(article: Article, image?: File): Observable<Article>{
+    var upload = (article: Article): Observable<Article> => this._http.post<Article>('/api/articles', article)
+
+    if (!image) return upload(article)
+
+    let formData = new FormData();  
+    formData.append('articlePhoto', image, image.name)
+    return this._ais.create(formData).switchMap((res: Image) => {
+      article.imageId = res._id
+      return upload(article)
+    })
   }
 
   update(article: Article): Observable<String> {

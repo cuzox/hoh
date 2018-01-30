@@ -126,9 +126,9 @@ export class ChildCrudComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this._ss.show('realSpinner');
     setTimeout(() => {
       if (this.model.imageId) {
+        this._ss.show('realSpinner');
         this._cis.getById(this.model.imageId).subscribe(src => {
           this.updateImageDisplay(src)
           this._ss.hide('realSpinner');

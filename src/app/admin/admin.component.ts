@@ -23,8 +23,8 @@ export class AdminComponent implements OnInit {
         label: 'Users'
       },
       {
-        route: 'create-blog',
-        label: 'Blogs'
+        route: 'blog',
+        label: 'Blog'
       }
     ]
   }

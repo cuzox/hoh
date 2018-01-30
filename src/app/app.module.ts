@@ -50,6 +50,7 @@ import { BlogArticleComponent } from './blog/blog-article/blog-article.component
 import { BlogCrudComponent } from './blog/blog-crud/blog-crud.component';
 import { BlogListComponent } from './blog/blog-list/blog-list.component';
 import { MyChildrenComponent } from './my-children/my-children.component';
+import { SafeHTMLPipe } from './safe-html.pipe';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { MyChildrenComponent } from './my-children/my-children.component';
     BlogCrudComponent,
     BlogListComponent,
     MyChildrenComponent,
+    SafeHTMLPipe,
   ],
   imports: [
     BrowserModule,

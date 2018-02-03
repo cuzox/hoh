@@ -15,25 +15,28 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-// Point static path to dist
-app.use(express.static(path.join(__dirname, 'dist')))
-
 // Hook up passport
 app.use(passport.initialize())
 hookJWTStrategy(passport)
 
-// Set API routes
+// Setup dist
+app.use(express.static(path.join(__dirname, 'dist')))
+
+// Setup API
 app.use('/api', require('./server/routes/api')(passport))
 
-//Catch all other routes and return the index file
+// Setup static images
+let imgExt = ['jpg','JPG','png','PNG','jpeg','JPEG']
+app.use('/images', express.static(path.join(__dirname, 'images'), { index:false, extensions: imgExt }))
+
+// Catch all other routes and return the index file
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/'))
+  res.sendFile(path.join(__dirname, 'dist/index.html'))
 })
 
 // Get port from environment and store in Express
 const port = process.env.NODE_ENV === 'production' ? 8080 : 3000
 app.set('port', port)
-
 
 // Create HTTP server
 const server = http.createServer(app)

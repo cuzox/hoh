@@ -1,0 +1,17 @@
+.blog-list-container{
+  .blog-list-article{
+    border: 1px solid lightgray;
+    border-bottom: none;
+    margin: 0;
+    padding: 15px;
+  }
+  .blog-list-article:first-child{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  .blog-list-article:last-child{
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom: 1px solid lightgray;
+  }
+}

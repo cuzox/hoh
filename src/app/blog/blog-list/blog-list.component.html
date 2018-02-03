@@ -1,6 +1,7 @@
 <div class="center-content">
-  <div id="blog-list-container">
-    <div *ngFor="let article of articles">
+  <div class="blog-list-container">
+    <div class="blog-list-article" *ngFor="let article of articles">
+      <img *ngIf="article.imageId" src="/images/static/{{article.imageId}}"/>
       <h3>{{article.title}}</h3>
       <p [innerHTML]="article.body | safeHTML"></p>
     </div>

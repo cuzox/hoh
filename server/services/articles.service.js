@@ -41,6 +41,7 @@ function getById(_id) {
 function create(articleParams) {
   var deferred = Q.defer()
   articleParams._id = shortId.generate()
+  articleParams.created = new Date().toISOString()
   db.articles.insert(articleParams, (err, article) => {
     if (err) deferred.reject(err.name + ': ' + err.message)
     else deferred.resolve(article)

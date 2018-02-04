@@ -1,6 +1,10 @@
 {
-    "/api": {
-      "target": "http://198.211.108.206",
-      "secure": false
-    }
+  "/api": {
+    "target": "http://198.211.108.206",
+    "secure": false
+  },
+  "/images": {
+    "target": "http://198.211.108.206",
+    "secure": false
   }
+}

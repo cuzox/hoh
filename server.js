@@ -27,7 +27,7 @@ app.use('/api', require('./server/routes/api')(passport))
 
 // Setup static images
 let imgExt = ['jpg','JPG','png','PNG','jpeg','JPEG']
-app.use('/images', express.static(path.join(__dirname, 'images'), { index:false, extensions: imgExt }))
+app.use('/static/images', express.static(path.join(__dirname, config.imagePath), { index:false, extensions: imgExt }))
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {

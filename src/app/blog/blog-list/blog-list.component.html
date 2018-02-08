@@ -4,12 +4,12 @@
       <div id="article-search">
           <h4> Article Search </h4>
           <div class="ui-inputgroup">
-              <input style="width: 178px;" pInputText type="text" [(ngModel)]="childSearch" placeholder="Search articles...">
+              <input style="width: 178px;" pInputText type="text" [(ngModel)]="articleSearch" placeholder="Search articles...">
               <span class="ui-inputgroup-addon">
                   <i class="fa fa-search"></i>
               </span>
-              <button style="top: -5px" [routerLink]="['/admin/create-child']" mat-icon-button id="zone-icons">
-                  <mat-icon class="hoh-green-font" Tooltip="Create Child" tooltipPosition="top" showDelay="600">add_circle_outline</mat-icon>
+              <button style="top: -5px" [routerLink]="['/admin/create-blog']" mat-icon-button id="zone-icons">
+                  <mat-icon class="hoh-green-font" Tooltip="Create Article" tooltipPosition="top" showDelay="600">add_circle_outline</mat-icon>
               </button>
           </div>
       </div>

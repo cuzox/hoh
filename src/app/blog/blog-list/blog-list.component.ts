@@ -19,6 +19,7 @@ export class BlogListComponent implements OnInit {
   statusFilter: SelectItem[]
   selectedStatusFilter: string
   articlesAdditional: any = {}
+  articleSearch: string
 
   constructor(
     private _article: ArticleService,

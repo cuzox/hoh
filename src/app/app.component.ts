@@ -1,4 +1,4 @@
-import { Inject, Component, HostListener, ViewEncapsulation } from '@angular/core'
+import { Inject, Component, HostListener, ViewEncapsulation, ChangeDetectorRef  } from '@angular/core'
 import { trigger, state, style, transition, animate } from '@angular/animations'
 import { User } from './_models/user'
 import { AuthenticationService } from './_services/index'
@@ -32,6 +32,7 @@ export class AppComponent {
 
   constructor (
     private _as: AuthenticationService,
+    private _cdr: ChangeDetectorRef
   ) {
     document.addEventListener('click', () => this.closeMenu(), false)
   }
@@ -47,10 +48,12 @@ export class AppComponent {
 
     let sub = this._as.isLoggedIn().subscribe(loggedIn => {
       this.loggedIn = loggedIn
+      this._cdr.detectChanges();
     })
 
     let sub2 = this._as.isAdmin().subscribe(isAdmin => {
       this.isAdmin = isAdmin
+      this._cdr.detectChanges();
     })
 
     this.sub.push(sub)

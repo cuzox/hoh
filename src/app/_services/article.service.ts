@@ -38,8 +38,8 @@ export class ArticleService {
     })
   }
 
-  update(article: Article): Observable<String> {
-    return this._http.put('/api/articles/' + article._id, article, { responseType: 'text' })
+  update(_id: string, data: any): Observable<String> {
+    return this._http.put('/api/articles/' + _id, data, { responseType: 'text' })
   }
 
 

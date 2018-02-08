@@ -1,9 +1,32 @@
 <div class="center-content">
   <div class="blog-list-container">
+    <div class="blog-list-filter-search">
+      <div id="article-search">
+          <h4> Article Search </h4>
+          <div class="ui-inputgroup">
+              <input style="width: 178px;" pInputText type="text" [(ngModel)]="childSearch" placeholder="Search articles...">
+              <span class="ui-inputgroup-addon">
+                  <i class="fa fa-search"></i>
+              </span>
+              <button style="top: -5px" [routerLink]="['/admin/create-child']" mat-icon-button id="zone-icons">
+                  <mat-icon class="hoh-green-font" Tooltip="Create Child" tooltipPosition="top" showDelay="600">add_circle_outline</mat-icon>
+              </button>
+          </div>
+      </div>
+      <p-selectButton [options]="statusFilter" [(ngModel)]="selectedStatusFilter"></p-selectButton>
+    </div>
     <div class="blog-list-article" *ngFor="let article of articles">
-      <img *ngIf="article.imageId" src="/static/images/articles/{{article.imageId}}"/>
-      <h3>{{article.title}}</h3>
-      <p [innerHTML]="article.body | safeHTML"></p>
+      <img (click)="goToArticle(article)" style="width:25%;" [src]="articlesAdditional[article._id].src"/>
+      <div style="width:75%; padding-left: 20px;" >
+        <h3 (click)="goToArticle(article)" style="display: inline;">{{article.title}} </h3>
+        <span (click)="goToArticle(article)"> | {{article.created | date:'shortDate'}}</span>
+        <div (click)="goToArticle(article)" class="article-content" [innerHTML]="article.body | safeHTML"></div>
+        <p-inputSwitch onLabel="Published" offLabel="Unpublished" 
+          [(ngModel)]="articlesAdditional[article._id].status"
+          (onChange)="articleStatusChange(article)">
+        </p-inputSwitch>
+      </div>
+      <mat-icon (click)="removeArticle(article._id)" class="remove-article">delete_forever</mat-icon>
     </div>
   </div>
 </div>

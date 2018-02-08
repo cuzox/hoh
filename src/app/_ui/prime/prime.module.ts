@@ -7,7 +7,9 @@ import { SelectButtonModule } from 'primeng/components/selectbutton/selectbutton
 import { CalendarModule } from 'primeng/components/calendar/calendar'
 import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtextarea'
 import { SpinnerModule } from 'primeng/components/spinner/spinner'
-import {EditorModule} from 'primeng/primeng'
+import { EditorModule } from 'primeng/components/editor/editor'
+import { InputSwitchModule } from 'primeng/components/inputswitch/inputswitch';
+import { GrowlModule } from 'primeng/components/growl/growl';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import {EditorModule} from 'primeng/primeng'
     CalendarModule,
     InputTextareaModule,
     SpinnerModule,
-    EditorModule
+    EditorModule,
+    InputSwitchModule,
+    GrowlModule
   ],
   exports:[
     DropdownModule,
@@ -31,7 +35,9 @@ import {EditorModule} from 'primeng/primeng'
     CalendarModule,
     InputTextareaModule,
     SpinnerModule,
-    EditorModule
+    EditorModule,
+    InputSwitchModule,
+    GrowlModule
   ]
 })
 export class PrimeModule { }

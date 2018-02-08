@@ -92,7 +92,6 @@ import { SafeHTMLPipe } from './safe-html.pipe';
   ],
   providers: [
     AuthGuard,
-    AlertService,
     AuthenticationService,
     UserService,
     ChildService,
@@ -106,7 +105,8 @@ import { SafeHTMLPipe } from './safe-html.pipe';
     ArticleImageService,
     ChildImageService,
     Base64ToBlobService,
-    ArticleService
+    ArticleService,
+    AlertService
   ],
   entryComponents: [ConfirmDialogComponent],
   bootstrap: [AppComponent]

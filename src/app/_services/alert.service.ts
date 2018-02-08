@@ -1,39 +1,31 @@
 import { Injectable } from '@angular/core'
-import { Router, NavigationStart } from '@angular/router'
 import { Observable } from 'rxjs'
 import { Subject } from 'rxjs/Subject'
 
 @Injectable()
 export class AlertService {
-    private subject = new Subject<any>()
-    private keepAfterNavigationChange = false
+  private subject = new Subject<any>()
 
-    constructor(private router: Router) {
-        // clear alert message on route change
-        router.events.subscribe(event => {
-            if (event instanceof NavigationStart) {
-                if (this.keepAfterNavigationChange) {
-                    // only keep for a single location change
-                    this.keepAfterNavigationChange = false
-                } else {
-                    // clear alert
-                    this.subject.next()
-                }
-            }
-        })
-    }
+  constructor() {
+  }
 
-    success(message: string, keepAfterNavigationChange = false) {
-        this.keepAfterNavigationChange = keepAfterNavigationChange
-        this.subject.next({ type: 'success', text: message })
-    }
+  success(title = "", message = "") {
+      this.subject.next({ severity: 'success', summary: title, detail: message })
+  }
 
-    error(message: string, keepAfterNavigationChange = false) {
-        this.keepAfterNavigationChange = keepAfterNavigationChange
-        this.subject.next({ type: 'error', text: message })
-    }
+  warning(title = "", message = "") {
+    this.subject.next({ severity: 'warn', summary: title, detail: message })
+  }
 
-    getMessage(): Observable<any> {
-        return this.subject.asObservable()
-    }
+  info(title = "", message = "") {
+    this.subject.next({ severity: 'error', summary: title, detail: message })
+  }
+
+  error(title = "", message = "") {
+    this.subject.next({ severity: 'error', summary: title, detail: message })
+  }
+
+  getMessage(): Observable<any> {
+      return this.subject.asObservable()
+  }
 }

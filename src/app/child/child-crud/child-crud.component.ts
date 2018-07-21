@@ -1,9 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ViewEncapsulation, Optional, AfterViewInit } from '@angular/core'
 import { Router, ActivatedRoute, ParamMap } from '@angular/router'
 import { FormControl } from '@angular/forms'
-import 'rxjs/add/operator/switchMap';
-
-import { SpinnerService } from 'angular-spinners';
+import { switchMap } from 'rxjs/operators'
 
 import { Zone } from './../../_models/zone';
 import { ZoneService } from './../../_services/zone.service';
@@ -77,7 +75,6 @@ export class ChildCrudComponent implements OnInit {
     private _route: ActivatedRoute,
     private _zs: ZoneService,
     private _us: UserService,
-    private _ss: SpinnerService,
     private _cis: ChildImageService,
     private _router: Router,
     private _ds: DialogService,
@@ -88,9 +85,9 @@ export class ChildCrudComponent implements OnInit {
 
   ngOnInit() {
     this.model = this.emptyChild()
-    this.childParam = this._route.paramMap.switchMap((params: ParamMap) =>
+    this.childParam = this._route.paramMap.pipe(switchMap((params: ParamMap) =>
       this._cs.getById(params.get('id'))
-    );
+    ));
     this.token = JSON.parse(localStorage.getItem('currentUser')).token
 
     this._zs.getAll().subscribe(zones => {
@@ -128,20 +125,20 @@ export class ChildCrudComponent implements OnInit {
   ngAfterViewInit() {
     setTimeout(() => {
       if (this.model.imageId) {
-        this._ss.show('realSpinner');
+        // this._ss.show('realSpinner');
         this._cis.getById(this.model.imageId).subscribe(src => {
           this.updateImageDisplay(src)
-          this._ss.hide('realSpinner');
+          // this._ss.hide('realSpinner');
         })
       } else {
         this.updateImageDisplay()
-        this._ss.hide('realSpinner');
+        // this._ss.hide('realSpinner');
       }
     }, 200);
   }
 
   upload() {
-    this._ss.show('realSpinner');
+    // this._ss.show('realSpinner');
     console.log('This is the model', this.model)
     let files = this.childPhoto.nativeElement.files
     let length = files.length > 0
@@ -150,22 +147,22 @@ export class ChildCrudComponent implements OnInit {
     if(this.model._id){
       let method = length ? 'updateWithPic' : 'update';
       this._cs[method](...args).subscribe(res => { 
-        this._ss.hide('realSpinner');
+        // this._ss.hide('realSpinner');
         this.bsModalRef.hide()
       }, err => {
-        this._ss.hide('realSpinner');
+        // this._ss.hide('realSpinner');
         console.log('Error updating child', err)
       })
     } else {
       let method = length ? 'createWithPic' : 'create';
       this._cs[method](...args).subscribe(res => {
-        this._ss.hide('realSpinner');
+        // this._ss.hide('realSpinner');
         this._ds.confirm('Child successfully added!', 'Would you like to add another one?').subscribe(succ => {
           if (succ) this.model = this.emptyChild()
           else this._router.navigate(['/admin/children'])
         })
       }, err => {
-        this._ss.hide('realSpinner');
+        // this._ss.hide('realSpinner');
         console.log('Error creating child', err)
       })
     }

@@ -7,6 +7,7 @@ import { ArticleService } from './../../_services/article.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { SelectItem } from 'primeng/components/common/selectitem';
 import { AlertService } from 'app/_services';
+import { map } from 'rxjs/operators'
 
 @Component({
   selector: 'app-blog-list',
@@ -38,7 +39,7 @@ export class BlogListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._article.getAll().map(articles=>{
+    this._article.getAll().pipe(map(articles=>{
       console.log("ARTICLES -->", articles)
       return articles.map(article =>{
         /** 
@@ -54,7 +55,7 @@ export class BlogListComponent implements OnInit {
         article.body = article.body.replace(/<img[^>]*>/gi,"").replace(/<p><br><\/p>/gi,"")
         return article
       })
-    }).subscribe(articles => {
+    })).subscribe(articles => {
       this.articles = articles
     })
   }

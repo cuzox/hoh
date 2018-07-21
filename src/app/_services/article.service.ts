@@ -1,20 +1,18 @@
 import { appConfig } from './../app.config';
 import { Image } from './../_models/image';
-import { SpinnerService } from 'angular-spinners';
 import { ArticleImageService } from './image.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core'
 import { Article } from '../_models/article'
 import { Base64ToBlobService as GetBlob } from 'app/_services';
 import { Observable } from 'rxjs';
-import 'rxjs/add/operator/switchMap';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class ArticleService {
   constructor(
     private _http: HttpClient,
-    private _ais: ArticleImageService,
-    private _ss: SpinnerService
+    private _ais: ArticleImageService
   ) { }
 
   getAll(): Observable<Article[]> {
@@ -32,10 +30,10 @@ export class ArticleService {
 
     let formData = new FormData();  
     formData.append('articlePhoto', image, image.name)
-    return this._ais.create(formData).switchMap((res: Image) => {
+    return this._ais.create(formData).pipe(switchMap((res: Image) => {
       article.imageId = res._id
       return upload(article)
-    })
+    }))
   }
 
   update(_id: string, data: any): Observable<String> {

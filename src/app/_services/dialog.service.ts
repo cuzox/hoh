@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs/Rx'
+import { Observable } from 'rxjs/Observable';
 import { MatDialogRef, MatDialog, MatDialogConfig } from '@angular/material'
 import { Injectable } from '@angular/core'
 
@@ -6,8 +6,7 @@ import { Injectable } from '@angular/core'
 import { ConfirmDialogComponent } from '../dialog/confirm-dialog.component'
 
 // For child-crud
-import { ChildCrudComponent } from '../child/child-crud/child-crud.component'
-import { Router, ActivatedRoute } from '@angular/router'
+import { Router } from '@angular/router'
 import { ChildService } from '../_services/child.service'
 
 
@@ -23,7 +22,7 @@ export class DialogService {
     private dialogRef: MatDialogRef<ConfirmDialogComponent>
     private config = new MatDialogConfig()
 
-    public confirm(title: string, message: string = "", data: string[] = []): Observable<boolean> {
+    public confirm(title: string, message: string = "", data: string[] = []): Observable<any> {
 
         
         this.config.data = data
@@ -37,7 +36,7 @@ export class DialogService {
         return this.dialogRef.afterClosed()
     }
 
-    public newZone(title: string): Observable<string>{
+    public newZone(title: string): Observable<any>{
 
         this.dialogRef = this.dialog.open(ConfirmDialogComponent)
         this.dialogRef.componentInstance.title = title

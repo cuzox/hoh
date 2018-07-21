@@ -1,9 +1,10 @@
-import { SpinnerService } from 'angular-spinners';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Child } from './../../_models/child';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ChildService, ChildImageService } from 'app/_services';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router'
+
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-child-details',
@@ -22,14 +23,13 @@ export class ChildDetailsComponent implements OnInit {
     private _cs: ChildService,
     private _router: Router,
     private _route: ActivatedRoute,
-    private _ss: SpinnerService,
     private _cis: ChildImageService
   ) { }
 
   ngOnInit() {
-    this.childParam = this._route.paramMap.switchMap((params: ParamMap) =>
+    this.childParam = this._route.paramMap.pipe(switchMap((params: ParamMap) =>
       this._cs.getById(params.get('id'))
-    );
+    ));
     if (this._router.url.includes("admin")) this.asAdmin = true
     setTimeout(()=>{
       this.model.zone.split('-').forEach(el => {
@@ -37,10 +37,10 @@ export class ChildDetailsComponent implements OnInit {
       })
       console.log(this.model)
       if (this.model.imageId) {
-        this._ss.show('realSpinner');
+        // this._ss.show('realSpinner');
         this._cis.getById(this.model.imageId).subscribe(src => {
           this.childPhotoSrc = <string>src
-          this._ss.hide('realSpinner');
+          // this._ss.hide('realSpinner');
         })
       }
     })

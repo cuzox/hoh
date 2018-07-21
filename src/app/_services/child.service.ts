@@ -1,18 +1,16 @@
 import { Image } from './../_models/image';
-import { SpinnerService } from 'angular-spinners';
 import { ChildImageService } from './image.service';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core'
 import { Child } from '../_models/child'
-import 'rxjs/add/operator/switchMap'
+import { switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class ChildService {
     constructor(
         private _http: HttpClient,
-        private _cis: ChildImageService,
-        private _ss: SpinnerService
+        private _cis: ChildImageService
     ) { }
 
     getAll(): Observable<Child[]> {
@@ -30,12 +28,12 @@ export class ChildService {
     createWithPic(child: Child, image: File) {
         let formData = new FormData();  
         formData.append('childPhoto', image, image.name)
-        return this._cis.create(formData).switchMap(res => {
+        return this._cis.create(formData).pipe(switchMap(res => {
             child.imageId = res._id
             return this.create(child)
         }, err => {
             console.log('Error uploading image', err)
-        })
+        }))
     }
 
     update(child: Child) {
@@ -46,19 +44,19 @@ export class ChildService {
         let formData = new FormData();
         formData.append('childPhoto', image, image.name)
         if(child.imageId){
-            return this._cis.update(child.imageId, formData).switchMap(res => {
+            return this._cis.update(child.imageId, formData).pipe(switchMap(res => {
                 console.log('res uploading image', res)
                 return this.update(child)
             }, err => {
                 console.log('Error uploading image', err)
-            })
+            }))
         } else {
-            return this._cis.create(formData).switchMap(res => {
+            return this._cis.create(formData).pipe(switchMap(res => {
                 child.imageId = res._id
                 return this.update(child)
             }, err => {
                 console.log('Error uploading image', err)
-            })
+            }))
         }
     }
 

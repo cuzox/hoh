@@ -1,4 +1,5 @@
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators'
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core'
 import { Image } from '../_models/index'
@@ -12,10 +13,10 @@ export class ChildImageService {
   ) { }
 
   getById(_id: string) {
-    return this._http.get('/api/images/children/' + _id, {responseType: 'blob'}).map(blob => {
+    return this._http.get('/api/images/children/' + _id, {responseType: 'blob'}).pipe(map(blob => {
       var urlCreator = window.URL;
       return this._sanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(blob));
-    })
+    }))
   }
 
   create(formData: FormData): Observable<Image> {
@@ -39,10 +40,10 @@ export class ArticleImageService {
   ) { }
 
   getById(_id: string) {
-    return this._http.get('/api/images/articles/' + _id, {responseType: 'blob'}).map(blob => {
+    return this._http.get('/api/images/articles/' + _id, {responseType: 'blob'}).pipe(map(blob => {
       var urlCreator = window.URL;
       return this._sanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(blob));
-    })
+    }))
   }
 
   create(formData: FormData): Observable<Image> {

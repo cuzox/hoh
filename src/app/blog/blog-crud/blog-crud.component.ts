@@ -1,11 +1,10 @@
 import { appConfig } from './../../app.config';
 import { Component, OnInit, ViewChild, AfterViewInit} from '@angular/core'
 import { DomSanitizer } from '@angular/platform-browser'
-import { SpinnerService } from 'angular-spinners'
 import { Base64ToBlobService as GetBlob } from 'app/_services';
 import { DialogService } from './../../_services/dialog.service';
-import { Observable } from 'rxjs/Rx';
-import { Subject } from 'rxjs/Subject';
+import { Subject, of, forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Article } from './../../_models/article';
 import { ArticleService } from './../../_services/article.service';
 import { ArticleImageService } from './../../_services/image.service';
@@ -28,7 +27,6 @@ export class BlogCrudComponent implements OnInit, AfterViewInit {
 
   constructor(
     private _sanitizer: DomSanitizer,
-    private _ss: SpinnerService,
     private _article: ArticleService,
     private _dialog: DialogService,
     private _articleImg: ArticleImageService,
@@ -42,14 +40,14 @@ export class BlogCrudComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(){
     setTimeout(() => {
       if (this.model.imageId) {
-        this._ss.show('realSpinner');
+        // this._ss.show('realSpinner');
         this._articleImg.getById(this.model.imageId).subscribe(src => {
           this.updateImageDisplay(src)
-          this._ss.hide('realSpinner');
+          // this._ss.hide('realSpinner');
         })
       } else {
         this.updateImageDisplay()
-        this._ss.hide('realSpinner');
+        // this._ss.hide('realSpinner');
       }
     }, 200);
   }
@@ -63,7 +61,7 @@ export class BlogCrudComponent implements OnInit, AfterViewInit {
   }
 
   save(draft: boolean = false) {
-    this._ss.show('realSpinner')
+    // this._ss.show('realSpinner')
     this.processImages().subscribe(() =>{
       let image: File = this.articlePhoto.nativeElement.files[0]
       this.model.contents = this.editor.quill.getContents()
@@ -74,7 +72,7 @@ export class BlogCrudComponent implements OnInit, AfterViewInit {
           if(anotherOne) this.emptyArticle()
           else this._router.navigate(['/admin/blogs'])
         })
-        this._ss.hideAll()
+        // this._ss.hideAll()
       })
     })
   }
@@ -104,16 +102,16 @@ export class BlogCrudComponent implements OnInit, AfterViewInit {
       form.append("articlePhoto", imgFile)
 
       observables.push(
-        this._articleImg.create(form).map(res => {
+        this._articleImg.create(form).pipe(map(res => {
           op.insert.image = `${appConfig.apiUrl}/images/articles/${res._id}`
           contentsChanged = true
           return res
-        })
+        }))
       )
     })
-    return !observables.length ? Observable.of({}) : Observable.forkJoin(observables).map( images =>{
+    return !observables.length ? of({}) : forkJoin(observables).pipe(map( images =>{
       if(contentsChanged) this.editor.quill.setContents(contents)
       return images
-    })
+    }))
   }
 }

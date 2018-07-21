@@ -5,7 +5,8 @@ import { Child, Zone } from '../../_models/index'
 import { ChildService, ZoneService, DialogService} from '../../_services/index'
 import { SelectItem } from 'primeng/primeng'
 import { Dropdown } from 'primeng/components/dropdown/dropdown'
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -60,7 +61,7 @@ export class ChildListComponent implements OnInit {
   }
 
   loadZones(){
-    return this._zs.getAll().map(result => {
+    return this._zs.getAll().pipe(map(result => {
       this.zones = result
       // Insert on top of array
       this.zones.unshift(this.allZone)
@@ -68,7 +69,7 @@ export class ChildListComponent implements OnInit {
       this.currentZone = this.zones[0].value
     }, err => {
       this.zones.unshift(this.allZone)
-    })
+    }))
   }
   scroll(direction){
     $('#scroll-X').stop()

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core'
-import { Observable } from 'rxjs/Observable'
+import { Observable, Subject } from 'rxjs'
+import { map } from 'rxjs/operators'
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Subject } from 'rxjs/Subject'
-import 'rxjs/add/operator/map'
 
 @Injectable()
 export class AuthenticationService {
@@ -25,7 +24,7 @@ export class AuthenticationService {
 
 
   login(email: string, password: string) {
-    return this.http.post('/api/users/authenticate', { email: email, password: password }).map((user: any) => {
+    return this.http.post('/api/users/authenticate', { email: email, password: password }).pipe(map((user: any) => {
       // login successful if there's a jwt token in the response
       if (user && user.token) {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -40,7 +39,7 @@ export class AuthenticationService {
       }
 
       return user
-    })
+    }))
   }
 
   logout() {

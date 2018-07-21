@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { NgModule } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { RouterModule } from '@angular/router'
 import { AppComponent } from './app.component'
 import { HttpClientModule } from '@angular/common/http'
 import { HTTP_INTERCEPTORS } from '@angular/common/http'
@@ -13,7 +12,6 @@ import { UIModule } from './_ui/ui.module'
 import { ModalModule } from 'ngx-bootstrap/modal'
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown'
-import { SpinnerModule } from 'angular-spinners'
 
 import { Routing } from './app.routing'
 import { AlertComponent } from './_directives/alert.component'
@@ -87,7 +85,6 @@ import { SafeHTMLPipe } from './safe-html.pipe';
     ReactiveFormsModule,
     UIModule,
     BsDropdownModule.forRoot(),
-    SpinnerModule,
     ModalModule.forRoot(),
   ],
   providers: [

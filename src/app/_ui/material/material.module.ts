@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
-import { MatIconModule } from '@angular/material'
-import { MatButtonModule } from '@angular/material'
-import { MatMenuModule } from '@angular/material'
-import { MatTabsModule } from '@angular/material'
-import { MatToolbarModule } from '@angular/material'
-import { MatDialogModule } from '@angular/material'
-import { MatDatepickerModule } from '@angular/material'
-import { MatInputModule } from '@angular/material'
-import { MatProgressSpinnerModule } from '@angular/material';
+import { MatIconModule } from '@angular/material/icon'
+import { MatButtonModule } from '@angular/material/button'
+import { MatMenuModule } from '@angular/material/menu'
+import { MatTabsModule } from '@angular/material/tabs'
+import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatDialogModule } from '@angular/material/dialog'
+import { MatDatepickerModule } from '@angular/material/datepicker'
+import { MatInputModule } from '@angular/material/input'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   imports: [
@@ -29,7 +29,8 @@ import { MatProgressSpinnerModule } from '@angular/material';
     MatToolbarModule,
     MatDialogModule,
     MatDatepickerModule,
-    MatInputModule
+    MatInputModule,
+    MatProgressSpinnerModule
   ]
 })
 export class MaterialModule { }
